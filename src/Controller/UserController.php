@@ -30,17 +30,19 @@ final class UserController extends AbstractController
         UserPasswordHasherInterface $passwordHasher
     ): Response {
         $user = new User();
+
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $user->setPassword(
-                $passwordHasher->hashPassword(
-                    $user,
-                    $user->getPassword()
-                )
-            );
+            $plainPassword = $form->get('password')->getData();
+
+            if ($plainPassword) {
+                $user->setPassword(
+                    $passwordHasher->hashPassword($user, $plainPassword)
+                );
+            }
 
             $entityManager->persist($user);
             $entityManager->flush();
@@ -74,12 +76,13 @@ final class UserController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $user->setPassword(
-                $passwordHasher->hashPassword(
-                    $user,
-                    $user->getPassword()
-                )
-            );
+            $plainPassword = $form->get('password')->getData();
+
+            if ($plainPassword) {
+                $user->setPassword(
+                    $passwordHasher->hashPassword($user, $plainPassword)
+                );
+            }
 
             $entityManager->flush();
 
@@ -98,7 +101,10 @@ final class UserController extends AbstractController
         User $user,
         EntityManagerInterface $entityManager
     ): Response {
-        if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->getPayload()->getString('_token'))) {
+        if ($this->isCsrfTokenValid(
+            'delete'.$user->getId(),
+            $request->getPayload()->getString('_token')
+        )) {
             $entityManager->remove($user);
             $entityManager->flush();
         }

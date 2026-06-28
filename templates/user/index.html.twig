@@ -11,7 +11,6 @@
                 <th>Id</th>
                 <th>Email</th>
                 <th>Roles</th>
-                <th>Password</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -21,7 +20,6 @@
                 <td>{{ user.id }}</td>
                 <td>{{ user.email }}</td>
                 <td>{{ user.roles|join(', ') }}</td>
-                <td>{{ user.password }}</td>
                 <td>
                     <a href="{{ path('app_user_show', {'id': user.id}) }}">Show</a>
                     <a href="{{ path('app_user_edit', {'id': user.id}) }}">Edit</a>
@@ -29,7 +27,7 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">No records found.</td>
+                <td colspan="4">No records found.</td>
             </tr>
         {% endfor %}
         </tbody>
