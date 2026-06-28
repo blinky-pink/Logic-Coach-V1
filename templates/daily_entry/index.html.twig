@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}DailyEntry index{% endblock %}
+
+{% block body %}
+    <h1>DailyEntry index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>SleepHours</th>
+                <th>Energy</th>
+                <th>Stress</th>
+                <th>Motivation</th>
+                <th>Mood</th>
+                <th>Score</th>
+                <th>Message</th>
+                <th>Advice</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for daily_entry in daily_entries %}
+            <tr>
+                <td>{{ daily_entry.id }}</td>
+                <td>{{ daily_entry.sleepHours }}</td>
+                <td>{{ daily_entry.energy }}</td>
+                <td>{{ daily_entry.stress }}</td>
+                <td>{{ daily_entry.motivation }}</td>
+                <td>{{ daily_entry.mood }}</td>
+                <td>{{ daily_entry.score }}</td>
+                <td>{{ daily_entry.message }}</td>
+                <td>{{ daily_entry.advice }}</td>
+                <td>
+                    <a href="{{ path('app_daily_entry_show', {'id': daily_entry.id}) }}">show</a>
+                    <a href="{{ path('app_daily_entry_edit', {'id': daily_entry.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_daily_entry_new') }}">Create new</a>
+{% endblock %}

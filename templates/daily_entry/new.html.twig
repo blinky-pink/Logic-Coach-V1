@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New DailyEntry{% endblock %}
+
+{% block body %}
+    <h1>Create new DailyEntry</h1>
+
+    {{ include('daily_entry/_form.html.twig') }}
+
+    <a href="{{ path('app_daily_entry_index') }}">back to list</a>
+{% endblock %}

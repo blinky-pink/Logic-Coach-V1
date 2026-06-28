@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit DailyEntry{% endblock %}
+
+{% block body %}
+    <h1>Edit DailyEntry</h1>
+
+    {{ include('daily_entry/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_daily_entry_index') }}">back to list</a>
+
+    {{ include('daily_entry/_delete_form.html.twig') }}
+{% endblock %}
