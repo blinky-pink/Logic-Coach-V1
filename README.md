@@ -12,3 +12,31 @@ Logic Coach n'a pas pour objectif de juger, d'établir un diagnostic ou de prend
 
 Ce projet a été conçu afin de mettre en pratique les compétences acquises durant la formation tout en respectant les bonnes pratiques de développement proposées par Symfony.
 
+## Technologies
+
+Symfony 7.4 LTS
+PHP 8.3
+Doctrine ORM
+MySQL
+Twig
+PHPUnit
+Git
+GitHub
+
+## Installation
+
+git clone https://github.com/blinky-pink/Logic-Coach-V1.git
+
+cd Logic-Coach-V1
+
+composer install
+
+php bin/console doctrine:database:create
+
+php bin/console doctrine:migrations:migrate
+
+symfony server:start
+
+## Licence
+
+Projet pédagogique réalisé dans le cadre de la formation DWWM.
