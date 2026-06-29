@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Logic Coach{% endblock %}
+
+{% block body %}
+
+<main class="home">
+
+    <section class="hero">
+
+        <h1>Logic Coach</h1>
+
+        <p class="subtitle">
+            Votre coach de bien-être quotidien
+        </p>
+
+        <div class="hero-content">
+
+            <div class="feature feature-sleep">
+                <img src="{{ asset('images/home/sommeil.png') }}" alt="Sommeil">
+                <p>Sommeil</p>
+            </div>
+
+            <div class="feature feature-energy">
+                <img src="{{ asset('images/home/energie.png') }}" alt="Énergie">
+                <p>Énergie</p>
+            </div>
+
+            <div class="feature feature-stress">
+                <img src="{{ asset('images/home/stress.png') }}" alt="Stress">
+                <p>Stress</p>
+            </div>
+
+            <a href="{{ path('app_login') }}" class="center-circle">
+
+                <span>
+                    Entrer dans<br>
+                    Logic Coach
+                </span>
+
+            </a>
+
+            <div class="feature feature-motivation">
+                <img src="{{ asset('images/home/motivation.png') }}" alt="Motivation">
+                <p>Motivation</p>
+            </div>
+
+            <div class="feature feature-mood">
+                <img src="{{ asset('images/home/humeur.png') }}" alt="Humeur">
+                <p>Humeur</p>
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+{% endblock %}

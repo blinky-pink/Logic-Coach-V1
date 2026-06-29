@@ -1,3 +1,10 @@
-body {
-    background-color: skyblue;
-}
+/* Fichier principal des styles */
+
+@import url("./base.css");
+@import url("./layout.css");
+@import url("./home.css");
+@import url("./login.css");
+@import url("./dashboard.css");
+@import url("./daily-entry.css");
+@import url("./theme.css");
+@import url("./message.css");
