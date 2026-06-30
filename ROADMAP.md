@@ -34,7 +34,7 @@
 ### Interface
 
 * [x] Landing Page
-* [ ] Tableau de bord
+* [x] Tableau de bord
 * [ ] Formulaire DailyEntry
 * [ ] Choix du thème
 * [ ] Messagerie
