@@ -27,3 +27,14 @@ Toutes les évolutions importantes du projet Logic Coach V1 sont documentées da
 * Correction du formulaire User.
 * Conservation du mot de passe lors de la modification d'un utilisateur.
 * Suppression de l'affichage du hash des mots de passe dans le CRUD User.
+
+# 2026-06-29
+
+### Landing Page
+- Création de la page d'accueil.
+- Ajout du bouton d'accès.
+- Mise en place du thème sombre.
+
+### Documentation
+- Création du README.
+- Création de la roadmap.

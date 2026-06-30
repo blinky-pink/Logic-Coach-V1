@@ -33,7 +33,7 @@
 
 ### Interface
 
-* [ ] Landing Page
+* [x] Landing Page
 * [ ] Tableau de bord
 * [ ] Formulaire DailyEntry
 * [ ] Choix du thème

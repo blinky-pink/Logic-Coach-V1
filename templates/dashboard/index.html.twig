@@ -1,0 +1,107 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block body %}
+
+<main class="dashboard">
+
+    <aside class="sidebar">
+
+        <div class="user-card">
+
+            <img src="{{ asset('images/avatar.png') }}" alt="Avatar">
+
+            <h2>Olivier</h2>
+
+            <p>Mon espace personnel</p>
+
+        </div>
+
+        <nav class="sidebar-menu">
+
+            <ul>
+
+                <li>
+                    <a href="{{ path('app_dashboard') }}">
+                        Tableau de bord
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        Saisie quotidienne
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        Historique
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        Profil
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ path('app_logout') }}">
+                        Déconnexion
+                    </a>
+                </li>
+
+            </ul>
+
+        </nav>
+
+    </aside>
+
+    <section class="dashboard-content">
+
+        <header class="dashboard-header">
+
+            <h1>Tableau de bord</h1>
+
+        </header>
+
+        <section class="dashboard-grid">
+
+            <article class="card score">
+
+                <h2>Score global</h2>
+
+            </article>
+
+            <article class="card indicators">
+
+                <h2>Indicateurs</h2>
+
+            </article>
+
+            <article class="card evolution">
+
+                <h2>Évolution</h2>
+
+            </article>
+
+            <article class="card goals">
+
+                <h2>Objectifs</h2>
+
+            </article>
+
+            <article class="card messages">
+
+                <h2>Messages / Conseils</h2>
+
+            </article>
+
+        </section>
+
+    </section>
+
+</main>
+
+{% endblock %}

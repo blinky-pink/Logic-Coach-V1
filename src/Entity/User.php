@@ -39,10 +39,20 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'receiver', targetEntity: Message::class)]
     private Collection $receivedMessages;
 
+    #[ORM\ManyToOne(inversedBy: 'users')]
+    private ?Theme $theme = null;
+
+    /**
+     * @var Collection<int, DailyEntry>
+     */
+    #[ORM\OneToMany(targetEntity: DailyEntry::class, mappedBy: 'user')]
+    private Collection $dailyEntries;
+
     public function __construct()
     {
         $this->sentMessages = new ArrayCollection();
         $this->receivedMessages = new ArrayCollection();
+        $this->dailyEntries = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -159,6 +169,48 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         if ($this->receivedMessages->removeElement($message)) {
             if ($message->getReceiver() === $this) {
                 $message->setReceiver(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getTheme(): ?Theme
+    {
+        return $this->theme;
+    }
+
+    public function setTheme(?Theme $theme): static
+    {
+        $this->theme = $theme;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, DailyEntry>
+     */
+    public function getDailyEntries(): Collection
+    {
+        return $this->dailyEntries;
+    }
+
+    public function addDailyEntry(DailyEntry $dailyEntry): static
+    {
+        if (!$this->dailyEntries->contains($dailyEntry)) {
+            $this->dailyEntries->add($dailyEntry);
+            $dailyEntry->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDailyEntry(DailyEntry $dailyEntry): static
+    {
+        if ($this->dailyEntries->removeElement($dailyEntry)) {
+            // set the owning side to null (unless already changed)
+            if ($dailyEntry->getUser() === $this) {
+                $dailyEntry->setUser(null);
             }
         }
 

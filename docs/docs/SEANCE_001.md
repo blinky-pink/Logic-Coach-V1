@@ -74,3 +74,64 @@ Fonctionnalité terminée et validée.
 ## Prochaine fonctionnalité
 
 Création de la Landing Page de Logic Coach.
+
+# SEANCE_002
+
+**Date :** 29/06/2026
+
+## Objectif
+
+Créer la Landing Page de Logic Coach V1.
+
+---
+
+# Travail réalisé
+
+## Interface utilisateur
+
+* Création de la page d'accueil.
+* Intégration du titre **Logic Coach**.
+* Ajout du sous-titre.
+* Création du bouton central d'accès à l'application.
+* Intégration des icônes du bien-être.
+* Mise en place du thème sombre.
+* Début du responsive.
+
+---
+
+## Ressources
+
+* Préparation des icônes avec fond transparent.
+* Organisation des images dans `public/images/home/`.
+* Création du fichier `home.css`.
+
+---
+
+## Documentation
+
+* Mise à jour du `README.md`.
+* Création du `CHANGELOG.md`.
+* Création de la `ROADMAP.md`.
+
+---
+
+## Difficultés rencontrées
+
+* Positionnement des éléments de la Landing Page.
+* Ajustements du responsive.
+* Organisation du CSS.
+
+---
+
+## État du projet
+
+Landing Page V1 terminée.
+
+La page reste améliorable graphiquement mais constitue une première version stable permettant de poursuivre le développement de l'application.
+
+---
+
+## Prochaine fonctionnalité
+
+Création du Dashboard utilisateur.
+

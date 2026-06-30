@@ -38,6 +38,10 @@ class DailyEntry
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $advice = null;
 
+    #[ORM\ManyToOne(inversedBy: 'dailyEntries')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $user = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -135,6 +139,18 @@ class DailyEntry
     public function setAdvice(?string $advice): static
     {
         $this->advice = $advice;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
 
         return $this;
     }
