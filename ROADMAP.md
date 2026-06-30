@@ -60,5 +60,6 @@
 ### Documentation
 
 * [x] README
-* [x] CHANGELOG
+* [ ] PROJECT_RULES
+* [ ] CHANGELOG
 * [ ] Documentation des séances
