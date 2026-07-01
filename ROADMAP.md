@@ -4,62 +4,64 @@
 
 ### Fondations
 
-* [x] Initialisation du projet Symfony 7.4 LTS
-* [x] Configuration de Doctrine
-* [x] Configuration de MySQL
-* [x] Configuration Git / GitHub
-* [x] Authentification Symfony
-* [x] Sécurisation des routes
+- [x] Initialisation du projet Symfony 7.4 LTS
+- [x] Configuration de Doctrine
+- [x] Configuration de MySQL
+- [x] Configuration Git / GitHub
+- [x] Authentification Symfony
+- [x] Securisation des routes
 
 ---
 
-### Base de données
+### Base de donnees
 
-* [x] User
-* [x] Theme
-* [x] DailyEntry
-* [x] Message
+- [x] User
+- [x] Theme
+- [x] DailyEntry
+- [x] Message
 
 ---
 
 ### CRUD
 
-* [x] CRUD User
-* [x] CRUD Theme
-* [x] CRUD DailyEntry
-* [x] CRUD Message
+- [x] CRUD User
+- [x] CRUD Theme
+- [x] CRUD DailyEntry
+- [x] CRUD Message
 
 ---
 
 ### Interface
 
-* [x] Landing Page
-* [x] Tableau de bord
-* [ ] Formulaire DailyEntry
-* [ ] Choix du thème
-* [ ] Messagerie
+- [x] Landing Page
+- [x] Tableau de bord
+- [x] Formulaire DailyEntry
+- [ ] Choix du theme
+- [ ] Messagerie
 
 ---
 
-### Fonctionnalités métier
+### Fonctionnalites metier
 
-* [ ] Calcul du score
-* [ ] Calcul de l'état
-* [ ] Génération du message
-* [ ] Conseils personnalisés
+- [x] Association du DailyEntry a l'utilisateur connecte
+- [x] Conversion du sommeil en note
+- [x] Calcul du score
+- [x] Calcul de l'etat
+- [x] Generation du message
+- [x] Conseils personnalises
 
 ---
 
 ### Tests
 
-* [ ] Tests unitaires
-* [ ] Tests fonctionnels
+- [ ] Tests unitaires
+- [ ] Tests fonctionnels
 
 ---
 
 ### Documentation
 
-* [x] README
-* [ ] PROJECT_RULES
-* [ ] CHANGELOG
-* [ ] Documentation des séances
+- [x] README
+- [ ] PROJECT_RULES
+- [x] CHANGELOG
+- [ ] Documentation des seances

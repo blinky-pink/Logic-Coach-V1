@@ -15,6 +15,7 @@
                 <th>Motivation</th>
                 <th>Mood</th>
                 <th>Score</th>
+                <th>State</th>
                 <th>Message</th>
                 <th>Advice</th>
                 <th>actions</th>
@@ -30,6 +31,7 @@
                 <td>{{ daily_entry.motivation }}</td>
                 <td>{{ daily_entry.mood }}</td>
                 <td>{{ daily_entry.score }}</td>
+                <td>{{ daily_entry.state }}</td>
                 <td>{{ daily_entry.message }}</td>
                 <td>{{ daily_entry.advice }}</td>
                 <td>
@@ -39,7 +41,7 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="10">no records found</td>
+                <td colspan="11">no records found</td>
             </tr>
         {% endfor %}
         </tbody>
