@@ -35,6 +35,11 @@ Ce projet est concu pour rester simple, propre et facilement defendable devant u
 - Determination automatique de l'etat du jour.
 - Generation automatique d'un message et d'un conseil adaptes.
 - Choix du theme utilisateur depuis une liste de themes existants.
+- Messagerie privee entre utilisateurs.
+- Association automatique de l'expediteur.
+- Association automatique de la date d'envoi.
+- Boite de reception personnelle.
+- Consultation securisee des messages.
 
 ## Logique DailyEntry
 

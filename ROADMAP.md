@@ -37,7 +37,7 @@
 - [x] Tableau de bord
 - [x] Formulaire DailyEntry
 - [x] Choix du theme
-- [ ] Messagerie
+- [x] Messagerie
 
 ---
 
@@ -49,6 +49,10 @@
 - [x] Calcul de l'etat
 - [x] Generation du message
 - [x] Conseils personnalises
+- [x] Association automatique de l'expediteur des messages
+- [x] Association automatique de la date d'envoi
+- [x] Filtrage des messages recus
+- [x] Protection de l'acces aux messages
 
 ---
 
