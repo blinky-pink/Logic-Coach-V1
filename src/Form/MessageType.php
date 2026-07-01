@@ -14,19 +14,14 @@ class MessageType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('message')
-            ->add('createdAt', null, [
-                'widget' => 'single_text',
-            ])
-            ->add('sender', EntityType::class, [
-                'class' => User::class,
-                'choice_label' => 'id',
-            ])
             ->add('receiver', EntityType::class, [
                 'class' => User::class,
-                'choice_label' => 'id',
+                'choice_label' => 'email',
+                'label' => 'Destinataire',
             ])
-        ;
+            ->add('message', null, [
+                'label' => 'Message',
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
