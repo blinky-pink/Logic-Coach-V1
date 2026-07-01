@@ -36,7 +36,7 @@
 - [x] Landing Page
 - [x] Tableau de bord
 - [x] Formulaire DailyEntry
-- [ ] Choix du theme
+- [x] Choix du theme
 - [ ] Messagerie
 
 ---

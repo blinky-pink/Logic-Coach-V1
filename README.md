@@ -34,6 +34,7 @@ Ce projet est concu pour rester simple, propre et facilement defendable devant u
 - Calcul automatique du score quotidien sur 50.
 - Determination automatique de l'etat du jour.
 - Generation automatique d'un message et d'un conseil adaptes.
+- Choix du theme utilisateur depuis une liste de themes existants.
 
 ## Logique DailyEntry
 

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Theme;
+use App\Entity\User;
 use App\Form\ThemeType;
 use App\Repository\ThemeRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -19,6 +20,7 @@ final class ThemeController extends AbstractController
     {
         return $this->render('theme/index.html.twig', [
             'themes' => $themeRepository->findAll(),
+            'current_theme' => $this->getUser() instanceof User ? $this->getUser()->getTheme() : null,
         ]);
     }
 
@@ -66,6 +68,21 @@ final class ThemeController extends AbstractController
             'theme' => $theme,
             'form' => $form,
         ]);
+    }
+
+    #[Route('/{id}/choose', name: 'app_theme_choose', methods: ['POST'])]
+    public function choose(Request $request, Theme $theme, EntityManagerInterface $entityManager): Response
+    {
+        if ($this->isCsrfTokenValid('choose'.$theme->getId(), $request->getPayload()->getString('_token'))) {
+            $user = $this->getUser();
+
+            if ($user instanceof User) {
+                $user->setTheme($theme);
+                $entityManager->flush();
+            }
+        }
+
+        return $this->redirectToRoute('app_theme_index', [], Response::HTTP_SEE_OTHER);
     }
 
     #[Route('/{id}', name: 'app_theme_delete', methods: ['POST'])]

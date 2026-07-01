@@ -58,6 +58,12 @@ Toutes les evolutions importantes du projet Logic Coach V1 sont documentees dans
 - Generation automatique d'un conseil personnalise.
 - Affichage de l'etat dans les pages de liste et de detail.
 
+### Theme
+
+- Ajout du choix du theme pour l'utilisateur connecte.
+- Affichage du theme actuel dans la liste des themes.
+- Ajout d'un acces au choix du theme depuis le tableau de bord.
+
 ### Documentation
 
 - Mise a jour du README.

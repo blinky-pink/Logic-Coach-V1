@@ -1,45 +1,58 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Theme index{% endblock %}
+{% block title %}Choix du theme{% endblock %}
 
 {% block body %}
-    <h1>Theme index</h1>
+    <h1>Choix du theme</h1>
+
+    {% if current_theme %}
+        <p>Theme actuel : {{ current_theme.name }}</p>
+    {% else %}
+        <p>Aucun theme choisi.</p>
+    {% endif %}
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Name</th>
+                <th>Nom</th>
                 <th>Description</th>
-                <th>Illustration</th>
-                <th>PrimaryColor</th>
-                <th>CreatedAt</th>
-                <th>UpdatedAt</th>
-                <th>actions</th>
+                <th>Couleur principale</th>
+                <th>Statut</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for theme in themes %}
             <tr>
-                <td>{{ theme.id }}</td>
                 <td>{{ theme.name }}</td>
                 <td>{{ theme.description }}</td>
-                <td>{{ theme.illustration }}</td>
                 <td>{{ theme.primaryColor }}</td>
-                <td>{{ theme.createdAt ? theme.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ theme.updatedAt ? theme.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
-                    <a href="{{ path('app_theme_show', {'id': theme.id}) }}">show</a>
-                    <a href="{{ path('app_theme_edit', {'id': theme.id}) }}">edit</a>
+                    {% if current_theme and current_theme.id == theme.id %}
+                        Selectionne
+                    {% else %}
+                        Disponible
+                    {% endif %}
+                </td>
+                <td>
+                    {% if not current_theme or current_theme.id != theme.id %}
+                        <form method="post" action="{{ path('app_theme_choose', {'id': theme.id}) }}">
+                            <input type="hidden" name="_token" value="{{ csrf_token('choose' ~ theme.id) }}">
+                            <button class="btn" type="submit">Choisir</button>
+                        </form>
+                    {% endif %}
+                    <a href="{{ path('app_theme_show', {'id': theme.id}) }}">Voir</a>
+                    <a href="{{ path('app_theme_edit', {'id': theme.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="8">no records found</td>
+                <td colspan="5">Aucun theme trouve.</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_theme_new') }}">Create new</a>
+    <a href="{{ path('app_theme_new') }}">Creer un theme</a>
+    <a href="{{ path('app_dashboard') }}">Retour au tableau de bord</a>
 {% endblock %}
