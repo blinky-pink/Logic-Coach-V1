@@ -133,11 +133,11 @@ Le score détermine cinq états :
 
 | Score | État |
 |-------:|------|
-| 40 - 50 | excellent |
-| 30 - 39 | good |
+| 40 - 50 | excellent | excellent 
+| 30 - 39 | good | bien 
 | 20 - 29 | average |
-| 10 - 19 | difficult |
-| 0 - 9 | critical |
+| 10 - 19 | difficult | difficulté 
+| 0 - 9 | critical | critique 
 
 Chaque état génère automatiquement :
 
