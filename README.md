@@ -1,83 +1,168 @@
 # Logic Coach V1
 
-## Presentation
+ **Projet développé en suivant les bonnes pratiques Symfony : séparation des responsabilités, logique métier centralisée dans un service, tests unitaires avec PHPUnit et gestion de versions avec Git.**
 
-Logic Coach est une application de bien-etre developpee avec Symfony 7.4 dans le cadre de la formation Developpeur Web et Web Mobile (DWWM).
+## Présentation
 
-Son objectif est d'accompagner l'utilisateur au quotidien grace a un questionnaire simple portant sur son sommeil, son niveau d'energie, son stress, sa motivation et son humeur.
+Logic Coach est une application de bien-être développée avec **Symfony 7.4 LTS** dans le cadre de la formation **Développeur Web et Web Mobile (DWWM)**.
 
-A partir des reponses fournies, l'application calcule un score sur 50, determine un etat, puis propose automatiquement un message et un conseil adaptes.
+Son objectif est d'accompagner quotidiennement l'utilisateur grâce à un questionnaire portant sur :
 
-Logic Coach n'a pas pour objectif de juger, d'etablir un diagnostic ou de prendre des decisions a la place de l'utilisateur. Son role est d'accompagner l'utilisateur avec bienveillance et de l'aider a prendre du recul sur sa journee.
+- Sommeil
+- Énergie
+- Stress
+- Motivation
+- Humeur
 
-Ce projet est concu pour rester simple, propre et facilement defendable devant un jury DWWM.
+À partir des réponses, l'application applique des règles métier afin de :
 
-## Technologies
+- calculer un score sur 50 ;
+- déterminer l'état de la journée ;
+- générer automatiquement un message personnalisé ;
+- proposer un conseil adapté.
+
+Logic Coach ne remplace pas un professionnel de santé. Il s'agit d'un outil pédagogique d'accompagnement permettant à l'utilisateur de prendre du recul sur son bien-être quotidien.
+
+---
+
+# Technologies
 
 - Symfony 7.4 LTS
 - PHP 8.3
 - Doctrine ORM
 - MySQL
 - Twig
-- PHPUnit
+- PHPUnit 12
 - Git
 - GitHub
 
-## Fonctionnalites principales
+---
 
-- Authentification utilisateur avec Symfony Security.
-- Tableau de bord utilisateur.
-- Gestion des entites User, Theme, DailyEntry et Message.
-- CRUD Symfony pour les principales entites.
-- Questionnaire quotidien DailyEntry.
-- Association automatique du DailyEntry a l'utilisateur connecte.
-- Calcul automatique du score quotidien sur 50.
-- Determination automatique de l'etat du jour.
-- Generation automatique d'un message et d'un conseil adaptes.
-- Choix du theme utilisateur depuis une liste de themes existants.
-- Messagerie privee entre utilisateurs.
-- Association automatique de l'expediteur.
-- Association automatique de la date d'envoi.
-- Boite de reception personnelle.
-- Consultation securisee des messages.
+# Architecture
 
-## Logique DailyEntry
+Le projet respecte les bonnes pratiques Symfony.
 
-Le formulaire quotidien demande :
-
-- les heures de sommeil ;
-- le niveau d'energie ;
-- le niveau de stress ;
-- la motivation ;
-- l'humeur.
-
-Le sommeil est converti en note :
-
-- moins de 4h : 0
-- de 4h a moins de 5h : 4
-- de 5h a moins de 6h : 5
-- de 6h a moins de 7h : 6
-- de 7h a moins de 8h : 8
-- de 8h a 9h : 10
-- plus de 9h : 9
-
-Le score est calcule sur 50 :
-
-```text
-Sommeil + Energie + Motivation + Humeur + (10 - Stress)
+```
+src/
+├── Controller/
+├── Entity/
+├── Form/
+├── Repository/
+├── Security/
+└── Service/
+    └── BusinessRulesService.php
 ```
 
-L'etat est determine selon le score :
+La logique métier est centralisée dans **BusinessRulesService**, ce qui permet :
 
-- 40 a 50 : excellent
-- 30 a 39 : good
-- 20 a 29 : average
-- 10 a 19 : difficult
-- 0 a 9 : critical
+- un contrôleur léger ;
+- une meilleure maintenabilité ;
+- des tests unitaires dédiés ;
+- une architecture évolutive.
 
-Chaque etat genere automatiquement un message et un conseil.
+---
 
-## Installation
+# Fonctionnalités
+
+## Authentification
+
+- Inscription
+- Connexion
+- Déconnexion
+- Sécurisation des routes
+
+## Tableau de bord
+
+- Accueil utilisateur
+- Navigation
+
+## DailyEntry
+
+Chaque saisie quotidienne permet de renseigner :
+
+- heures de sommeil ;
+- énergie ;
+- stress ;
+- motivation ;
+- humeur.
+
+Le système calcule automatiquement :
+
+- le score ;
+- l'état ;
+- le message ;
+- le conseil.
+
+## Messagerie privée
+
+- Envoi d'un message
+- Réception d'un message
+- Historique
+
+## Thèmes
+
+L'utilisateur peut sélectionner un thème graphique.
+
+---
+
+# Règles métier
+
+Le sommeil est converti en score :
+
+| Sommeil | Score |
+|---------|------:|
+| < 4 h | 0 |
+| 4 h | 4 |
+| 5 h | 5 |
+| 6 h | 6 |
+| 7 h | 8 |
+| 8 à 9 h | 10 |
+| > 9 h | 9 |
+
+Le score est calculé selon la formule :
+
+```
+Sommeil
++ Énergie
++ Motivation
++ Humeur
++ (10 - Stress)
+```
+
+Le score détermine cinq états :
+
+| Score | État |
+|-------:|------|
+| 40 - 50 | excellent |
+| 30 - 39 | good |
+| 20 - 29 | average |
+| 10 - 19 | difficult |
+| 0 - 9 | critical |
+
+Chaque état génère automatiquement :
+
+- un message personnalisé ;
+- un conseil adapté.
+
+---
+
+# Tests
+
+Le projet est couvert par plusieurs tests unitaires.
+
+## Tests réalisés
+
+- ✅ UserTest
+- ✅ ThemeTest
+- ✅ MessageTest
+- ✅ DailyEntryTest
+- ✅ BusinessRulesServiceTest
+
+Les règles métier sont testées à l'aide de **PHPUnit Data Providers** afin de vérifier les cinq scénarios fonctionnels de Logic Coach.
+
+---
+
+# Installation
 
 ```bash
 git clone https://github.com/blinky-pink/Logic-Coach-V1.git
@@ -93,6 +178,32 @@ php bin/console doctrine:migrations:migrate
 symfony server:start
 ```
 
-## Licence
+---
 
-Projet pedagogique realise dans le cadre de la formation DWWM.
+# État du projet
+
+Version actuelle :
+
+**Version 1.1**
+
+Fonctionnalités principales terminées.
+
+Architecture Symfony respectée.
+
+Tests unitaires validés.
+
+Projet en cours de finalisation (tests fonctionnels et préparation de la soutenance).
+
+---
+
+# Auteur
+
+**Philippe Olivier**
+
+Projet réalisé dans le cadre de la formation **Développeur Web et Web Mobile (DWWM)**.
+
+---
+
+# Licence
+
+Projet pédagogique.
