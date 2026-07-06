@@ -7,7 +7,6 @@ use App\Entity\User;
 use App\Form\MessageType;
 use App\Repository\MessageRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -23,16 +22,15 @@ final class MessageController extends AbstractController
         $user = $this->getUser();
 
         return $this->render('message/index.html.twig', [
-            'messages' => $messageRepository->findBy(
-                ['receiver' => $user],
-                ['createdAt' => 'DESC']
-            ),
+            'messages' => $messageRepository->findHistoryForUser($user),
         ]);
     }
 
     #[Route('/new', name: 'app_message_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
-    {
+    public function new(
+        Request $request,
+        EntityManagerInterface $entityManager
+    ): Response {
         /** @var User $user */
         $user = $this->getUser();
 
@@ -42,7 +40,6 @@ final class MessageController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $message->setSender($user);
             $message->setCreatedAt(new \DateTimeImmutable());
 
@@ -86,7 +83,6 @@ final class MessageController extends AbstractController
         Message $message,
         EntityManagerInterface $entityManager
     ): Response {
-
         /** @var User $user */
         $user = $this->getUser();
 
@@ -98,7 +94,6 @@ final class MessageController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $entityManager->flush();
 
             return $this->redirectToRoute(
@@ -120,7 +115,6 @@ final class MessageController extends AbstractController
         Message $message,
         EntityManagerInterface $entityManager
     ): Response {
-
         /** @var User $user */
         $user = $this->getUser();
 
@@ -130,7 +124,7 @@ final class MessageController extends AbstractController
 
         if (
             $this->isCsrfTokenValid(
-                'delete' . $message->getId(),
+                'delete'.$message->getId(),
                 $request->getPayload()->getString('_token')
             )
         ) {

@@ -55,6 +55,64 @@ final class MessageControllerTest extends WebTestCase
         self::assertResponseIsSuccessful();
     }
 
+    public function testIndexShowsUserHistoryAndHidesForeignMessages(): void
+    {
+        $receivedSender = $this->createUser(
+            'history-received-sender@example.com'
+        );
+
+        $sentReceiver = $this->createUser(
+            'history-sent-receiver@example.com'
+        );
+
+        $foreignSender = $this->createUser(
+            'history-foreign-sender@example.com'
+        );
+
+        $foreignReceiver = $this->createUser(
+            'history-foreign-receiver@example.com'
+        );
+
+        $receivedMessage = $this->createMessage(
+            $receivedSender,
+            $this->user
+        );
+        $receivedMessage->setMessage('MESSAGE_RECEIVED_BY_USER');
+
+        $sentMessage = $this->createMessage(
+            $this->user,
+            $sentReceiver
+        );
+        $sentMessage->setMessage('MESSAGE_SENT_BY_USER');
+
+        $foreignMessage = $this->createMessage(
+            $foreignSender,
+            $foreignReceiver
+        );
+        $foreignMessage->setMessage('MESSAGE_BETWEEN_OTHER_USERS');
+
+        $this->entityManager->flush();
+
+        $crawler = $this->client->request('GET', '/message');
+
+        self::assertResponseIsSuccessful();
+
+        self::assertStringContainsString(
+            'MESSAGE_RECEIVED_BY_USER',
+            $crawler->html()
+        );
+
+        self::assertStringContainsString(
+            'MESSAGE_SENT_BY_USER',
+            $crawler->html()
+        );
+
+        self::assertStringNotContainsString(
+            'MESSAGE_BETWEEN_OTHER_USERS',
+            $crawler->html()
+        );
+    }
+
     public function testNew(): void
     {
         $receiver = $this->createUser('receiver@example.com');
