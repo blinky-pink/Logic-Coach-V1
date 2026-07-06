@@ -70,39 +70,114 @@
 
         </header>
 
-        <section class="dashboard-grid">
+        {% if latest_daily_entry %}
 
-            <article class="card score">
+            <section class="dashboard-grid">
 
-                <h2>Score global</h2>
+                <article class="card score">
 
-            </article>
+                    <h2>Score global</h2>
 
-            <article class="card indicators">
+                    <p>
+                        {{ latest_daily_entry.score }} / 50
+                    </p>
 
-                <h2>Indicateurs</h2>
+                    <p>
+                        Etat : {{ latest_daily_entry.state }}
+                    </p>
 
-            </article>
+                </article>
 
-            <article class="card evolution">
+                <article class="card indicators">
 
-                <h2>Evolution</h2>
+                    <h2>Indicateurs</h2>
 
-            </article>
+                    <p>
+                        Sommeil :
+                        {{ latest_daily_entry.sleepHours }} h
+                    </p>
 
-            <article class="card goals">
+                    <p>
+                        Energie :
+                        {{ latest_daily_entry.energy }} / 10
+                    </p>
 
-                <h2>Objectifs</h2>
+                    <p>
+                        Stress :
+                        {{ latest_daily_entry.stress }} / 10
+                    </p>
 
-            </article>
+                    <p>
+                        Motivation :
+                        {{ latest_daily_entry.motivation }} / 10
+                    </p>
 
-            <article class="card messages">
+                    <p>
+                        Humeur :
+                        {{ latest_daily_entry.mood }} / 10
+                    </p>
 
-                <h2>Messages / Conseils</h2>
+                </article>
 
-            </article>
+                <article class="card evolution">
 
-        </section>
+                    <h2>Evolution</h2>
+
+                    <p>
+                        Consultez votre historique pour suivre
+                        l'évolution de vos Daily Pulse.
+                    </p>
+
+                    <a href="{{ path('app_daily_entry_index') }}">
+                        Voir mon historique
+                    </a>
+
+                </article>
+
+                <article class="card goals">
+
+                    <h2>Objectifs</h2>
+
+                    <p>
+                        Vos objectifs personnels seront affichés ici.
+                    </p>
+
+                </article>
+
+                <article class="card messages">
+
+                    <h2>Messages / Conseils</h2>
+
+                    <p>
+                        {{ latest_daily_entry.message }}
+                    </p>
+
+                    <p>
+                        {{ latest_daily_entry.advice }}
+                    </p>
+
+                </article>
+
+            </section>
+
+        {% else %}
+
+            <section class="dashboard-empty">
+
+                <h2>Aucun Daily Pulse enregistré</h2>
+
+                <p>
+                    Effectuez votre première saisie quotidienne
+                    pour afficher votre score et vos indicateurs.
+                </p>
+
+                <a href="{{ path('app_daily_entry_new') }}">
+                    Faire ma première saisie
+                </a>
+
+            </section>
+
+        {% endif %}
 
     </section>
 
