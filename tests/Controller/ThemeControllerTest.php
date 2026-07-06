@@ -20,6 +20,7 @@ final class ThemeControllerTest extends WebTestCase
     private EntityRepository $themeRepository;
 
     private User $user;
+    private User $admin;
 
     protected function setUp(): void
     {
@@ -57,13 +58,15 @@ final class ThemeControllerTest extends WebTestCase
 
         $this->entityManager->flush();
 
-        $this->user = new User();
-        $this->user->setEmail('theme-test@example.com');
-        $this->user->setPassword('test-password');
-        $this->user->setRoles(['ROLE_USER']);
+        $this->user = $this->createUser(
+            'theme-user-test@example.com',
+            ['ROLE_USER']
+        );
 
-        $this->entityManager->persist($this->user);
-        $this->entityManager->flush();
+        $this->admin = $this->createUser(
+            'theme-admin-test@example.com',
+            ['ROLE_ADMIN']
+        );
 
         $this->client->loginUser($this->user);
     }
@@ -77,6 +80,8 @@ final class ThemeControllerTest extends WebTestCase
 
     public function testNew(): void
     {
+        $this->client->loginUser($this->admin);
+
         $this->client->request('GET', '/theme/new');
 
         self::assertResponseIsSuccessful();
@@ -130,8 +135,9 @@ final class ThemeControllerTest extends WebTestCase
 
     public function testEdit(): void
     {
-        $theme = $this->createTheme('Theme Edit');
+        $this->client->loginUser($this->admin);
 
+        $theme = $this->createTheme('Theme Edit');
         $themeId = $theme->getId();
 
         $this->client->request(
@@ -170,6 +176,8 @@ final class ThemeControllerTest extends WebTestCase
 
     public function testDelete(): void
     {
+        $this->client->loginUser($this->admin);
+
         $theme = $this->createTheme('Theme Delete');
 
         $crawler = $this->client->request(
@@ -189,6 +197,60 @@ final class ThemeControllerTest extends WebTestCase
             0,
             $this->themeRepository->count([])
         );
+    }
+
+    public function testUserCannotCreateTheme(): void
+    {
+        $this->client->request('GET', '/theme/new');
+
+        self::assertResponseStatusCodeSame(403);
+    }
+
+    public function testUserCannotEditTheme(): void
+    {
+        $theme = $this->createTheme('Theme Forbidden Edit');
+
+        $this->client->request(
+            'GET',
+            '/theme/'.$theme->getId().'/edit'
+        );
+
+        self::assertResponseStatusCodeSame(403);
+    }
+
+    public function testUserCannotDeleteTheme(): void
+    {
+        $theme = $this->createTheme('Theme Forbidden Delete');
+
+        $this->client->request(
+            'POST',
+            '/theme/'.$theme->getId(),
+            [
+                '_token' => 'invalid-token',
+            ]
+        );
+
+        self::assertResponseStatusCodeSame(403);
+
+        self::assertSame(
+            1,
+            $this->themeRepository->count([
+                'id' => $theme->getId(),
+            ])
+        );
+    }
+
+    private function createUser(string $email, array $roles): User
+    {
+        $user = new User();
+        $user->setEmail($email);
+        $user->setPassword('test-password');
+        $user->setRoles($roles);
+
+        $this->entityManager->persist($user);
+        $this->entityManager->flush();
+
+        return $user;
     }
 
     private function createTheme(string $name): Theme

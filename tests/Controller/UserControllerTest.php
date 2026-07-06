@@ -181,6 +181,17 @@ final class UserControllerTest extends WebTestCase
         );
     }
 
+    public function testUserCannotAccessUserManagement(): void
+    {
+        $standardUser = $this->createUser('standard-user@example.com');
+
+        $this->client->loginUser($standardUser);
+
+        $this->client->request('GET', '/user');
+
+        self::assertResponseStatusCodeSame(403);
+    }
+
     private function createUser(string $email): User
     {
         $user = new User();
