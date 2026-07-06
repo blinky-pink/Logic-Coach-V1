@@ -2,135 +2,204 @@
 
 namespace App\Tests\Controller;
 
+use App\Entity\DailyEntry;
 use App\Entity\Message;
+use App\Entity\User;
+use App\Repository\MessageRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\EntityRepository;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 final class MessageControllerTest extends WebTestCase
 {
     private KernelBrowser $client;
-    private EntityManagerInterface $manager;
-
-    /** @var EntityRepository<Message> */
-    private EntityRepository $messageRepository;
-    private string $path = '/message/';
+    private EntityManagerInterface $entityManager;
+    private MessageRepository $messageRepository;
+    private User $user;
 
     protected function setUp(): void
     {
         $this->client = static::createClient();
-        $this->manager = static::getContainer()->get('doctrine')->getManager();
-        $this->messageRepository = $this->manager->getRepository(Message::class);
 
-        foreach ($this->messageRepository->findAll() as $object) {
-            $this->manager->remove($object);
+        $this->entityManager = static::getContainer()
+            ->get(EntityManagerInterface::class);
+
+        $this->messageRepository = static::getContainer()
+            ->get(MessageRepository::class);
+
+        foreach ($this->messageRepository->findAll() as $message) {
+            $this->entityManager->remove($message);
         }
 
-        $this->manager->flush();
+        foreach ($this->entityManager->getRepository(DailyEntry::class)->findAll() as $dailyEntry) {
+            $this->entityManager->remove($dailyEntry);
+        }
+
+        $this->entityManager->flush();
+
+        foreach ($this->entityManager->getRepository(User::class)->findAll() as $user) {
+            $this->entityManager->remove($user);
+        }
+
+        $this->entityManager->flush();
+
+        $this->user = $this->createUser('message-test@example.com');
+
+        $this->client->loginUser($this->user);
     }
 
     public function testIndex(): void
     {
-        $this->client->followRedirects();
-        $crawler = $this->client->request('GET', $this->path);
+        $this->client->request('GET', '/message');
 
-        self::assertResponseStatusCodeSame(200);
-        self::assertPageTitleContains('Message index');
-
-        // Use the $crawler to perform additional assertions e.g.
-        // self::assertSame('Some text on the page', $crawler->filter('.p')->first()->text());
+        self::assertResponseIsSuccessful();
     }
 
     public function testNew(): void
     {
-        $this->client->request('GET', sprintf('%snew', $this->path));
+        $receiver = $this->createUser('receiver@example.com');
 
-        self::assertResponseStatusCodeSame(200);
+        $this->client->request('GET', '/message/new');
+
+        self::assertResponseIsSuccessful();
 
         $this->client->submitForm('Save', [
-            'message[message]' => 'Testing',
-            'message[createdAt]' => 'Testing',
-            'message[sender]' => 'Testing',
-            'message[receiver]' => 'Testing',
+            'message[receiver]' => (string) $receiver->getId(),
+            'message[message]' => 'Message fonctionnel de test',
         ]);
 
         self::assertResponseRedirects('/message');
 
         self::assertSame(1, $this->messageRepository->count([]));
 
-        $this->markTestIncomplete('This test was generated');
+        $message = $this->messageRepository->findOneBy([]);
+
+        self::assertInstanceOf(Message::class, $message);
+
+        self::assertSame(
+            $this->user->getId(),
+            $message->getSender()?->getId()
+        );
+
+        self::assertSame(
+            $receiver->getId(),
+            $message->getReceiver()?->getId()
+        );
+
+        self::assertSame(
+            'Message fonctionnel de test',
+            $message->getMessage()
+        );
+
+        self::assertInstanceOf(
+            \DateTimeImmutable::class,
+            $message->getCreatedAt()
+        );
     }
 
-    public function testShow(): void
+    public function testUserCanShowOwnMessage(): void
     {
-        $fixture = new Message();
-        $fixture->setMessage('My Title');
-        $fixture->setCreatedAt('My Title');
-        $fixture->setSender('My Title');
-        $fixture->setReceiver('My Title');
+        $receiver = $this->createUser('show-receiver@example.com');
 
-        $this->manager->persist($fixture);
-        $this->manager->flush();
+        $message = $this->createMessage(
+            $this->user,
+            $receiver
+        );
 
-        $this->client->request('GET', sprintf('%s%s', $this->path, $fixture->getId()));
+        $this->client->request(
+            'GET',
+            '/message/'.$message->getId()
+        );
 
-        self::assertResponseStatusCodeSame(200);
-        self::assertPageTitleContains('Message');
-
-        // Use assertions to check that the properties are properly displayed.
-        $this->markTestIncomplete('This test was generated');
+        self::assertResponseIsSuccessful();
     }
 
-    public function testEdit(): void
+    public function testUserCannotShowForeignMessage(): void
     {
-        $fixture = new Message();
-        $fixture->setMessage('Value');
-        $fixture->setCreatedAt('Value');
-        $fixture->setSender('Value');
-        $fixture->setReceiver('Value');
+        $sender = $this->createUser('foreign-sender@example.com');
+        $receiver = $this->createUser('foreign-receiver@example.com');
 
-        $this->manager->persist($fixture);
-        $this->manager->flush();
+        $message = $this->createMessage($sender, $receiver);
 
-        $this->client->request('GET', sprintf('%s%s/edit', $this->path, $fixture->getId()));
+        $this->client->request(
+            'GET',
+            '/message/'.$message->getId()
+        );
 
-        $this->client->submitForm('Update', [
-            'message[message]' => 'Something New',
-            'message[createdAt]' => 'Something New',
-            'message[sender]' => 'Something New',
-            'message[receiver]' => 'Something New',
-        ]);
-
-        self::assertResponseRedirects('/message');
-
-        $fixture = $this->messageRepository->findAll();
-
-        self::assertSame('Something New', $fixture[0]->getMessage());
-        self::assertSame('Something New', $fixture[0]->getCreatedAt());
-        self::assertSame('Something New', $fixture[0]->getSender());
-        self::assertSame('Something New', $fixture[0]->getReceiver());
-
-        $this->markTestIncomplete('This test was generated');
+        self::assertResponseStatusCodeSame(403);
     }
 
-    public function testRemove(): void
+    public function testUserCannotEditForeignMessage(): void
     {
-        $fixture = new Message();
-        $fixture->setMessage('Value');
-        $fixture->setCreatedAt('Value');
-        $fixture->setSender('Value');
-        $fixture->setReceiver('Value');
+        $sender = $this->createUser('edit-sender@example.com');
+        $receiver = $this->createUser('edit-receiver@example.com');
 
-        $this->manager->persist($fixture);
-        $this->manager->flush();
+        $message = $this->createMessage($sender, $receiver);
 
-        $this->client->request('GET', sprintf('%s%s', $this->path, $fixture->getId()));
-        $this->client->submitForm('Delete');
+        $this->client->request(
+            'GET',
+            '/message/'.$message->getId().'/edit'
+        );
 
-        self::assertResponseRedirects('/message');
-        self::assertSame(0, $this->messageRepository->count([]));
+        self::assertResponseStatusCodeSame(403);
+    }
 
-        $this->markTestIncomplete('This test was generated');
+    public function testUserCannotDeleteForeignMessage(): void
+    {
+        $sender = $this->createUser('delete-sender@example.com');
+        $receiver = $this->createUser('delete-receiver@example.com');
+
+        $message = $this->createMessage($sender, $receiver);
+
+        $this->client->request(
+            'POST',
+            '/message/'.$message->getId(),
+            [
+                '_token' => 'invalid-token',
+            ]
+        );
+
+        self::assertResponseStatusCodeSame(403);
+
+        self::assertSame(
+            1,
+            $this->messageRepository->count([
+                'id' => $message->getId(),
+            ])
+        );
+    }
+
+    private function createUser(string $email): User
+    {
+        $user = new User();
+        $user->setEmail($email);
+        $user->setPassword('test-password');
+        $user->setRoles(['ROLE_USER']);
+
+        $this->entityManager->persist($user);
+        $this->entityManager->flush();
+
+        return $user;
+    }
+
+    private function createMessage(User $sender, User $receiver): Message
+    {
+        $message = new Message();
+        $message->setMessage('Message de test');
+        $message->setCreatedAt(new \DateTimeImmutable());
+        $message->setSender($sender);
+        $message->setReceiver($receiver);
+
+        $this->entityManager->persist($message);
+        $this->entityManager->flush();
+
+        return $message;
+    }
+
+    protected function tearDown(): void
+    {
+        parent::tearDown();
+
+        $this->entityManager->close();
     }
 }

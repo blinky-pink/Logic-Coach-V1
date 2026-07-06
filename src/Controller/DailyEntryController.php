@@ -24,21 +24,28 @@ final class DailyEntryController extends AbstractController
     #[Route(name: 'app_daily_entry_index', methods: ['GET'])]
     public function index(DailyEntryRepository $dailyEntryRepository): Response
     {
+        /** @var User $user */
+        $user = $this->getUser();
+
         return $this->render('daily_entry/index.html.twig', [
-            'daily_entries' => $dailyEntryRepository->findAll(),
+            'daily_entries' => $dailyEntryRepository->findBy(
+                ['user' => $user],
+                ['id' => 'DESC']
+            ),
         ]);
     }
 
     #[Route('/new', name: 'app_daily_entry_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
-    {
+    public function new(
+        Request $request,
+        EntityManagerInterface $entityManager
+    ): Response {
         $dailyEntry = new DailyEntry();
 
         $form = $this->createForm(DailyEntryType::class, $dailyEntry);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             /** @var User $user */
             $user = $this->getUser();
 
@@ -49,7 +56,11 @@ final class DailyEntryController extends AbstractController
             $entityManager->persist($dailyEntry);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_daily_entry_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute(
+                'app_daily_entry_index',
+                [],
+                Response::HTTP_SEE_OTHER
+            );
         }
 
         return $this->render('daily_entry/new.html.twig', [
@@ -61,24 +72,34 @@ final class DailyEntryController extends AbstractController
     #[Route('/{id}', name: 'app_daily_entry_show', methods: ['GET'])]
     public function show(DailyEntry $dailyEntry): Response
     {
+        $this->denyAccessToDailyEntry($dailyEntry);
+
         return $this->render('daily_entry/show.html.twig', [
             'daily_entry' => $dailyEntry,
         ]);
     }
 
     #[Route('/{id}/edit', name: 'app_daily_entry_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, DailyEntry $dailyEntry, EntityManagerInterface $entityManager): Response
-    {
+    public function edit(
+        Request $request,
+        DailyEntry $dailyEntry,
+        EntityManagerInterface $entityManager
+    ): Response {
+        $this->denyAccessToDailyEntry($dailyEntry);
+
         $form = $this->createForm(DailyEntryType::class, $dailyEntry);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $this->businessRulesService->apply($dailyEntry);
 
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_daily_entry_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute(
+                'app_daily_entry_index',
+                [],
+                Response::HTTP_SEE_OTHER
+            );
         }
 
         return $this->render('daily_entry/edit.html.twig', [
@@ -88,13 +109,34 @@ final class DailyEntryController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_daily_entry_delete', methods: ['POST'])]
-    public function delete(Request $request, DailyEntry $dailyEntry, EntityManagerInterface $entityManager): Response
-    {
-        if ($this->isCsrfTokenValid('delete'.$dailyEntry->getId(), $request->getPayload()->getString('_token'))) {
+    public function delete(
+        Request $request,
+        DailyEntry $dailyEntry,
+        EntityManagerInterface $entityManager
+    ): Response {
+        $this->denyAccessToDailyEntry($dailyEntry);
+
+        if ($this->isCsrfTokenValid(
+            'delete'.$dailyEntry->getId(),
+            $request->getPayload()->getString('_token')
+        )) {
             $entityManager->remove($dailyEntry);
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('app_daily_entry_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute(
+            'app_daily_entry_index',
+            [],
+            Response::HTTP_SEE_OTHER
+        );
+    }
+
+    private function denyAccessToDailyEntry(DailyEntry $dailyEntry): void
+    {
+        if ($dailyEntry->getUser() !== $this->getUser()) {
+            throw $this->createAccessDeniedException(
+                'Vous ne pouvez accéder qu’à vos propres suivis.'
+            );
+        }
     }
 }
