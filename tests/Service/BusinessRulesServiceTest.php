@@ -53,6 +53,14 @@ final class BusinessRulesServiceTest extends TestCase
 
         self::assertSame(30, $dailyEntry->getScore());
         self::assertSame('good', $dailyEntry->getState());
+        self::assertSame(
+            'Votre équilibre du jour est positif.',
+            $dailyEntry->getMessage()
+        );
+        self::assertSame(
+            'Continuez sur cette dynamique en conservant des pauses régulières.',
+            $dailyEntry->getAdvice()
+        );
     }
 
     public function testScoreTwentyProducesAverageState(): void
@@ -69,6 +77,14 @@ final class BusinessRulesServiceTest extends TestCase
 
         self::assertSame(20, $dailyEntry->getScore());
         self::assertSame('average', $dailyEntry->getState());
+        self::assertSame(
+            'Votre journée semble correcte, avec quelques points à surveiller.',
+            $dailyEntry->getMessage()
+        );
+        self::assertSame(
+            'Choisissez une priorité simple et avancez étape par étape.',
+            $dailyEntry->getAdvice()
+        );
     }
 
     public function testScoreTenProducesDifficultState(): void
@@ -85,6 +101,14 @@ final class BusinessRulesServiceTest extends TestCase
 
         self::assertSame(10, $dailyEntry->getScore());
         self::assertSame('difficult', $dailyEntry->getState());
+        self::assertSame(
+            'Votre journée semble demander plus d’attention.',
+            $dailyEntry->getMessage()
+        );
+        self::assertSame(
+            'Allégez votre programme si possible et accordez-vous un vrai moment de repos.',
+            $dailyEntry->getAdvice()
+        );
     }
 
     public function testScoreBelowTenProducesCriticalState(): void
@@ -101,6 +125,14 @@ final class BusinessRulesServiceTest extends TestCase
 
         self::assertSame(3, $dailyEntry->getScore());
         self::assertSame('critical', $dailyEntry->getState());
+        self::assertSame(
+            'Votre journée semble particulièrement difficile.',
+            $dailyEntry->getMessage()
+        );
+        self::assertSame(
+            'Priorisez votre récupération et demandez du soutien si vous en ressentez le besoin.',
+            $dailyEntry->getAdvice()
+        );
     }
 
     public function testSleepBelowFourHoursProducesZeroSleepScore(): void
