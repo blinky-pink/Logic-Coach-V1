@@ -102,6 +102,28 @@ final class SecurityControllerTest extends WebTestCase
         );
     }
 
+    public function testUserCannotLoginWithUnknownEmail(): void
+    {
+        $crawler = $this->client->request('GET', '/login');
+
+        self::assertResponseIsSuccessful();
+
+        $this->client->submit(
+            $crawler->selectButton('Sign in')->form([
+                '_username' => 'unknown-user@example.com',
+                '_password' => 'test-password',
+            ])
+        );
+
+        self::assertResponseRedirects('/login');
+
+        $this->client->followRedirect();
+
+        self::assertResponseIsSuccessful();
+
+        self::assertSelectorExists('.alert-danger');
+    }
+
     public function testUserCannotLoginWithInvalidPassword(): void
     {
         $this->createUser(
@@ -170,6 +192,7 @@ final class SecurityControllerTest extends WebTestCase
 
         $this->entityManager->persist($user);
         $this->entityManager->flush();
+        
 
         return $user;
     }
