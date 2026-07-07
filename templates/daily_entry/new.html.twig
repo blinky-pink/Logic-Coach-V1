@@ -1,11 +1,34 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New DailyEntry{% endblock %}
+{% block title %}Saisie quotidienne - Logic Coach{% endblock %}
 
 {% block body %}
-    <h1>Create new DailyEntry</h1>
 
-    {{ include('daily_entry/_form.html.twig') }}
+<main class="daily-entry-page">
 
-    <a href="{{ path('app_daily_entry_index') }}">back to list</a>
+    <section class="daily-entry-container">
+
+        <header class="daily-entry-header">
+
+            <h1>Saisie quotidienne</h1>
+
+            <p>
+                Prenez quelques instants pour évaluer votre état du jour.
+            </p>
+
+        </header>
+
+        {{ include('daily_entry/_form.html.twig') }}
+
+        <a
+            href="{{ path('app_dashboard') }}"
+            class="daily-entry-back"
+        >
+            Retour au tableau de bord
+        </a>
+
+    </section>
+
+</main>
+
 {% endblock %}

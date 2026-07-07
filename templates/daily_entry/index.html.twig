@@ -1,51 +1,140 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}DailyEntry index{% endblock %}
+{% block title %}Historique - Logic Coach{% endblock %}
 
 {% block body %}
-    <h1>DailyEntry index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>SleepHours</th>
-                <th>Energy</th>
-                <th>Stress</th>
-                <th>Motivation</th>
-                <th>Mood</th>
-                <th>Score</th>
-                <th>State</th>
-                <th>Message</th>
-                <th>Advice</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for daily_entry in daily_entries %}
-            <tr>
-                <td>{{ daily_entry.id }}</td>
-                <td>{{ daily_entry.sleepHours }}</td>
-                <td>{{ daily_entry.energy }}</td>
-                <td>{{ daily_entry.stress }}</td>
-                <td>{{ daily_entry.motivation }}</td>
-                <td>{{ daily_entry.mood }}</td>
-                <td>{{ daily_entry.score }}</td>
-                <td>{{ daily_entry.state }}</td>
-                <td>{{ daily_entry.message }}</td>
-                <td>{{ daily_entry.advice }}</td>
-                <td>
-                    <a href="{{ path('app_daily_entry_show', {'id': daily_entry.id}) }}">show</a>
-                    <a href="{{ path('app_daily_entry_edit', {'id': daily_entry.id}) }}">edit</a>
-                </td>
-            </tr>
+<main class="daily-entry-page">
+
+    <section class="daily-entry-container">
+
+        <header class="daily-entry-header">
+            <h1>Historique de mes saisies</h1>
+
+            <p>
+                Retrouvez vos saisies quotidiennes et consultez leur résultat.
+            </p>
+        </header>
+
+        <div class="daily-entry-actions">
+
+            <a
+                href="{{ path('app_daily_entry_new') }}"
+                class="daily-entry-submit"
+            >
+                Nouvelle saisie
+            </a>
+
+            <a
+                href="{{ path('app_dashboard') }}"
+                class="daily-entry-back"
+            >
+                Retour au tableau de bord
+            </a>
+
+        </div>
+
+        {% if daily_entries is empty %}
+
+            <div class="daily-entry-empty">
+
+                <p>
+                    Aucune saisie quotidienne enregistrée.
+                </p>
+
+            </div>
+
         {% else %}
-            <tr>
-                <td colspan="11">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
 
-    <a href="{{ path('app_daily_entry_new') }}">Create new</a>
+            <div class="daily-entry-table-wrapper">
+
+                <table class="daily-entry-table">
+
+                    <thead>
+
+                        <tr>
+                            <th>Sommeil</th>
+                            <th>Énergie</th>
+                            <th>Stress</th>
+                            <th>Motivation</th>
+                            <th>Humeur</th>
+                            <th>Score</th>
+                            <th>État</th>
+                            <th>Actions</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        {% for daily_entry in daily_entries %}
+
+                            <tr>
+
+                                <td>
+                                    {{ daily_entry.sleepHours }} h
+                                </td>
+
+                                <td>
+                                    {{ daily_entry.energy }}/10
+                                </td>
+
+                                <td>
+                                    {{ daily_entry.stress }}/10
+                                </td>
+
+                                <td>
+                                    {{ daily_entry.motivation }}/10
+                                </td>
+
+                                <td>
+                                    {{ daily_entry.mood }}/10
+                                </td>
+
+                                <td>
+                                    {{ daily_entry.score }}/50
+                                </td>
+
+                                <td>
+                                    {{ daily_entry.state }}
+                                </td>
+
+                                <td class="daily-entry-table-actions">
+
+                                    <a
+                                        href="{{ path(
+                                            'app_daily_entry_show',
+                                            {'id': daily_entry.id}
+                                        ) }}"
+                                    >
+                                        Consulter
+                                    </a>
+
+                                    <a
+                                        href="{{ path(
+                                            'app_daily_entry_edit',
+                                            {'id': daily_entry.id}
+                                        ) }}"
+                                    >
+                                        Modifier
+                                    </a>
+
+                                </td>
+
+                            </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        {% endif %}
+
+    </section>
+
+</main>
+
 {% endblock %}

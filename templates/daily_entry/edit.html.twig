@@ -1,13 +1,45 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit DailyEntry{% endblock %}
+{% block title %}Modifier ma saisie - Logic Coach{% endblock %}
 
 {% block body %}
-    <h1>Edit DailyEntry</h1>
+<main class="daily-entry-page">
 
-    {{ include('daily_entry/_form.html.twig', {'button_label': 'Update'}) }}
+    <section class="daily-entry-container">
 
-    <a href="{{ path('app_daily_entry_index') }}">back to list</a>
+        <header class="daily-entry-header">
+            <h1>Modifier ma saisie</h1>
 
-    {{ include('daily_entry/_delete_form.html.twig') }}
+            <p>
+                Corrigez vos indicateurs. Le score, l'état, le message et le conseil seront recalculés automatiquement.
+            </p>
+        </header>
+
+        {{ include('daily_entry/_form.html.twig', {
+            'button_label': 'Enregistrer les modifications'
+        }) }}
+
+        <div class="daily-entry-actions">
+
+            <a
+                href="{{ path('app_daily_entry_show', {'id': daily_entry.id}) }}"
+                class="daily-entry-back"
+            >
+                Retour au résultat
+            </a>
+
+            <a
+                href="{{ path('app_daily_entry_index') }}"
+                class="daily-entry-back"
+            >
+                Retour à l'historique
+            </a>
+
+        </div>
+
+        {{ include('daily_entry/_delete_form.html.twig') }}
+
+    </section>
+
+</main>
 {% endblock %}

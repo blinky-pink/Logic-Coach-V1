@@ -64,12 +64,12 @@ final class DailyEntryControllerTest extends WebTestCase
     public function testIndexOnlyShowsAuthenticatedUsersDailyEntries(): void
     {
         $ownDailyEntry = $this->createDailyEntry($this->user);
-        $ownDailyEntry->setMessage('DAILY_ENTRY_OWN_USER');
+        $ownDailyEntry->setState('OWN_USER_STATE');
 
         $otherUser = $this->createUser('other-index@example.com');
 
         $otherDailyEntry = $this->createDailyEntry($otherUser);
-        $otherDailyEntry->setMessage('DAILY_ENTRY_OTHER_USER');
+        $otherDailyEntry->setState('OTHER_USER_STATE');
 
         $this->entityManager->flush();
 
@@ -78,12 +78,12 @@ final class DailyEntryControllerTest extends WebTestCase
         self::assertResponseIsSuccessful();
 
         self::assertStringContainsString(
-            'DAILY_ENTRY_OWN_USER',
+            'OWN_USER_STATE',
             $crawler->html()
         );
 
         self::assertStringNotContainsString(
-            'DAILY_ENTRY_OTHER_USER',
+            'OTHER_USER_STATE',
             $crawler->html()
         );
     }
@@ -94,7 +94,7 @@ final class DailyEntryControllerTest extends WebTestCase
 
         self::assertResponseIsSuccessful();
 
-        $this->client->submitForm('Save', [
+        $this->client->submitForm('Enregistrer', [
             'daily_entry[sleepHours]' => '8',
             'daily_entry[energy]' => '8',
             'daily_entry[stress]' => '2',

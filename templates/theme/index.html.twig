@@ -21,12 +21,16 @@
                 <th>Actions</th>
             </tr>
         </thead>
+
         <tbody>
         {% for theme in themes %}
             <tr>
                 <td>{{ theme.name }}</td>
+
                 <td>{{ theme.description }}</td>
+
                 <td>{{ theme.primaryColor }}</td>
+
                 <td>
                     {% if current_theme and current_theme.id == theme.id %}
                         Selectionne
@@ -34,25 +38,54 @@
                         Disponible
                     {% endif %}
                 </td>
+
                 <td>
                     {% if not current_theme or current_theme.id != theme.id %}
-                        <form method="post" action="{{ path('app_theme_choose', {'id': theme.id}) }}">
-                            <input type="hidden" name="_token" value="{{ csrf_token('choose' ~ theme.id) }}">
-                            <button class="btn" type="submit">Choisir</button>
+                        <form
+                            method="post"
+                            action="{{ path('app_theme_choose', {'id': theme.id}) }}"
+                        >
+                            <input
+                                type="hidden"
+                                name="_token"
+                                value="{{ csrf_token('choose' ~ theme.id) }}"
+                            >
+
+                            <button class="btn" type="submit">
+                                Choisir
+                            </button>
                         </form>
                     {% endif %}
-                    <a href="{{ path('app_theme_show', {'id': theme.id}) }}">Voir</a>
-                    <a href="{{ path('app_theme_edit', {'id': theme.id}) }}">Modifier</a>
+
+                    <a href="{{ path('app_theme_show', {'id': theme.id}) }}">
+                        Voir
+                    </a>
+
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a href="{{ path('app_theme_edit', {'id': theme.id}) }}">
+                            Modifier
+                        </a>
+                    {% endif %}
                 </td>
             </tr>
+
         {% else %}
             <tr>
-                <td colspan="5">Aucun theme trouve.</td>
+                <td colspan="5">
+                    Aucun theme trouve.
+                </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_theme_new') }}">Creer un theme</a>
-    <a href="{{ path('app_dashboard') }}">Retour au tableau de bord</a>
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('app_theme_new') }}">
+            Creer un theme
+        </a>
+    {% endif %}
+
+    <a href="{{ path('app_dashboard') }}">
+        Retour au tableau de bord
+    </a>
 {% endblock %}

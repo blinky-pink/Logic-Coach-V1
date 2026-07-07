@@ -55,7 +55,7 @@ final class DashboardControllerTest extends WebTestCase
         self::assertResponseIsSuccessful();
 
         self::assertStringContainsString(
-            'Aucun Daily Pulse enregistré',
+            'Aucune saisie quotidienne enregistrée',
             $crawler->html()
         );
 
@@ -134,7 +134,7 @@ final class DashboardControllerTest extends WebTestCase
         );
 
         self::assertStringContainsString(
-            'Aucun Daily Pulse enregistré',
+            'Aucune saisie quotidienne enregistrée',
             $crawler->html()
         );
     }

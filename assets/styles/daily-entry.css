@@ -1,0 +1,237 @@
+.daily-entry-page {
+    min-height: 100vh;
+    background-color: #0b1220;
+    color: #ffffff;
+    padding: 40px 20px;
+}
+
+.daily-entry-container {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.daily-entry-header {
+    margin-bottom: 30px;
+}
+
+.daily-entry-header h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.daily-entry-header p {
+    color: #b8b8b8;
+    margin: 0;
+}
+
+/* FORMULAIRE */
+
+.daily-entry-form {
+    max-width: 650px;
+    background-color: #182233;
+    border: 1px solid #2d3d5c;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 25px;
+}
+
+.daily-entry-field {
+    margin-bottom: 20px;
+}
+
+.daily-entry-field label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.daily-entry-field input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    background-color: #131c2b;
+    color: #ffffff;
+    border: 1px solid #2d3d5c;
+    border-radius: 6px;
+}
+
+.daily-entry-submit {
+    display: inline-block;
+    padding: 10px 18px;
+    background-color: #182233;
+    color: #ffffff;
+    border: 1px solid #2d3d5c;
+    border-radius: 6px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.daily-entry-submit:hover {
+    background-color: #1d2b44;
+}
+
+/* ACTIONS */
+
+.daily-entry-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin: 20px 0;
+}
+
+.daily-entry-back {
+    display: inline-block;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 10px 16px;
+    border: 1px solid #2d3d5c;
+    border-radius: 6px;
+}
+
+.daily-entry-back:hover {
+    background-color: #1d2b44;
+}
+
+/* HISTORIQUE */
+
+.daily-entry-table-wrapper {
+    overflow-x: auto;
+    background-color: #182233;
+    border: 1px solid #2d3d5c;
+    border-radius: 12px;
+}
+
+.daily-entry-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.daily-entry-table th,
+.daily-entry-table td {
+    padding: 14px;
+    text-align: left;
+    border-bottom: 1px solid #2d3d5c;
+}
+
+.daily-entry-table th {
+    background-color: #131c2b;
+}
+
+.daily-entry-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.daily-entry-table-actions {
+    white-space: nowrap;
+}
+
+.daily-entry-table-actions a {
+    color: #ffffff;
+    margin-right: 10px;
+}
+
+.daily-entry-empty {
+    background-color: #182233;
+    border: 1px solid #2d3d5c;
+    border-radius: 12px;
+    padding: 25px;
+}
+
+/* RÉSULTAT */
+
+.daily-entry-result {
+    max-width: 750px;
+    background-color: #182233;
+    border: 1px solid #2d3d5c;
+    border-radius: 12px;
+    padding: 25px;
+}
+
+.daily-entry-score,
+.daily-entry-state {
+    margin-bottom: 20px;
+}
+
+.daily-entry-score span,
+.daily-entry-state span {
+    display: block;
+    color: #b8b8b8;
+    margin-bottom: 5px;
+}
+
+.daily-entry-score strong {
+    font-size: 2rem;
+}
+
+.daily-entry-state strong {
+    font-size: 1.2rem;
+}
+
+.daily-entry-indicators {
+    padding: 20px 0;
+    border-top: 1px solid #2d3d5c;
+    border-bottom: 1px solid #2d3d5c;
+}
+
+.daily-entry-message,
+.daily-entry-advice {
+    margin-top: 25px;
+}
+
+.daily-entry-message h2,
+.daily-entry-advice h2 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+/* SUPPRESSION */
+
+.daily-entry-delete-form {
+    margin-top: 20px;
+}
+
+.daily-entry-delete {
+    padding: 10px 16px;
+    background-color: transparent;
+    color: #ffffff;
+    border: 1px solid #2d3d5c;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.daily-entry-delete:hover {
+    background-color: #1d2b44;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
+    .daily-entry-page {
+        padding: 25px 15px;
+    }
+
+    .daily-entry-header h1 {
+        font-size: 1.6rem;
+    }
+
+    .daily-entry-form,
+    .daily-entry-result {
+        padding: 20px;
+    }
+
+    .daily-entry-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .daily-entry-submit,
+    .daily-entry-back {
+        text-align: center;
+    }
+
+    .daily-entry-table th,
+    .daily-entry-table td {
+        padding: 10px;
+    }
+}
