@@ -1,0 +1,119 @@
+body.theme-1 .dashboard {
+    background-color: #1b2118;
+    color: #f1f3e8;
+}
+
+body.theme-1 .sidebar {
+    background-color: #252d20;
+    border-right: 1px solid #4c5a40;
+}
+
+body.theme-1 .user-card p {
+    color: #b8c2aa;
+}
+
+body.theme-1 .sidebar-menu a {
+    color: #f1f3e8;
+}
+
+body.theme-1 .sidebar-menu a:hover {
+    background-color: #3a4632;
+}
+
+body.theme-1 .card {
+    background-color: #2b3426;
+    border-color: #556b2f;
+}
+
+body.theme-1 .card a {
+    color: #d8e2c4;
+}
+
+body.theme-1 .dashboard-empty {
+    background-color: #2b3426;
+    border: 1px solid #556b2f;
+}
+
+body.theme-2 .dashboard {
+    background-color: #e8f1ed;
+    color: #263b34;
+}
+
+body.theme-2 .sidebar {
+    background-color: #6b9080;
+    border-right: 1px solid #527365;
+}
+
+body.theme-2 .user-card p {
+    color: #e8f1ed;
+}
+
+body.theme-2 .sidebar-menu a {
+    color: #ffffff;
+}
+
+body.theme-2 .sidebar-menu a:hover {
+    background-color: #527365;
+}
+
+body.theme-2 .dashboard-content {
+    background-color: #e8f1ed;
+}
+
+body.theme-2 .card {
+    background-color: #ffffff;
+    color: #263b34;
+    border-color: #a4c3b2;
+}
+
+body.theme-2 .card a {
+    color: #3f6b5b;
+}
+
+body.theme-2 .dashboard-empty {
+    background-color: #ffffff;
+    color: #263b34;
+    border: 1px solid #a4c3b2;
+}
+
+body.theme-3 .dashboard {
+    background-color: #f1f5f9;
+    color: #172033;
+}
+
+body.theme-3 .sidebar {
+    background-color: #1e3a5f;
+    border-right: 1px solid #3b82f6;
+}
+
+body.theme-3 .user-card p {
+    color: #cbd5e1;
+}
+
+body.theme-3 .sidebar-menu a {
+    color: #ffffff;
+}
+
+body.theme-3 .sidebar-menu a:hover {
+    background-color: #2c5282;
+}
+
+body.theme-3 .dashboard-content {
+    background-color: #f1f5f9;
+}
+
+body.theme-3 .card {
+    background-color: #ffffff;
+    color: #172033;
+    border-color: #93c5fd;
+}
+
+body.theme-3 .card a {
+    color: #2563eb;
+}
+
+body.theme-3 .dashboard-empty {
+    background-color: #ffffff;
+    color: #172033;
+    border: 1px solid #93c5fd;
+}

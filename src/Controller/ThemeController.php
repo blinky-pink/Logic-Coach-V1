@@ -104,7 +104,7 @@ final class ThemeController extends AbstractController
         }
 
         return $this->redirectToRoute(
-            'app_theme_index',
+            'app_dashboard',
             [],
             Response::HTTP_SEE_OTHER
         );
