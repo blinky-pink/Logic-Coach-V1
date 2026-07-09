@@ -79,42 +79,13 @@ final class DailyEntryController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_daily_entry_edit', methods: ['GET', 'POST'])]
-    public function edit(
-        Request $request,
-        DailyEntry $dailyEntry,
-        EntityManagerInterface $entityManager
-    ): Response {
-        $this->denyAccessToDailyEntry($dailyEntry);
-
-        $form = $this->createForm(DailyEntryType::class, $dailyEntry);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->businessRulesService->apply($dailyEntry);
-
-            $entityManager->flush();
-
-            return $this->redirectToRoute(
-                'app_daily_entry_index',
-                [],
-                Response::HTTP_SEE_OTHER
-            );
-        }
-
-        return $this->render('daily_entry/edit.html.twig', [
-            'daily_entry' => $dailyEntry,
-            'form' => $form,
-        ]);
-    }
-
     #[Route('/{id}', name: 'app_daily_entry_delete', methods: ['POST'])]
     public function delete(
         Request $request,
         DailyEntry $dailyEntry,
         EntityManagerInterface $entityManager
     ): Response {
-        $this->denyAccessToDailyEntry($dailyEntry);
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
         if ($this->isCsrfTokenValid(
             'delete'.$dailyEntry->getId(),

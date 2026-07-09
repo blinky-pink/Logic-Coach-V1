@@ -19,6 +19,12 @@
         {% endif %}
     </head>
     <body{% if app.user and app.user.theme %} class="theme-{{ app.user.theme.id }}"{% endif %}>
+        {% for label, messages in app.flashes %}
+                {% for message in messages %}
+                    <div class="flash flash-{{ label }}" role="alert">{{ message }}</div>
+                {% endfor %}
+            {% endfor %}
+
         {% block body %}{% endblock %}
     </body>
 </html>

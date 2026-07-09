@@ -62,16 +62,11 @@
                 Retour à l'historique
             </a>
 
-            <a
-                href="{{ path('app_daily_entry_edit', {'id': daily_entry.id}) }}"
-                class="daily-entry-back"
-            >
-                Modifier
-            </a>
-
         </div>
 
-        {{ include('daily_entry/_delete_form.html.twig') }}
+        {% if is_granted('ROLE_ADMIN') %}
+            {{ include('daily_entry/_delete_form.html.twig') }}
+        {% endif %}
 
     </section>
 

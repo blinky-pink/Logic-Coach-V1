@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription - Logic Coach{% endblock %}
+
+{% block body %}
+<main>
+    <h1>Créer un compte</h1>
+
+    {{ form_start(registrationForm) }}
+        {{ form_row(registrationForm.email, {
+            label: 'Adresse email'
+        }) }}
+
+        {{ form_row(registrationForm.password, {
+            label: 'Mot de passe'
+        }) }}
+
+        <button type="submit">S'inscrire</button>
+    {{ form_end(registrationForm) }}
+
+    <p>
+        Vous avez déjà un compte ?
+        <a href="{{ path('app_login') }}">Se connecter</a>
+    </p>
+</main>
+{% endblock %}

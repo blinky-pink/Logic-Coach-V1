@@ -155,30 +155,25 @@ final class DailyEntryControllerTest extends WebTestCase
         self::assertResponseStatusCodeSame(403);
     }
 
-    public function testUserCannotEditAnotherUsersDailyEntry(): void
+    public function testDailyEntryCannotBeEditedAfterValidation(): void
     {
-        $otherUser = $this->createUser('other-edit@example.com');
-        $dailyEntry = $this->createDailyEntry($otherUser);
+        $dailyEntry = $this->createDailyEntry($this->user);
 
         $this->client->request(
             'GET',
             '/daily/entry/'.$dailyEntry->getId().'/edit'
         );
 
-        self::assertResponseStatusCodeSame(403);
+        self::assertResponseStatusCodeSame(404);
     }
 
-    public function testUserCannotDeleteAnotherUsersDailyEntry(): void
+    public function testUserCannotDeleteOwnDailyEntry(): void
     {
-        $otherUser = $this->createUser('other-delete@example.com');
-        $dailyEntry = $this->createDailyEntry($otherUser);
+        $dailyEntry = $this->createDailyEntry($this->user);
 
         $this->client->request(
             'POST',
-            '/daily/entry/'.$dailyEntry->getId(),
-            [
-                '_token' => 'invalid-token',
-            ]
+            '/daily/entry/'.$dailyEntry->getId()
         );
 
         self::assertResponseStatusCodeSame(403);
