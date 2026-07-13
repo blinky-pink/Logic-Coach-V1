@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Logic Coach{% endblock %}
+{% block title %}Logic Coach - Votre coach de bien-être quotidien{% endblock %}
 
 {% block body %}
 
@@ -12,6 +12,18 @@
 
         <p class="subtitle">
             Votre coach de bien-être quotidien
+        </p>
+
+        <p class="introduction-top">
+            Comprenez votre état quotidien avec des repères simples et clairs.
+        </p>
+
+        <p class="introduction-left">
+            Prenez un instant pour vous écouter.
+        </p>
+
+        <p class="introduction-right">
+            Logic Coach vous accompagne.
         </p>
 
         <div class="hero-content">
@@ -31,14 +43,25 @@
                 <p>Stress</p>
             </div>
 
-            <a href="{{ path('app_login') }}" class="center-circle">
+            {% if app.user %}
 
-                <span>
-                    Entrer dans<br>
-                    Logic Coach
-                </span>
+                <a href="{{ path('app_dashboard') }}" class="center-circle">
+                    <span>
+                        Entrer dans<br>
+                        Logic Coach
+                    </span>
+                </a>
 
-            </a>
+            {% else %}
+
+                <a href="{{ path('app_login') }}" class="center-circle">
+                    <span>
+                        Entrer dans<br>
+                        Logic Coach
+                    </span>
+                </a>
+
+            {% endif %}
 
             <div class="feature feature-motivation">
                 <img src="{{ asset('images/home/motivation.png') }}" alt="Motivation">
