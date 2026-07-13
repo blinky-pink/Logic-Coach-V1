@@ -8,69 +8,93 @@
 
     <section class="hero">
 
-        <h1>Logic Coach</h1>
+        <div class="title-container">
+            <h1>Logic Coach</h1>
+        </div>
 
-        <p class="subtitle">
-            Votre coach de bien-être quotidien
-        </p>
+        <div class="subtitle-container">
+            <p class="subtitle">
+                Votre coach de bien-être quotidien
+            </p>
+        </div>
 
-        <p class="introduction-top">
-            Comprenez votre état quotidien avec des repères simples et clairs.
-        </p>
+        <div class="introduction-top-container">
+            <p class="introduction-top">
+                Comprenez votre état quotidien avec des repères simples et clairs.
+            </p>
+        </div>
 
-        <p class="introduction-left">
-            Prenez un instant pour vous écouter.
-        </p>
+        <div class="introduction-left-container">
+            <p class="introduction-left">
+                Prenez un instant pour vous écouter.
+            </p>
+        </div>
 
-        <p class="introduction-right">
-            Logic Coach vous accompagne.
-        </p>
+        <div class="introduction-right-container">
+            <p class="introduction-right">
+                Logic Coach vous accompagne.
+            </p>
+        </div>
 
         <div class="hero-content">
 
-            <div class="feature feature-sleep">
-                <img src="{{ asset('images/home/sommeil.png') }}" alt="Sommeil">
-                <p>Sommeil</p>
+            <div class="sleep-container">
+                <div class="feature feature-sleep">
+                    <img src="{{ asset('images/home/sommeil.png') }}" alt="Sommeil">
+                    <p>Sommeil</p>
+                </div>
             </div>
 
-            <div class="feature feature-energy">
-                <img src="{{ asset('images/home/energie.png') }}" alt="Énergie">
-                <p>Énergie</p>
+            <div class="energy-container">
+                <div class="feature feature-energy">
+                    <img src="{{ asset('images/home/energie.png') }}" alt="Énergie">
+                    <p>Énergie</p>
+                </div>
             </div>
 
-            <div class="feature feature-stress">
-                <img src="{{ asset('images/home/stress.png') }}" alt="Stress">
-                <p>Stress</p>
+            <div class="stress-container">
+                <div class="feature feature-stress">
+                    <img src="{{ asset('images/home/stress.png') }}" alt="Stress">
+                    <p>Stress</p>
+                </div>
             </div>
 
-            {% if app.user %}
+            <div class="center-circle-container">
 
-                <a href="{{ path('app_dashboard') }}" class="center-circle">
-                    <span>
-                        Entrer dans<br>
-                        Logic Coach
-                    </span>
-                </a>
+                {% if app.user %}
 
-            {% else %}
+                    <a href="{{ path('app_dashboard') }}" class="center-circle">
+                        <span>
+                            Entrer dans<br>
+                            Logic Coach
+                        </span>
+                    </a>
 
-                <a href="{{ path('app_login') }}" class="center-circle">
-                    <span>
-                        Entrer dans<br>
-                        Logic Coach
-                    </span>
-                </a>
+                {% else %}
 
-            {% endif %}
+                    <a href="{{ path('app_login') }}" class="center-circle">
+                        <span>
+                            Entrer dans<br>
+                            Logic Coach
+                        </span>
+                    </a>
 
-            <div class="feature feature-motivation">
-                <img src="{{ asset('images/home/motivation.png') }}" alt="Motivation">
-                <p>Motivation</p>
+                {% endif %}
+
             </div>
 
-            <div class="feature feature-mood">
-                <img src="{{ asset('images/home/humeur.png') }}" alt="Humeur">
-                <p>Humeur</p>
+            <div class="motivation-container">
+                <div class="feature feature-motivation">
+                    <img src="{{ asset('images/home/motivation.png') }}" alt="Motivation">
+                    <p>Motivation</p>
+                </div>
+            </div>
+
+            <div class="mood-container">
+                <div class="feature feature-mood">
+                    <img src="{{ asset('images/home/humeur.png') }}" alt="Humeur">
+                    <p>Humeur</p>
+                </div>
             </div>
 
         </div>

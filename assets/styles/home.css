@@ -29,60 +29,75 @@ body {
     text-align: center;
 }
 
-.hero h1 {
+.title-container {
     position: absolute;
     top: 3%;
     left: 50%;
     transform: translateX(-50%);
     width: 700px;
-    margin: 0;
-    font-size: 3.5rem;
-    white-space: nowrap;
     z-index: 2;
 }
 
-.subtitle {
+.hero h1 {
+    margin: 0;
+    font-size: 3.5rem;
+    white-space: nowrap;
+}
+
+.subtitle-container {
     position: absolute;
     top: 10%;
     left: 50%;
     transform: translateX(-50%);
     width: 700px;
+    z-index: 2;
+}
+
+.subtitle {
     margin: 0;
     font-size: 1.2rem;
+}
+
+.introduction-top-container {
+    position: absolute;
+    top: 27%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 650px;
     z-index: 2;
 }
 
 .introduction-top {
-    position: absolute;
-    top: 22%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 650px;
     margin: 0;
     font-size: 1rem;
+}
+
+.introduction-left-container {
+    position: absolute;
+    top: 42%;
+    left: 38%;
+    transform: translateX(-50%);
+    width: 300px;
     z-index: 2;
 }
 
 .introduction-left {
-    position: absolute;
-    top: 47%;
-    left: 32%;
-    transform: translateX(-50%);
-    width: 300px;
     margin: 0;
     font-size: 1rem;
+}
+
+.introduction-right-container {
+    position: absolute;
+    top: 42%;
+    right: 38%;
+    transform: translateX(50%);
+    width: 300px;
     z-index: 2;
 }
 
 .introduction-right {
-    position: absolute;
-    top: 47%;
-    right: 32%;
-    transform: translateX(50%);
-    width: 300px;
     margin: 0;
     font-size: 1rem;
-    z-index: 2;
 }
 
 .hero-content {
@@ -92,30 +107,50 @@ body {
     height: 100%;
 }
 
-.center-circle {
+.sleep-container {
     position: absolute;
-    top: 46%;
+    top: 24%;
+    left: 25%;
+    width: 150px;
+    z-index: 3;
+}
+
+.energy-container {
+    position: absolute;
+    top: 24%;
+    right: 25%;
+    width: 150px;
+    z-index: 3;
+}
+
+.stress-container {
+    position: absolute;
+    top: 52%;
+    left: 20%;
+    width: 150px;
+    z-index: 3;
+}
+
+.motivation-container {
+    position: absolute;
+    top: 52%;
+    right: 20%;
+    width: 150px;
+    z-index: 3;
+}
+
+.mood-container {
+    position: absolute;
+    bottom: 11%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    width: 210px;
-    height: 210px;
-    box-sizing: border-box;
-    border: 2px solid rgba(216, 180, 91, 0.65);
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    text-decoration: none;
-    color: #fff;
+    transform: translateX(-50%);
+    width: 150px;
     z-index: 3;
 }
 
 .feature {
-    position: absolute;
     width: 150px;
     text-align: center;
-    z-index: 3;
 }
 
 .feature img {
@@ -130,97 +165,26 @@ body {
     font-size: .9rem;
 }
 
-.feature-sleep {
-    top: 24%;
-    left: 16%;
-}
-
-.feature-energy {
-    top: 24%;
-    right: 16%;
-}
-
-.feature-stress {
-    top: 52%;
-    left: 8%;
-}
-
-.feature-motivation {
-    top: 52%;
-    right: 8%;
-}
-
-.feature-mood {
-    bottom: 8%;
+.center-circle-container {
+    position: absolute;
+    top: 46%;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translate(-50%, -50%);
+    width: 210px;
+    height: 210px;
+    z-index: 3;
 }
 
-@media (max-width: 768px) {
-
-    html,
-    body {
-        height: auto;
-        overflow: auto;
-    }
-
-    .home {
-        height: auto;
-        min-height: 100vh;
-        overflow: auto;
-        padding: 30px 15px;
-        box-sizing: border-box;
-    }
-
-    .hero {
-        height: auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .hero h1,
-    .subtitle,
-    .introduction-top,
-    .introduction-left,
-    .introduction-right {
-        position: static;
-        transform: none;
-        width: auto;
-    }
-
-    .hero h1 {
-        font-size: 2.5rem;
-    }
-
-    .subtitle {
-        margin: 8px 0 20px;
-    }
-
-    .introduction-top,
-    .introduction-left,
-    .introduction-right {
-        margin-bottom: 15px;
-    }
-
-    .hero-content {
-        position: static;
-        width: 100%;
-        height: auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 20px;
-    }
-
-    .feature,
-    .center-circle {
-        position: static;
-        transform: none;
-    }
-
-    .center-circle {
-        width: 180px;
-        height: 180px;
-    }
+.center-circle {
+    width: 210px;
+    height: 210px;
+    box-sizing: border-box;
+    border: 3px solid rgba(126, 55, 92, 0.85);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
 }
