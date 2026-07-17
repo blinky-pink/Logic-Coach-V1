@@ -1,37 +1,157 @@
 body.theme-1 .dashboard {
-    background-color: #1b2118;
-    color: #f1f3e8;
+    background:
+        radial-gradient(circle at 75% 15%, rgba(85, 107, 47, 0.12), transparent 28%),
+        linear-gradient(135deg, #090d08 0%, #11180e 55%, #080b07 100%);
+    color: #f2f4ed;
 }
 
 body.theme-1 .sidebar {
-    background-color: #252d20;
-    border-right: 1px solid #4c5a40;
+    background-color: #11170f;
+    border-right: 1px solid #3f4d35;
+    box-shadow: 6px 0 24px rgba(0, 0, 0, 0.28);
+}
+
+body.theme-1 .user-card {
+    padding-bottom: 24px;
+    border-bottom: 1px solid #35402e;
+}
+
+body.theme-1 .user-card img {
+    border: 2px solid #718259;
+}
+
+body.theme-1 .user-card h2 {
+    color: #ffffff;
 }
 
 body.theme-1 .user-card p {
-    color: #b8c2aa;
+    color: #c3cbb9;
 }
 
 body.theme-1 .sidebar-menu a {
-    color: #f1f3e8;
+    color: #e7ebdf;
+    border: 1px solid transparent;
 }
 
 body.theme-1 .sidebar-menu a:hover {
-    background-color: #3a4632;
+    background-color: #293324;
+    border-color: #4d5e40;
+}
+
+body.theme-1 .sidebar-menu a:focus-visible {
+    outline: 3px solid #d8e6b5;
+    outline-offset: 3px;
+    background-color: #293324;
+}
+
+body.theme-1 .dashboard-content {
+    background-color: transparent;
+}
+
+body.theme-1 .dashboard-header {
+    padding-bottom: 18px;
+    border-bottom: 1px solid #35402e;
+}
+
+body.theme-1 .dashboard-header h1 {
+    color: #ffffff;
+}
+
+body.theme-1 .dashboard-grid {
+    align-items: stretch;
 }
 
 body.theme-1 .card {
-    background-color: #2b3426;
-    border-color: #556b2f;
+    background-color: rgba(29, 37, 25, 0.96);
+    color: #f2f4ed;
+    border: 1px solid #46563b;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
+}
+
+body.theme-1 .card h2 {
+    color: #dbe6c9;
+}
+
+body.theme-1 .card p {
+    color: #f2f4ed;
+    line-height: 1.6;
 }
 
 body.theme-1 .card a {
-    color: #d8e2c4;
+    display: inline-block;
+    margin-top: 10px;
+    padding: 9px 14px;
+    color: #ffffff;
+    background-color: #465b35;
+    border: 1px solid #70855b;
+    border-radius: 6px;
+    text-decoration: none;
+}
+
+body.theme-1 .card a:hover {
+    background-color: #586f43;
+}
+
+body.theme-1 .card a:focus-visible {
+    outline: 3px solid #d8e6b5;
+    outline-offset: 3px;
+}
+
+body.theme-1 .score {
+    border-top: 3px solid #7f965f;
+}
+
+body.theme-1 .indicators {
+    border-top: 3px solid #65794f;
+}
+
+body.theme-1 .evolution {
+    border-top: 3px solid #899b6d;
+}
+
+body.theme-1 .goals {
+    border-top: 3px solid #596c48;
+}
+
+body.theme-1 .messages {
+    border-top: 3px solid #71865a;
 }
 
 body.theme-1 .dashboard-empty {
-    background-color: #2b3426;
-    border: 1px solid #556b2f;
+    padding: 32px;
+    background-color: rgba(29, 37, 25, 0.96);
+    color: #f2f4ed;
+    border: 1px solid #46563b;
+    border-radius: 12px;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
+}
+
+body.theme-1 .dashboard-empty h2 {
+    color: #ffffff;
+}
+
+body.theme-1 .dashboard-empty p {
+    color: #d4dbc9;
+}
+
+body.theme-1 .dashboard-empty a {
+    display: inline-block;
+    margin-top: 16px;
+    padding: 11px 16px;
+    color: #ffffff;
+    background-color: #465b35;
+    border: 1px solid #70855b;
+    border-radius: 6px;
+    text-decoration: none;
+}
+
+body.theme-1 .dashboard-empty a:hover {
+    background-color: #586f43;
+}
+
+body.theme-1 .dashboard-empty a:focus-visible {
+    outline: 3px solid #d8e6b5;
+    outline-offset: 3px;
 }
 
 body.theme-2 .dashboard {

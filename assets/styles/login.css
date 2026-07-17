@@ -1,0 +1,232 @@
+.login-page {
+    min-height: 100vh;
+    background: linear-gradient(180deg, #071522 0%, #10263d 100%);
+    color: #f5f5f5;
+}
+
+.login-section {
+    width: 1200px;
+    max-width: 95%;
+    margin: 0 auto;
+    padding: 40px 0;
+}
+
+.login-title-container {
+    text-align: center;
+}
+
+.login-title-container h1 {
+    margin: 0;
+    font-size: 3.2rem;
+}
+
+.login-subtitle-container {
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 50px;
+}
+
+.login-subtitle-container p {
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.login-main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+    margin-top: 30px;
+}
+
+.login-form-container {
+    width: 420px;
+}
+
+.login-form {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    padding: 35px;
+    backdrop-filter: blur(8px);
+}
+
+.login-form-title-container {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.login-form-title-container h2 {
+    margin: 0;
+}
+
+.login-email-container,
+.login-password-container {
+    margin-bottom: 20px;
+}
+
+.login-email-container label,
+.login-password-container label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.login-email-container input,
+.login-password-container input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #4b5f73;
+    background: rgba(255, 255, 255, 0.10);
+    color: #ffffff;
+    box-sizing: border-box;
+    font-size: 1rem;
+}
+
+.login-email-container input:focus,
+.login-password-container input:focus {
+    outline: none;
+    border-color: #b36b73;
+}
+
+.login-button-container {
+    margin-top: 30px;
+}
+
+.login-button-container button {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(
+        90deg,
+        #7b4fa0,
+        #b36b73
+    );
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: .30s;
+}
+
+.login-button-container button:hover {
+    background: linear-gradient(
+        90deg,
+        #915bc0,
+        #d1827f
+    );
+}
+
+.login-register-container {
+    text-align: center;
+    margin-top: 25px;
+}
+
+.login-register-container p {
+    margin: 0 0 8px;
+}
+
+.login-register-container a {
+    color: #ffffff;
+    font-weight: 600;
+    text-decoration: none;
+    transition: .30s;
+}
+
+.login-register-container a:hover {
+    color: #d6b8ff;
+    text-decoration: underline;
+}
+
+.login-info-container {
+    flex: 1;
+    max-width: 500px;
+    margin-top: -35px;
+}
+
+.login-info-container h2 {
+    margin-top: 0;
+    margin-bottom: 25px;
+    font-size: 2.4rem;
+}
+
+.login-info-container p {
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    line-height: 1.7;
+}
+
+.login-footer-container {
+    text-align: center;
+    margin-top: 90px;
+}
+
+.login-footer-container a {
+    color: #ffffff;
+    text-decoration: none;
+    transition: .30s;
+}
+
+.login-footer-container a:hover {
+    color: #d6b8ff;
+}
+
+.login-error-container {
+    background: rgba(180, 40, 40, 0.25);
+    border: 1px solid rgba(255, 80, 80, 0.50);
+    border-radius: 10px;
+    padding: 12px;
+    margin-bottom: 20px;
+}
+
+.login-user-container {
+    background: rgba(40, 120, 40, 0.20);
+    border: 1px solid rgba(40, 180, 40, 0.40);
+    border-radius: 10px;
+    padding: 12px;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 900px) {
+        .login-page {
+        overflow: auto;
+    }
+
+    .login-section {
+        width: 100%;
+        padding: 30px 20px;
+        box-sizing: border-box;
+    }
+
+    .login-main-container {
+        flex-direction: column;
+        gap: 40px;
+        margin-top: 40px;
+    }
+
+    .login-form-container {
+        width: 100%;
+        max-width: 450px;
+    }
+
+    .login-info-container {
+        max-width: 450px;
+        margin-top: 0;
+        text-align: center;
+    }
+
+    .login-title-container h1 {
+        font-size: 2.6rem;
+    }
+
+    .login-subtitle-container {
+        margin-bottom: 30px;
+    }
+
+    .login-footer-container {
+        margin-top: 35px;
+        margin-bottom: 20px;
+    }
+
+}
