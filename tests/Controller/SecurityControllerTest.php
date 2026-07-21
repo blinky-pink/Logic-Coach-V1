@@ -81,12 +81,12 @@ final class SecurityControllerTest extends WebTestCase
 
         self::assertResponseIsSuccessful();
 
-        $this->client->submit(
-            $crawler->selectButton('Sign in')->form([
-                '_username' => 'valid-login@example.com',
-                '_password' => 'correct-password',
-            ])
-        );
+        $form = $crawler->filter('form')->form();
+
+        $form['_username'] = 'valid-login@example.com';
+        $form['_password'] = 'correct-password';
+
+        $this->client->submit($form);
 
         self::assertResponseRedirects();
 
@@ -108,12 +108,12 @@ final class SecurityControllerTest extends WebTestCase
 
         self::assertResponseIsSuccessful();
 
-        $this->client->submit(
-            $crawler->selectButton('Sign in')->form([
-                '_username' => 'unknown-user@example.com',
-                '_password' => 'test-password',
-            ])
-        );
+        $form = $crawler->filter('form')->form();
+
+        $form['_username'] = 'unknown-user@example.com';
+        $form['_password'] = 'test-password';
+
+        $this->client->submit($form);
 
         self::assertResponseRedirects('/login');
 
@@ -121,7 +121,7 @@ final class SecurityControllerTest extends WebTestCase
 
         self::assertResponseIsSuccessful();
 
-        self::assertSelectorExists('.alert-danger');
+        self::assertSelectorExists('.login-error-container');
     }
 
     public function testUserCannotLoginWithInvalidPassword(): void
@@ -135,12 +135,12 @@ final class SecurityControllerTest extends WebTestCase
 
         self::assertResponseIsSuccessful();
 
-        $this->client->submit(
-            $crawler->selectButton('Sign in')->form([
-                '_username' => 'invalid-login@example.com',
-                '_password' => 'wrong-password',
-            ])
-        );
+        $form = $crawler->filter('form')->form();
+
+        $form['_username'] = 'invalid-login@example.com';
+        $form['_password'] = 'wrong-password';
+
+        $this->client->submit($form);
 
         self::assertResponseRedirects('/login');
 
@@ -148,7 +148,7 @@ final class SecurityControllerTest extends WebTestCase
 
         self::assertResponseIsSuccessful();
 
-        self::assertSelectorExists('.alert-danger');
+        self::assertSelectorExists('.login-error-container');
     }
 
     public function testLogoutDisconnectsUser(): void
@@ -180,8 +180,12 @@ final class SecurityControllerTest extends WebTestCase
         string $plainPassword
     ): User {
         $user = new User();
+
         $user->setEmail($email);
         $user->setRoles(['ROLE_USER']);
+        $user->setFirstname('Test');
+        $user->setLastname('Utilisateur');
+        $user->setPseudo('security-'.uniqid());
 
         $user->setPassword(
             $this->passwordHasher->hashPassword(
@@ -192,7 +196,6 @@ final class SecurityControllerTest extends WebTestCase
 
         $this->entityManager->persist($user);
         $this->entityManager->flush();
-        
 
         return $user;
     }

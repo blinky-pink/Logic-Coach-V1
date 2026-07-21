@@ -37,6 +37,9 @@ final class HomeControllerTest extends WebTestCase
         $user->setEmail('home-test@example.com');
         $user->setPassword('test-password');
         $user->setRoles(['ROLE_USER']);
+        $user->setFirstname('Home');
+        $user->setLastname('Test');
+        $user->setPseudo('home-test');
 
         $entityManager->persist($user);
         $entityManager->flush();

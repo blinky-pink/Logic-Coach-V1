@@ -47,6 +47,9 @@ final class DailyEntryControllerTest extends WebTestCase
         $this->user->setEmail('daily-entry-test@example.com');
         $this->user->setPassword('test-password');
         $this->user->setRoles(['ROLE_USER']);
+        $this->user->setFirstname('Daily');
+        $this->user->setLastname('Entry');
+        $this->user->setPseudo('daily-entry-test');
 
         $this->entityManager->persist($this->user);
         $this->entityManager->flush();
@@ -188,10 +191,15 @@ final class DailyEntryControllerTest extends WebTestCase
 
     private function createUser(string $email): User
     {
+        $pseudo = 'user-'.uniqid();
+
         $user = new User();
         $user->setEmail($email);
         $user->setPassword('test-password');
         $user->setRoles(['ROLE_USER']);
+        $user->setFirstname('Test');
+        $user->setLastname('Utilisateur');
+        $user->setPseudo($pseudo);
 
         $this->entityManager->persist($user);
         $this->entityManager->flush();

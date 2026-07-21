@@ -55,7 +55,7 @@ final class DashboardControllerTest extends WebTestCase
         self::assertResponseIsSuccessful();
 
         self::assertStringContainsString(
-            'Aucune saisie quotidienne enregistrée',
+            'Votre aventure Logic Coach commence maintenant.',
             $crawler->html()
         );
 
@@ -134,7 +134,7 @@ final class DashboardControllerTest extends WebTestCase
         );
 
         self::assertStringContainsString(
-            'Aucune saisie quotidienne enregistrée',
+            'Votre aventure Logic Coach commence maintenant.',
             $crawler->html()
         );
     }
@@ -145,6 +145,10 @@ final class DashboardControllerTest extends WebTestCase
         $user->setEmail($email);
         $user->setPassword('test-password');
         $user->setRoles(['ROLE_USER']);
+        $user->setFirstname('Test');
+        $user->setLastname('Utilisateur');
+        $user->setPseudo('dashboard-'.uniqid());
+        $user->setHasSeenWelcome(true);
 
         $this->entityManager->persist($user);
         $this->entityManager->flush();

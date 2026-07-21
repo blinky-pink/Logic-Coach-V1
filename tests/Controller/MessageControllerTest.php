@@ -233,10 +233,13 @@ final class MessageControllerTest extends WebTestCase
         $user->setEmail($email);
         $user->setPassword('test-password');
         $user->setRoles(['ROLE_USER']);
-
+        $user->setFirstname('Test');
+        $user->setLastname('Utilisateur');
+        $user->setPseudo('message-'.uniqid());
+    
         $this->entityManager->persist($user);
         $this->entityManager->flush();
-
+    
         return $user;
     }
 

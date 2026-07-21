@@ -2,11 +2,11 @@
 
 namespace App\Entity;
 
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -28,6 +28,21 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column]
     private ?string $password = null;
+
+    #[ORM\Column(length: 100)]
+    private ?string $firstname = null;
+
+    #[ORM\Column(length: 100)]
+    private ?string $lastname = null;
+
+    #[ORM\Column(length: 100, unique: true)]
+    private ?string $pseudo = null;
+
+    #[ORM\Column(options: ['default' => false])]
+    private bool $hasSeenWelcome = false;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $avatarFilename = null;
 
     /**
      * @var Collection<int, Message>
@@ -102,6 +117,66 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPassword(string $password): static
     {
         $this->password = $password;
+
+        return $this;
+    }
+
+    public function getFirstname(): ?string
+    {
+        return $this->firstname;
+    }
+
+    public function setFirstname(string $firstname): static
+    {
+        $this->firstname = $firstname;
+
+        return $this;
+    }
+
+    public function getLastname(): ?string
+    {
+        return $this->lastname;
+    }
+
+    public function setLastname(string $lastname): static
+    {
+        $this->lastname = $lastname;
+
+        return $this;
+    }
+
+    public function getPseudo(): ?string
+    {
+        return $this->pseudo;
+    }
+
+    public function setPseudo(string $pseudo): static
+    {
+        $this->pseudo = $pseudo;
+
+        return $this;
+    }
+
+    public function hasSeenWelcome(): bool
+    {
+        return $this->hasSeenWelcome;
+    }
+
+    public function setHasSeenWelcome(bool $hasSeenWelcome): static
+    {
+        $this->hasSeenWelcome = $hasSeenWelcome;
+
+        return $this;
+    }
+
+    public function getAvatarFilename(): ?string
+    {
+        return $this->avatarFilename;
+    }
+
+    public function setAvatarFilename(?string $avatarFilename): static
+    {
+        $this->avatarFilename = $avatarFilename;
 
         return $this;
     }
@@ -210,7 +285,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function removeDailyEntry(DailyEntry $dailyEntry): static
     {
         if ($this->dailyEntries->removeElement($dailyEntry)) {
-            // set the owning side to null (unless already changed)
             if ($dailyEntry->getUser() === $this) {
                 $dailyEntry->setUser(null);
             }

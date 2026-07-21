@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bienvenue - Logic Coach{% endblock %}
+
+{% block body %}
+
+<main class="welcome-page">
+
+    <video
+        class="welcome-video"
+        autoplay
+        muted
+        playsinline
+    >
+        <source
+            src="{{ asset('videos/welcome-logic-coach.mp4') }}"
+            type="video/mp4"
+        >
+    </video>
+
+    <div class="welcome-overlay">
+
+        <div class="welcome-content">
+
+            <h1>
+                Bienvenue dans Logic Coach
+            </h1>
+
+            <p class="welcome-user">
+                Bonjour {{ app.user.firstname }}
+            </p>
+
+            <p class="welcome-description">
+                Prenez quelques instants pour vous.
+                Suivez votre bien-être et avancez chaque jour.
+            </p>
+
+            <div class="welcome-indicators">
+                <span>Sommeil</span>
+                <span>Énergie</span>
+                <span>Stress</span>
+                <span>Motivation</span>
+                <span>Humeur</span>
+            </div>
+
+            <form
+                method="post"
+                action="{{ path('app_dashboard_welcome_complete') }}"
+            >
+                <button
+                    type="submit"
+                    class="welcome-button"
+                >
+                    Commencer l'aventure
+                </button>
+            </form>
+
+        </div>
+
+    </div>
+
+</main>
+
+{% endblock %}

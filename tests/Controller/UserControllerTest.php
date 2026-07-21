@@ -49,8 +49,19 @@ final class UserControllerTest extends WebTestCase
         $this->entityManager->flush();
 
         $this->authenticatedUser = new User();
-        $this->authenticatedUser->setEmail('user-controller-test@example.com');
-        $this->authenticatedUser->setRoles(['ROLE_ADMIN']);
+
+        $this->authenticatedUser->setEmail(
+            'user-controller-test@example.com'
+        );
+
+        $this->authenticatedUser->setFirstname('Admin');
+        $this->authenticatedUser->setLastname('Test');
+        $this->authenticatedUser->setPseudo('admin-controller-test');
+
+        $this->authenticatedUser->setRoles([
+            'ROLE_ADMIN',
+        ]);
+
         $this->authenticatedUser->setPassword(
             $this->passwordHasher->hashPassword(
                 $this->authenticatedUser,
@@ -58,27 +69,41 @@ final class UserControllerTest extends WebTestCase
             )
         );
 
-        $this->entityManager->persist($this->authenticatedUser);
+        $this->entityManager->persist(
+            $this->authenticatedUser
+        );
+
         $this->entityManager->flush();
 
-        $this->client->loginUser($this->authenticatedUser);
+        $this->client->loginUser(
+            $this->authenticatedUser
+        );
     }
 
     public function testIndex(): void
     {
-        $this->client->request('GET', '/user');
+        $this->client->request(
+            'GET',
+            '/user'
+        );
 
         self::assertResponseIsSuccessful();
     }
 
     public function testNew(): void
     {
-        $this->client->request('GET', '/user/new');
+        $this->client->request(
+            'GET',
+            '/user/new'
+        );
 
         self::assertResponseIsSuccessful();
 
         $this->client->submitForm('Save', [
             'user[email]' => 'new-user@example.com',
+            'user[firstname]' => 'Nouveau',
+            'user[lastname]' => 'Utilisateur',
+            'user[pseudo]' => 'new-user-test',
             'user[roles]' => ['ROLE_USER'],
             'user[password]' => 'new-password',
         ]);
@@ -89,8 +114,30 @@ final class UserControllerTest extends WebTestCase
             'email' => 'new-user@example.com',
         ]);
 
-        self::assertInstanceOf(User::class, $createdUser);
-        self::assertContains('ROLE_USER', $createdUser->getRoles());
+        self::assertInstanceOf(
+            User::class,
+            $createdUser
+        );
+
+        self::assertSame(
+            'Nouveau',
+            $createdUser->getFirstname()
+        );
+
+        self::assertSame(
+            'Utilisateur',
+            $createdUser->getLastname()
+        );
+
+        self::assertSame(
+            'new-user-test',
+            $createdUser->getPseudo()
+        );
+
+        self::assertContains(
+            'ROLE_USER',
+            $createdUser->getRoles()
+        );
 
         self::assertTrue(
             $this->passwordHasher->isPasswordValid(
@@ -107,7 +154,9 @@ final class UserControllerTest extends WebTestCase
 
     public function testShow(): void
     {
-        $user = $this->createUser('show-user@example.com');
+        $user = $this->createUser(
+            'show-user@example.com'
+        );
 
         $this->client->request(
             'GET',
@@ -119,7 +168,9 @@ final class UserControllerTest extends WebTestCase
 
     public function testEdit(): void
     {
-        $user = $this->createUser('edit-user@example.com');
+        $user = $this->createUser(
+            'edit-user@example.com'
+        );
 
         $userId = $user->getId();
 
@@ -132,6 +183,9 @@ final class UserControllerTest extends WebTestCase
 
         $this->client->submitForm('Update', [
             'user[email]' => 'edited-user@example.com',
+            'user[firstname]' => 'Utilisateur',
+            'user[lastname]' => 'Modifie',
+            'user[pseudo]' => 'edited-user-test',
             'user[roles]' => ['ROLE_ADMIN'],
             'user[password]' => 'modified-password',
         ]);
@@ -140,11 +194,39 @@ final class UserControllerTest extends WebTestCase
 
         $this->entityManager->clear();
 
-        $updatedUser = $this->userRepository->find($userId);
+        $updatedUser = $this->userRepository->find(
+            $userId
+        );
 
-        self::assertInstanceOf(User::class, $updatedUser);
-        self::assertSame('edited-user@example.com', $updatedUser->getEmail());
-        self::assertContains('ROLE_ADMIN', $updatedUser->getRoles());
+        self::assertInstanceOf(
+            User::class,
+            $updatedUser
+        );
+
+        self::assertSame(
+            'edited-user@example.com',
+            $updatedUser->getEmail()
+        );
+
+        self::assertSame(
+            'Utilisateur',
+            $updatedUser->getFirstname()
+        );
+
+        self::assertSame(
+            'Modifie',
+            $updatedUser->getLastname()
+        );
+
+        self::assertSame(
+            'edited-user-test',
+            $updatedUser->getPseudo()
+        );
+
+        self::assertContains(
+            'ROLE_ADMIN',
+            $updatedUser->getRoles()
+        );
 
         self::assertTrue(
             $this->passwordHasher->isPasswordValid(
@@ -161,33 +243,46 @@ final class UserControllerTest extends WebTestCase
 
     public function testDelete(): void
     {
-        $user = $this->createUser('delete-user@example.com');
+        $user = $this->createUser(
+            'delete-user@example.com'
+        );
+
+        $userId = $user->getId();
 
         $crawler = $this->client->request(
             'GET',
-            '/user/'.$user->getId()
+            '/user/'.$userId
         );
 
         self::assertResponseIsSuccessful();
 
-        $form = $crawler->selectButton('Delete')->form();
+        $form = $crawler
+            ->selectButton('Delete')
+            ->form();
 
         $this->client->submit($form);
 
         self::assertResponseRedirects('/user');
 
         self::assertNull(
-            $this->userRepository->find($user->getId())
+            $this->userRepository->find($userId)
         );
     }
 
     public function testUserCannotAccessUserManagement(): void
     {
-        $standardUser = $this->createUser('standard-user@example.com');
+        $standardUser = $this->createUser(
+            'standard-user@example.com'
+        );
 
-        $this->client->loginUser($standardUser);
+        $this->client->loginUser(
+            $standardUser
+        );
 
-        $this->client->request('GET', '/user');
+        $this->client->request(
+            'GET',
+            '/user'
+        );
 
         self::assertResponseStatusCodeSame(403);
     }
@@ -195,8 +290,23 @@ final class UserControllerTest extends WebTestCase
     private function createUser(string $email): User
     {
         $user = new User();
+
         $user->setEmail($email);
-        $user->setRoles(['ROLE_USER']);
+
+        $user->setFirstname('Test');
+        $user->setLastname('Utilisateur');
+
+        $user->setPseudo(
+            str_replace(
+                ['@', '.'],
+                '-',
+                $email
+            )
+        );
+
+        $user->setRoles([
+            'ROLE_USER',
+        ]);
 
         $user->setPassword(
             $this->passwordHasher->hashPassword(

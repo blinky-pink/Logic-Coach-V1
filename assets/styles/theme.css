@@ -236,4 +236,248 @@ body.theme-3 .dashboard-empty {
     background-color: #ffffff;
     color: #172033;
     border: 1px solid #93c5fd;
+}.theme-page {
+    min-height: 100vh;
+    padding: 50px;
+    background-color: #0b1220;
+    color: #ffffff;
+    box-sizing: border-box;
+}
+
+.theme-container {
+    width: 1200px;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.theme-header {
+    margin-bottom: 30px;
+}
+
+.theme-header h1 {
+    margin: 0 0 10px;
+    font-size: 2rem;
+}
+
+.theme-header p {
+    margin: 0;
+    color: #b8b8b8;
+}
+
+.theme-current {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 30px;
+    padding: 15px 20px;
+    background-color: #182233;
+    border: 1px solid #2d3d5c;
+    border-radius: 10px;
+}
+
+.theme-current span {
+    color: #b8b8b8;
+}
+
+.theme-current strong {
+    color: #ffffff;
+}
+
+.theme-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.theme-card {
+    position: relative;
+    padding: 25px;
+    background-color: #182233;
+    border: 1px solid #2d3d5c;
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+.theme-card-selected {
+    border-color: #b36b73;
+}
+
+.theme-color {
+    width: 100%;
+    height: 8px;
+    margin-bottom: 20px;
+    border-radius: 20px;
+}
+
+.theme-card h2 {
+    margin: 0 0 12px;
+    font-size: 1.4rem;
+}
+
+.theme-card p {
+    min-height: 50px;
+    color: #d0d5dd;
+    line-height: 1.5;
+}
+
+.theme-status {
+    margin: 20px 0;
+}
+
+.theme-selected {
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.theme-available {
+    color: #b8b8b8;
+}
+
+.theme-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+}
+
+.theme-actions form {
+    margin: 0;
+}
+
+.theme-choose-button,
+.theme-view-button,
+.theme-admin-button,
+.theme-admin-create,
+.theme-back-button {
+    display: inline-block;
+    padding: 10px 16px;
+    border: 1px solid #3c4f70;
+    border-radius: 8px;
+    color: #ffffff;
+    background-color: #1d2b44;
+    text-decoration: none;
+    font-family: inherit;
+    font-size: 0.95rem;
+    cursor: pointer;
+}
+
+.theme-choose-button {
+    border: none;
+    background: linear-gradient(
+        90deg,
+        #7b4fa0,
+        #b36b73
+    );
+}
+
+.theme-choose-button:hover,
+.theme-view-button:hover,
+.theme-admin-button:hover,
+.theme-admin-create:hover,
+.theme-back-button:hover {
+    transform: translateY(-2px);
+}
+
+.theme-footer-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 30px;
+}
+
+.theme-empty {
+    padding: 30px;
+    background-color: #182233;
+    border: 1px solid #2d3d5c;
+    border-radius: 12px;
+}
+
+@media (max-width: 900px) {
+
+    .theme-page {
+        padding: 30px 20px;
+    }
+
+    .theme-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+body.theme-2 .card h2,
+body.theme-2 .card p,
+body.theme-2 .card strong {
+    color: #263b34;
+}
+
+body.theme-2 .score p,
+body.theme-2 .indicators p {
+    color: #263b34;
+}
+
+body.theme-2 .messages p {
+    color: #263b34;
+}
+
+body.theme-2 .messages p:first-of-type {
+    background-color: #dcebe4;
+    color: #263b34;
+}
+
+body.theme-2 .messages p:last-of-type {
+    background-color: #f1f7f4;
+    color: #263b34;
+    border-left-color: #6b9080;
+}
+
+body.theme-2 .card a {
+    color: #ffffff;
+    background: linear-gradient(
+        90deg,
+        #6b9080,
+        #8aab9d
+    );
+    border: none;
+}
+
+body.theme-2 .card a:hover {
+    background: #527365;
+    color: #ffffff;
+}
+
+body.theme-3 .card h2,
+body.theme-3 .card p,
+body.theme-3 .card strong {
+    color: #172033;
+}
+
+body.theme-3 .score p,
+body.theme-3 .indicators p {
+    color: #172033;
+}
+
+body.theme-3 .messages p {
+    color: #172033;
+}
+
+body.theme-3 .messages p:first-of-type {
+    background-color: #e8eef8;
+    color: #172033;
+}
+
+body.theme-3 .messages p:last-of-type {
+    background-color: #f4f6fa;
+    color: #172033;
+    border-left-color: #3b82f6;
+}
+
+body.theme-3 .card a {
+    color: #ffffff;
+    background: #2563eb;
+    border: none;
+}
+
+body.theme-3 .card a:hover {
+    background: #1e3a5f;
+    color: #ffffff;
 }

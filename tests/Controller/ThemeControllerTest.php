@@ -243,26 +243,42 @@ final class ThemeControllerTest extends WebTestCase
     private function createUser(string $email, array $roles): User
     {
         $user = new User();
+    
         $user->setEmail($email);
         $user->setPassword('test-password');
         $user->setRoles($roles);
-
+    
+        $user->setFirstname('Test');
+        $user->setLastname('User');
+    
+        // Génère un pseudo unique à partir de l'adresse e-mail
+        $user->setPseudo(
+            str_replace(
+                ['@', '.'],
+                '-',
+                $email
+            )
+        );
+    
         $this->entityManager->persist($user);
         $this->entityManager->flush();
-
+    
         return $user;
     }
 
     private function createTheme(string $name): Theme
     {
         $theme = new Theme();
+
         $theme->setName($name);
         $theme->setDescription('Description de test');
         $theme->setIllustration('theme-test.png');
         $theme->setPrimaryColor('#123456');
+
         $theme->setCreatedAt(
             new \DateTimeImmutable('2026-07-06 10:00:00')
         );
+
         $theme->setUpdatedAt(
             new \DateTimeImmutable('2026-07-06 10:00:00')
         );

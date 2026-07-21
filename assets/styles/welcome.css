@@ -1,0 +1,126 @@
+.welcome-page {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background: #071522;
+}
+
+.welcome-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: translate(-50%, -50%);
+}
+
+.welcome-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(7, 21, 34, 0.35);
+}
+
+.welcome-content {
+    width: 900px;
+    max-width: 90%;
+    text-align: center;
+    color: #ffffff;
+}
+
+.welcome-content h1 {
+    margin: 0 0 15px;
+    font-size: 3.5rem;
+    text-shadow: 0 3px 15px rgba(0, 0, 0, 0.7);
+}
+
+.welcome-user {
+    margin: 0 0 20px;
+    font-size: 1.8rem;
+    font-weight: 600;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+}
+
+.welcome-description {
+    max-width: 650px;
+    margin: 0 auto 30px;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+}
+
+.welcome-indicators {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 35px;
+}
+
+.welcome-indicators span {
+    padding: 10px 18px;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 30px;
+    background: rgba(7, 21, 34, 0.55);
+    backdrop-filter: blur(6px);
+    font-size: 1rem;
+}
+
+.welcome-button {
+    min-width: 220px;
+    padding: 14px 35px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(
+        90deg,
+        #7b4fa0,
+        #b36b73
+    );
+    color: #ffffff;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .30s;
+}
+
+.welcome-button:hover {
+    background: linear-gradient(
+        90deg,
+        #915bc0,
+        #d1827f
+    );
+    transform: translateY(-2px);
+}
+
+@media (max-width: 900px) {
+
+    .welcome-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .welcome-user {
+        font-size: 1.5rem;
+    }
+
+    .welcome-description {
+        font-size: 1rem;
+    }
+
+    .welcome-indicators {
+        gap: 8px;
+        margin-bottom: 25px;
+    }
+
+    .welcome-indicators span {
+        padding: 8px 14px;
+        font-size: .9rem;
+    }
+
+    .welcome-button {
+        min-width: 200px;
+    }
+}

@@ -96,7 +96,21 @@
                                 </td>
 
                                 <td>
-                                    {{ daily_entry.state }}
+
+                                    {% if daily_entry.state == 'excellent' %}
+                                        Excellent
+                                    {% elseif daily_entry.state == 'good' %}
+                                        Bon
+                                    {% elseif daily_entry.state == 'average' %}
+                                        Moyen
+                                    {% elseif daily_entry.state == 'difficult' %}
+                                        Difficile
+                                    {% elseif daily_entry.state == 'critical' %}
+                                        Critique
+                                    {% else %}
+                                        {{ daily_entry.state }}
+                                    {% endif %}
+
                                 </td>
 
                                 <td class="daily-entry-table-actions">

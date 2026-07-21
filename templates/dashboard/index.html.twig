@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Dashboard{% endblock %}
+{% block title %}Tableau de bord - Logic Coach{% endblock %}
 
 {% block body %}
 
@@ -10,14 +10,30 @@
 
         <div class="user-card">
 
-            <img src="{{ asset('images/avatar.png') }}" alt="Avatar">
+            {% if app.user and app.user.avatarFilename %}
 
-            <h2>{{ app.user ? app.user.userIdentifier : 'Utilisateur' }}</h2>
+                <img
+                    src="{{ asset('uploads/avatars/' ~ app.user.avatarFilename) }}"
+                    alt="Photo de profil de {{ app.user.pseudo }}"
+                    class="user-avatar"
+                >
+
+            {% else %}
+
+                <div class="user-avatar-default">
+                    {{ app.user.pseudo|first|upper }}
+                </div>
+
+            {% endif %}
+
+            <h2>
+                {{ app.user ? app.user.pseudo : 'Utilisateur' }}
+            </h2>
 
             <p>Mon espace personnel</p>
 
             {% if app.user and app.user.theme %}
-                <p>Theme : {{ app.user.theme.name }}</p>
+                <p>Thème : {{ app.user.theme.name }}</p>
             {% endif %}
 
         </div>
@@ -46,13 +62,13 @@
 
                 <li>
                     <a href="{{ path('app_theme_index') }}">
-                        Choix du theme
+                        Choix du thème
                     </a>
                 </li>
 
                 <li>
                     <a href="{{ path('app_logout') }}">
-                        Deconnexion
+                        Déconnexion
                     </a>
                 </li>
 
@@ -78,12 +94,24 @@
 
                     <h2>Score global</h2>
 
-                    <p>
-                        {{ latest_daily_entry.score }} / 50
+                    <p class="score-value">
+                        {{ latest_daily_entry.score }}
+                        <span>/ 50</span>
                     </p>
 
-                    <p>
-                        Etat : {{ latest_daily_entry.state }}
+                    <p class="score-state">
+                        État :
+
+                        {% if latest_daily_entry.state == 'good' %}
+                            <strong>Bon</strong>
+                        {% elseif latest_daily_entry.state == 'medium' %}
+                            <strong>Moyen</strong>
+                        {% elseif latest_daily_entry.state == 'weak' %}
+                            <strong>Faible</strong>
+                        {% else %}
+                            <strong>{{ latest_daily_entry.state }}</strong>
+                        {% endif %}
+
                     </p>
 
                 </article>
@@ -94,53 +122,46 @@
 
                     <p>
                         Sommeil :
-                        {{ latest_daily_entry.sleepHours }} h
+                        <strong>{{ latest_daily_entry.sleepHours }} h</strong>
                     </p>
 
                     <p>
-                        Energie :
-                        {{ latest_daily_entry.energy }} / 10
+                        Énergie :
+                        <strong>{{ latest_daily_entry.energy }} / 10</strong>
                     </p>
 
                     <p>
                         Stress :
-                        {{ latest_daily_entry.stress }} / 10
+                        <strong>{{ latest_daily_entry.stress }} / 10</strong>
                     </p>
 
                     <p>
                         Motivation :
-                        {{ latest_daily_entry.motivation }} / 10
+                        <strong>{{ latest_daily_entry.motivation }} / 10</strong>
                     </p>
 
                     <p>
                         Humeur :
-                        {{ latest_daily_entry.mood }} / 10
+                        <strong>{{ latest_daily_entry.mood }} / 10</strong>
                     </p>
 
                 </article>
 
                 <article class="card evolution">
 
-                    <h2>Evolution</h2>
+                    <h2>Évolution</h2>
 
                     <p>
                         Consultez votre historique pour suivre
                         l'évolution de vos saisies quotidiennes.
                     </p>
 
-                    <a href="{{ path('app_daily_entry_index') }}">
+                    <a
+                        href="{{ path('app_daily_entry_index') }}"
+                        class="dashboard-card-button"
+                    >
                         Voir mon historique
                     </a>
-
-                </article>
-
-                <article class="card goals">
-
-                    <h2>Objectifs</h2>
-
-                    <p>
-                        Vos objectifs personnels seront affichés ici.
-                    </p>
 
                 </article>
 
@@ -148,13 +169,21 @@
 
                     <h2>Messages / Conseils</h2>
 
-                    <p>
-                        {{ latest_daily_entry.message }}
-                    </p>
+                    <div class="dashboard-message">
 
-                    <p>
-                        {{ latest_daily_entry.advice }}
-                    </p>
+                        <p>
+                            {{ latest_daily_entry.message }}
+                        </p>
+
+                    </div>
+
+                    <div class="dashboard-advice">
+
+                        <p>
+                            {{ latest_daily_entry.advice }}
+                        </p>
+
+                    </div>
 
                 </article>
 
@@ -164,16 +193,48 @@
 
             <section class="dashboard-empty">
 
-                <h2>Aucune saisie quotidienne enregistrée</h2>
+                <div class="dashboard-empty-content">
 
-                <p>
-                    Effectuez votre première saisie quotidienne
-                    pour afficher votre score et vos indicateurs.
-                </p>
+                    <h2>
+                        Bienvenue {{ app.user.firstname }}
+                    </h2>
 
-                <a href="{{ path('app_daily_entry_new') }}">
-                    Faire ma première saisie
-                </a>
+                    <p class="dashboard-empty-intro">
+                        Votre aventure Logic Coach commence maintenant.
+                    </p>
+
+                    <p>
+                        Pour découvrir votre premier bilan,
+                        renseignez vos indicateurs du jour.
+                    </p>
+
+                    <div class="dashboard-empty-indicators">
+
+                        <span>Sommeil</span>
+
+                        <span>Énergie</span>
+
+                        <span>Stress</span>
+
+                        <span>Motivation</span>
+
+                        <span>Humeur</span>
+
+                    </div>
+
+                    <p>
+                        Logic Coach analysera votre saisie pour vous aider
+                        à mieux suivre votre bien-être au quotidien.
+                    </p>
+
+                    <a
+                        href="{{ path('app_daily_entry_new') }}"
+                        class="dashboard-empty-button"
+                    >
+                        Faire ma première saisie
+                    </a>
+
+                </div>
 
             </section>
 

@@ -3,52 +3,104 @@
 {% block title %}Résultat de la saisie - Logic Coach{% endblock %}
 
 {% block body %}
+
 <main class="daily-entry-page">
 
     <section class="daily-entry-container">
 
         <header class="daily-entry-header">
+
             <h1>Résultat de ma saisie</h1>
 
             <p>
                 Consultez le résultat calculé à partir de vos indicateurs.
             </p>
+
         </header>
 
         <div class="daily-entry-result">
 
             <div class="daily-entry-score">
+
                 <span>Score global</span>
-                <strong>{{ daily_entry.score }}/50</strong>
+
+                <strong>
+                    {{ daily_entry.score }}/50
+                </strong>
+
             </div>
 
             <div class="daily-entry-state">
+
                 <span>État du jour</span>
-                <strong>{{ daily_entry.state }}</strong>
+
+                <strong>
+
+                    {% if daily_entry.state == 'excellent' %}
+                        Excellent
+                    {% elseif daily_entry.state == 'good' %}
+                        Bon
+                    {% elseif daily_entry.state == 'average' %}
+                        Moyen
+                    {% elseif daily_entry.state == 'difficult' %}
+                        Difficile
+                    {% elseif daily_entry.state == 'critical' %}
+                        Critique
+                    {% else %}
+                        {{ daily_entry.state }}
+                    {% endif %}
+
+                </strong>
+
             </div>
 
             <div class="daily-entry-indicators">
 
-                <p><strong>Sommeil :</strong> {{ daily_entry.sleepHours }} heures</p>
+                <p>
+                    <strong>Sommeil :</strong>
+                    {{ daily_entry.sleepHours }} heures
+                </p>
 
-                <p><strong>Énergie :</strong> {{ daily_entry.energy }}/10</p>
+                <p>
+                    <strong>Énergie :</strong>
+                    {{ daily_entry.energy }}/10
+                </p>
 
-                <p><strong>Stress :</strong> {{ daily_entry.stress }}/10</p>
+                <p>
+                    <strong>Stress :</strong>
+                    {{ daily_entry.stress }}/10
+                </p>
 
-                <p><strong>Motivation :</strong> {{ daily_entry.motivation }}/10</p>
+                <p>
+                    <strong>Motivation :</strong>
+                    {{ daily_entry.motivation }}/10
+                </p>
 
-                <p><strong>Humeur :</strong> {{ daily_entry.mood }}/10</p>
+                <p>
+                    <strong>Humeur :</strong>
+                    {{ daily_entry.mood }}/10
+                </p>
 
             </div>
 
             <div class="daily-entry-message">
+
                 <h2>Message</h2>
-                <p>{{ daily_entry.message }}</p>
+
+                <p>
+                    {{ daily_entry.message }}
+                </p>
+
             </div>
 
             <div class="daily-entry-advice">
+
                 <h2>Conseil</h2>
-                <p>{{ daily_entry.advice }}</p>
+
+                <p>
+                    {{ daily_entry.advice }}
+                </p>
+
             </div>
 
         </div>
@@ -65,10 +117,13 @@
         </div>
 
         {% if is_granted('ROLE_ADMIN') %}
+
             {{ include('daily_entry/_delete_form.html.twig') }}
+
         {% endif %}
 
     </section>
 
 </main>
+
 {% endblock %}

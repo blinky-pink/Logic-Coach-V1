@@ -1,91 +1,167 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Choix du theme{% endblock %}
+{% block title %}Choix du thème - Logic Coach{% endblock %}
 
 {% block body %}
-    <h1>Choix du theme</h1>
 
-    {% if current_theme %}
-        <p>Theme actuel : {{ current_theme.name }}</p>
-    {% else %}
-        <p>Aucun theme choisi.</p>
-    {% endif %}
+<main class="theme-page">
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Nom</th>
-                <th>Description</th>
-                <th>Couleur principale</th>
-                <th>Statut</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
+    <section class="theme-container">
 
-        <tbody>
-        {% for theme in themes %}
-            <tr>
-                <td>{{ theme.name }}</td>
+        <header class="theme-header">
 
-                <td>{{ theme.description }}</td>
+            <h1>Choix du thème</h1>
 
-                <td>{{ theme.primaryColor }}</td>
+            <p>
+                Personnalisez l'apparence de votre espace Logic Coach.
+            </p>
 
-                <td>
-                    {% if current_theme and current_theme.id == theme.id %}
-                        Selectionne
-                    {% else %}
-                        Disponible
-                    {% endif %}
-                </td>
+        </header>
 
-                <td>
-                    {% if not current_theme or current_theme.id != theme.id %}
-                        <form
-                            method="post"
-                            action="{{ path('app_theme_choose', {'id': theme.id}) }}"
-                        >
-                            <input
-                                type="hidden"
-                                name="_token"
-                                value="{{ csrf_token('choose' ~ theme.id) }}"
-                            >
+        {% if current_theme %}
 
-                            <button class="btn" type="submit">
-                                Choisir
-                            </button>
-                        </form>
-                    {% endif %}
+            <div class="theme-current">
 
-                    <a href="{{ path('app_theme_show', {'id': theme.id}) }}">
-                        Voir
-                    </a>
+                <span>Thème actuel</span>
 
-                    {% if is_granted('ROLE_ADMIN') %}
-                        <a href="{{ path('app_theme_edit', {'id': theme.id}) }}">
-                            Modifier
-                        </a>
-                    {% endif %}
-                </td>
-            </tr>
+                <strong>
+                    {{ current_theme.name }}
+                </strong>
+
+            </div>
 
         {% else %}
-            <tr>
-                <td colspan="5">
-                    Aucun theme trouve.
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
 
-    {% if is_granted('ROLE_ADMIN') %}
-        <a href="{{ path('app_theme_new') }}">
-            Creer un theme
-        </a>
-    {% endif %}
+            <div class="theme-current">
 
-    <a href="{{ path('app_dashboard') }}">
-        Retour au tableau de bord
-    </a>
+                <span>Thème actuel</span>
+
+                <strong>
+                    Aucun thème choisi
+                </strong>
+
+            </div>
+
+        {% endif %}
+
+        <section class="theme-grid">
+
+            {% for theme in themes %}
+
+                <article
+                    class="theme-card {% if current_theme and current_theme.id == theme.id %}theme-card-selected{% endif %}"
+                >
+
+                    <div
+                        class="theme-color"
+                        style="background-color: {{ theme.primaryColor }};"
+                    ></div>
+
+                    <h2>
+                        {{ theme.name }}
+                    </h2>
+
+                    <p>
+                        {{ theme.description }}
+                    </p>
+
+                    <div class="theme-status">
+
+                        {% if current_theme and current_theme.id == theme.id %}
+
+                            <span class="theme-selected">
+                                Thème sélectionné
+                            </span>
+
+                        {% else %}
+
+                            <span class="theme-available">
+                                Disponible
+                            </span>
+
+                        {% endif %}
+
+                    </div>
+
+                    <div class="theme-actions">
+
+                        {% if not current_theme or current_theme.id != theme.id %}
+
+                            <form
+                                method="post"
+                                action="{{ path('app_theme_choose', {'id': theme.id}) }}"
+                            >
+
+                                <input
+                                    type="hidden"
+                                    name="_token"
+                                    value="{{ csrf_token('choose' ~ theme.id) }}"
+                                >
+
+                                <button
+                                    class="theme-choose-button"
+                                    type="submit"
+                                >
+                                    Choisir ce thème
+                                </button>
+
+                            </form>
+
+                        {% endif %}
+
+                        {% if is_granted('ROLE_ADMIN') %}
+
+                            <a
+                                href="{{ path('app_theme_edit', {'id': theme.id}) }}"
+                                class="theme-admin-button"
+                            >
+                                Modifier
+                            </a>
+
+                        {% endif %}
+
+                    </div>
+
+                </article>
+
+            {% else %}
+
+                <div class="theme-empty">
+
+                    <p>
+                        Aucun thème trouvé.
+                    </p>
+
+                </div>
+
+            {% endfor %}
+
+        </section>
+
+        <div class="theme-footer-actions">
+
+            {% if is_granted('ROLE_ADMIN') %}
+
+                <a
+                    href="{{ path('app_theme_new') }}"
+                    class="theme-admin-create"
+                >
+                    Créer un thème
+                </a>
+
+            {% endif %}
+
+            <a
+                href="{{ path('app_dashboard') }}"
+                class="theme-back-button"
+            >
+                Retour au tableau de bord
+            </a>
+
+        </div>
+
+    </section>
+
+</main>
+
 {% endblock %}

@@ -3,24 +3,116 @@
 {% block title %}Inscription - Logic Coach{% endblock %}
 
 {% block body %}
-<main>
-    <h1>Créer un compte</h1>
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email, {
-            label: 'Adresse email'
-        }) }}
+<main class="register-page">
 
-        {{ form_row(registrationForm.password, {
-            label: 'Mot de passe'
-        }) }}
+    <section class="register-section">
 
-        <button type="submit">S'inscrire</button>
-    {{ form_end(registrationForm) }}
+        <div class="register-title-container">
+            <h1>Logic Coach</h1>
+        </div>
 
-    <p>
-        Vous avez déjà un compte ?
-        <a href="{{ path('app_login') }}">Se connecter</a>
-    </p>
+        <div class="register-subtitle-container">
+            <p>Rejoignez votre coach de bien-être quotidien</p>
+        </div>
+
+        <div class="register-main-container">
+
+            <div class="register-form-container">
+
+                {{ form_start(registrationForm, {
+                    attr: {
+                        class: 'register-form'
+                    }
+                }) }}
+
+                    <div class="register-form-title-container">
+                        <h2>Créer un compte</h2>
+                    </div>
+
+                    <div class="register-firstname-container">
+                        {{ form_row(registrationForm.firstname) }}
+                    </div>
+
+                    <div class="register-lastname-container">
+                        {{ form_row(registrationForm.lastname) }}
+                    </div>
+
+                    <div class="register-pseudo-container">
+                        {{ form_row(registrationForm.pseudo) }}
+                    </div>
+
+                    <div class="register-email-container">
+                        {{ form_row(registrationForm.email) }}
+                    </div>
+
+                    <div class="register-password-container">
+                        {{ form_row(registrationForm.password.first) }}
+                    </div>
+
+                    <div class="register-confirm-password-container">
+                        {{ form_row(registrationForm.password.second) }}
+                    </div>
+
+                    <div class="register-button-container">
+                        <button type="submit">
+                            Créer mon compte
+                        </button>
+                    </div>
+
+                    <div class="register-login-container">
+                        <a href="{{ path('app_login') }}">
+                            Déjà inscrit ? Se connecter
+                        </a>
+                    </div>
+
+                {{ form_end(registrationForm) }}
+
+            </div>
+
+            <div class="register-info-container">
+
+                <h2>Bienvenue dans Logic Coach</h2>
+
+                <p>
+                    Créez votre compte gratuitement et commencez
+                    à suivre votre bien-être jour après jour.
+                </p>
+
+                <p>
+                    Retrouvez vos indicateurs personnels,
+                    suivez votre progression
+                    et bénéficiez de conseils adaptés.
+                </p>
+
+                <ul>
+
+                    <li>✓ Suivi du sommeil</li>
+
+                    <li>✓ Gestion du stress</li>
+
+                    <li>✓ Niveau d'énergie</li>
+
+                    <li>✓ Motivation quotidienne</li>
+
+                    <li>✓ Humeur</li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+        <div class="register-footer-container">
+
+            <a href="{{ path('app_home') }}">
+                ← Retour à l'accueil
+            </a>
+
+        </div>
+
+    </section>
+
 </main>
+
 {% endblock %}
