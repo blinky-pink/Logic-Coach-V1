@@ -1,6 +1,8 @@
 # Logic Coach V1
 
- **Projet développé en suivant les bonnes pratiques Symfony : séparation des responsabilités, logique métier centralisée dans un service, tests unitaires avec PHPUnit et gestion de versions avec Git.**
+**Projet développé en suivant les bonnes pratiques Symfony : séparation des responsabilités, logique métier centralisée dans un service, tests automatisés avec PHPUnit et gestion de versions avec Git.**
+
+---
 
 ## Présentation
 
@@ -40,25 +42,24 @@ Logic Coach ne remplace pas un professionnel de santé. Il s'agit d'un outil pé
 
 # Architecture
 
-Le projet respecte les bonnes pratiques Symfony.
+Le projet respecte une architecture Symfony organisée autour des responsabilités principales de l'application.
 
-```
+```text
 src/
 ├── Controller/
 ├── Entity/
 ├── Form/
 ├── Repository/
-├── Security/
 └── Service/
     └── BusinessRulesService.php
 ```
 
 La logique métier est centralisée dans **BusinessRulesService**, ce qui permet :
 
-- un contrôleur léger ;
-- une meilleure maintenabilité ;
-- des tests unitaires dédiés ;
-- une architecture évolutive.
+- de garder les contrôleurs plus légers ;
+- de séparer la logique métier du traitement HTTP ;
+- d'améliorer la maintenabilité ;
+- de faciliter les tests automatisés.
 
 ---
 
@@ -69,12 +70,33 @@ La logique métier est centralisée dans **BusinessRulesService**, ce qui permet
 - Inscription
 - Connexion
 - Déconnexion
+- Hachage des mots de passe
+- Protection CSRF de l'authentification
 - Sécurisation des routes
+
+---
+
+## Gestion des rôles
+
+L'application utilise principalement deux rôles :
+
+### ROLE_USER
+
+Permet à un utilisateur authentifié d'accéder aux fonctionnalités normales de l'application.
+
+### ROLE_ADMIN
+
+Permet d'accéder aux fonctionnalités d'administration réservées, notamment la gestion des utilisateurs et certaines opérations protégées.
+
+---
 
 ## Tableau de bord
 
-- Accueil utilisateur
-- Navigation
+Le tableau de bord permet à l'utilisateur de retrouver les informations liées à son suivi quotidien.
+
+Il affiche notamment la dernière saisie quotidienne disponible pour l'utilisateur connecté.
+
+---
 
 ## DailyEntry
 
@@ -93,15 +115,27 @@ Le système calcule automatiquement :
 - le message ;
 - le conseil.
 
+Une saisie quotidienne validée n'est pas modifiable.
+
+---
+
 ## Messagerie privée
 
-- Envoi d'un message
-- Réception d'un message
-- Historique
+L'application dispose également d'une messagerie permettant :
+
+- l'envoi d'un message ;
+- la réception d'un message ;
+- la consultation de l'historique.
+
+Les accès aux messages sont contrôlés afin qu'un utilisateur ne puisse pas consulter les messages appartenant uniquement à d'autres utilisateurs.
+
+---
 
 ## Thèmes
 
 L'utilisateur peut sélectionner un thème graphique.
+
+Les opérations d'administration concernant les thèmes sont protégées selon les droits de l'utilisateur.
 
 ---
 
@@ -110,7 +144,7 @@ L'utilisateur peut sélectionner un thème graphique.
 Le sommeil est converti en score :
 
 | Sommeil | Score |
-|---------|------:|
+|---|---:|
 | < 4 h | 0 |
 | 4 h | 4 |
 | 5 h | 5 |
@@ -121,7 +155,7 @@ Le sommeil est converti en score :
 
 Le score est calculé selon la formule :
 
-```
+```text
 Sommeil
 + Énergie
 + Motivation
@@ -131,13 +165,13 @@ Sommeil
 
 Le score détermine cinq états :
 
-| Score | État |
-|-------:|------|
-| 40 - 50 | excellent | excellent 
-| 30 - 39 | good | bien 
-| 20 - 29 | average |
-| 10 - 19 | difficult | difficulté 
-| 0 - 9 | critical | critique 
+| Score | État | Signification |
+|---:|---|---|
+| 40 - 50 | excellent | Excellent |
+| 30 - 39 | good | Bien |
+| 20 - 29 | average | Moyen |
+| 10 - 19 | difficult | Difficulté |
+| 0 - 9 | critical | Critique |
 
 Chaque état génère automatiquement :
 
@@ -146,37 +180,124 @@ Chaque état génère automatiquement :
 
 ---
 
-# Tests
+# Tests automatisés
 
-Le projet est couvert par plusieurs tests unitaires.
+Le projet dispose de tests automatisés réalisés avec **PHPUnit**.
 
-## Tests réalisés
+Ils couvrent notamment :
 
-- ✅ UserTest
-- ✅ ThemeTest
-- ✅ MessageTest
-- ✅ DailyEntryTest
-- ✅ BusinessRulesServiceTest
+- les entités ;
+- les règles métier ;
+- les contrôleurs ;
+- l'authentification ;
+- l'inscription ;
+- les autorisations d'accès ;
+- les utilisateurs ;
+- les thèmes ;
+- les messages ;
+- les saisies quotidiennes ;
+- le tableau de bord.
 
-Les règles métier sont testées à l'aide de **PHPUnit Data Providers** afin de vérifier les cinq scénarios fonctionnels de Logic Coach.
+Les règles métier sont notamment vérifiées à l'aide de **PHPUnit Data Providers** afin de tester différents scénarios fonctionnels de Logic Coach.
+
+## État actuel des tests
+
+```text
+77 tests
+255 assertions
+100 % des tests réussis
+```
+
+Pour lancer les tests :
+
+```bash
+php bin/phpunit
+```
 
 ---
 
 # Installation
 
+## 1. Cloner le projet
+
 ```bash
 git clone https://github.com/blinky-pink/Logic-Coach-V1.git
+```
 
+## 2. Entrer dans le projet
+
+```bash
 cd Logic-Coach-V1
+```
 
+## 3. Installer les dépendances PHP
+
+```bash
 composer install
+```
 
+## 4. Configurer la base de données
+
+Créer ou compléter le fichier :
+
+```text
+.env.local
+```
+
+et configurer la variable :
+
+```text
+DATABASE_URL
+```
+
+avec les informations correspondant à l'environnement MySQL utilisé.
+
+## 5. Créer la base de données
+
+```bash
 php bin/console doctrine:database:create
+```
 
+## 6. Exécuter les migrations
+
+```bash
 php bin/console doctrine:migrations:migrate
+```
 
+## 7. Démarrer l'application
+
+```bash
 symfony server:start
 ```
+
+---
+
+# Vérifications techniques
+
+Le projet a été contrôlé avec les outils Symfony et Doctrine.
+
+Les vérifications réalisées comprennent notamment :
+
+```bash
+php bin/phpunit
+php bin/console doctrine:schema:validate
+php bin/console doctrine:migrations:status
+php bin/console debug:router
+php bin/console lint:twig templates
+php bin/console lint:yaml config
+php bin/console lint:container
+```
+
+État actuel :
+
+- **77 tests / 77 réussis**
+- **255 assertions**
+- mapping Doctrine valide ;
+- schéma de base de données synchronisé ;
+- migrations Doctrine à jour ;
+- templates Twig valides ;
+- fichiers YAML valides ;
+- conteneur de services Symfony valide.
 
 ---
 
@@ -186,13 +307,15 @@ Version actuelle :
 
 **Version 1.1**
 
-Fonctionnalités principales terminées.
+Les fonctionnalités principales de Logic Coach V1 sont opérationnelles.
 
-Architecture Symfony respectée.
+L'architecture Symfony est en place.
 
-Tests unitaires validés.
+La base de données et les migrations Doctrine sont synchronisées.
 
-Projet en cours de finalisation (tests fonctionnels et préparation de la soutenance).
+Les tests unitaires et fonctionnels sont validés.
+
+Le projet est actuellement dans sa phase finale de préparation pour la soutenance DWWM.
 
 ---
 
