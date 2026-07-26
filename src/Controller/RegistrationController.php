@@ -26,7 +26,6 @@ final class RegistrationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $user->setRoles(['ROLE_USER']);
 
             $user->setPassword(
@@ -40,7 +39,6 @@ final class RegistrationController extends AbstractController
             $avatarFile = $form->get('avatarFile')->getData();
 
             if ($avatarFile) {
-
                 $avatarDirectory = $this->getParameter('kernel.project_dir')
                     . '/public/uploads/avatars';
 
