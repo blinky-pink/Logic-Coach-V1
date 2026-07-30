@@ -16,59 +16,63 @@
             <p>Rejoignez votre coach de bien-être quotidien</p>
         </div>
 
-        <div class="register-main-container">
+       <div class="register-main-container">
 
-            <div class="register-form-container">
+    <div class="register-form-container">
 
-                {{ form_start(registrationForm, {
-                    attr: {
-                        class: 'register-form'
-                    }
-                }) }}
+        {{ form_start(registrationForm, {
+            attr: {
+                class: 'register-form'
+            }
+        }) }}
 
-                    <div class="register-form-title-container">
-                        <h2>Créer un compte</h2>
-                    </div>
-
-                    <div class="register-firstname-container">
-                        {{ form_row(registrationForm.firstname) }}
-                    </div>
-
-                    <div class="register-lastname-container">
-                        {{ form_row(registrationForm.lastname) }}
-                    </div>
-
-                    <div class="register-pseudo-container">
-                        {{ form_row(registrationForm.pseudo) }}
-                    </div>
-
-                    <div class="register-email-container">
-                        {{ form_row(registrationForm.email) }}
-                    </div>
-
-                    <div class="register-password-container">
-                        {{ form_row(registrationForm.password.first) }}
-                    </div>
-
-                    <div class="register-confirm-password-container">
-                        {{ form_row(registrationForm.password.second) }}
-                    </div>
-
-                    <div class="register-button-container">
-                        <button type="submit">
-                            Créer mon compte
-                        </button>
-                    </div>
-
-                    <div class="register-login-container">
-                        <a href="{{ path('app_login') }}">
-                            Déjà inscrit ? Se connecter
-                        </a>
-                    </div>
-
-                {{ form_end(registrationForm) }}
-
+            <div class="register-form-title-container">
+                <h2>Créer un compte</h2>
             </div>
+
+            <div class="register-firstname-container">
+                {{ form_row(registrationForm.firstname) }}
+            </div>
+
+            <div class="register-lastname-container">
+                {{ form_row(registrationForm.lastname) }}
+            </div>
+
+            <div class="register-pseudo-container">
+                {{ form_row(registrationForm.pseudo) }}
+            </div>
+
+            <div class="register-email-container">
+                {{ form_row(registrationForm.email) }}
+            </div>
+
+            <div class="register-password-container">
+                {{ form_row(registrationForm.password.first) }}
+            </div>
+
+            <div class="register-confirm-password-container">
+                {{ form_row(registrationForm.password.second) }}
+            </div>
+
+            <div class="register-avatar-container">
+                {{ form_row(registrationForm.avatarFile) }}
+            </div>
+
+            <div class="register-button-container">
+                <button type="submit">
+                    Créer mon compte
+                </button>
+            </div>
+
+            <div class="register-login-container">
+                <a href="{{ path('app_login') }}">
+                    Déjà inscrit ? Se connecter
+                </a>
+            </div>
+
+        {{ form_end(registrationForm) }}
+
+    </div>
 
             <div class="register-info-container">
 
@@ -81,8 +85,8 @@
 
                 <p>
                     Retrouvez vos indicateurs personnels,
-                    suivez votre progression
-                    et bénéficiez de conseils adaptés.
+                    suivez votre<br>
+                    progression et bénéficiez de conseils adaptés.
                 </p>
 
                 <ul>

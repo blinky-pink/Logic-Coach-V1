@@ -18,38 +18,39 @@
 
         </header>
 
-        {% if current_theme %}
+        <div class="theme-current">
 
-            <div class="theme-current">
+            <span>Thème actuel</span>
 
-                <span>Thème actuel</span>
-
-                <strong>
+            <strong>
+                {% if current_theme %}
                     {{ current_theme.name }}
-                </strong>
-
-            </div>
-
-        {% else %}
-
-            <div class="theme-current">
-
-                <span>Thème actuel</span>
-
-                <strong>
+                {% else %}
                     Aucun thème choisi
-                </strong>
+                {% endif %}
+            </strong>
 
-            </div>
-
-        {% endif %}
+        </div>
 
         <section class="theme-grid">
 
             {% for theme in themes %}
 
+                {% set themeName = theme.name|lower %}
+
+                {% if 'militaire' in themeName %}
+                    {% set avatar = 'militaire-avatar.png' %}
+                {% elseif 'zen' in themeName %}
+                    {% set avatar = 'zen-avatar.png' %}
+                {% else %}
+                    {% set avatar = 'travail-avatar.png' %}
+                {% endif %}
+
                 <article
-                    class="theme-card {% if current_theme and current_theme.id == theme.id %}theme-card-selected{% endif %}"
+                    class="theme-card
+                    {% if current_theme and current_theme.id == theme.id %}
+                        theme-card-selected
+                    {% endif %}"
                 >
 
                     <div
@@ -61,25 +62,38 @@
                         {{ theme.name }}
                     </h2>
 
-                    <p>
-                        {{ theme.description }}
-                    </p>
+                    <div class="theme-avatar-preview">
 
-                    <div class="theme-status">
+                        <img
+                            src="{{ asset('images/themes/' ~ avatar) }}"
+                            alt="Avatar du thème {{ theme.name }}"
+                        >
 
-                        {% if current_theme and current_theme.id == theme.id %}
+                    </div>
 
-                            <span class="theme-selected">
-                                Thème sélectionné
-                            </span>
+                    <div class="theme-card-information">
 
-                        {% else %}
+                        <p>
+                            {{ theme.description }}
+                        </p>
 
-                            <span class="theme-available">
-                                Disponible
-                            </span>
+                        <div class="theme-status">
 
-                        {% endif %}
+                            {% if current_theme and current_theme.id == theme.id %}
+
+                                <span class="theme-selected">
+                                    Thème sélectionné
+                                </span>
+
+                            {% else %}
+
+                                <span class="theme-available">
+                                    Disponible
+                                </span>
+
+                            {% endif %}
+
+                        </div>
 
                     </div>
 
@@ -89,13 +103,18 @@
 
                             <form
                                 method="post"
-                                action="{{ path('app_theme_choose', {'id': theme.id}) }}"
+                                action="{{ path(
+                                    'app_theme_choose',
+                                    {'id': theme.id}
+                                ) }}"
                             >
 
                                 <input
                                     type="hidden"
                                     name="_token"
-                                    value="{{ csrf_token('choose' ~ theme.id) }}"
+                                    value="{{ csrf_token(
+                                        'choose' ~ theme.id
+                                    ) }}"
                                 >
 
                                 <button
@@ -112,7 +131,10 @@
                         {% if is_granted('ROLE_ADMIN') %}
 
                             <a
-                                href="{{ path('app_theme_edit', {'id': theme.id}) }}"
+                                href="{{ path(
+                                    'app_theme_edit',
+                                    {'id': theme.id}
+                                ) }}"
                                 class="theme-admin-button"
                             >
                                 Modifier
@@ -155,7 +177,7 @@
                 href="{{ path('app_dashboard') }}"
                 class="theme-back-button"
             >
-                Retour au tableau de bord
+                ← Retour au tableau de bord
             </a>
 
         </div>

@@ -1,232 +1,373 @@
 .login-page {
-    min-height: 100vh;
-    background: linear-gradient(180deg, #071522 0%, #10263d 100%);
-    color: #f5f5f5;
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+
+    background-image: url("/images/backgrounds/login-bg.png");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+
+    color: #ffffff;
 }
 
 .login-section {
+    position: relative;
+
     width: 1200px;
-    max-width: 95%;
+    max-width: 94%;
+    height: 100%;
+
     margin: 0 auto;
-    padding: 40px 0;
+    box-sizing: border-box;
 }
 
 .login-title-container {
     text-align: center;
+    padding-top: 18px;
 }
 
 .login-title-container h1 {
     margin: 0;
-    font-size: 3.2rem;
+
+    font-size: 3rem;
+    line-height: 1;
+    color: #ffffff;
 }
 
 .login-subtitle-container {
     text-align: center;
-    margin-top: 10px;
-    margin-bottom: 50px;
+    margin-top: 8px;
 }
 
 .login-subtitle-container p {
     margin: 0;
-    font-size: 1.1rem;
+
+    font-size: 1rem;
+    color: #ffffff;
 }
 
 .login-main-container {
     display: flex;
     justify-content: center;
-    align-items: center;
-    gap: 100px;
-    margin-top: 30px;
+    align-items: flex-start;
+
+    gap: 90px;
+
+    margin-top: 38px;
 }
 
 .login-form-container {
     width: 420px;
+    flex-shrink: 0;
 }
 
 .login-form {
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 30px 32px;
+
+    background: rgba(7, 25, 48, 0.72);
+
+    border: 1px solid rgba(255, 255, 255, 0.22);
     border-radius: 20px;
-    padding: 35px;
-    backdrop-filter: blur(8px);
+
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
 }
 
 .login-form-title-container {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 25px;
 }
 
 .login-form-title-container h2 {
     margin: 0;
+
+    font-size: 2rem;
+    color: #ffffff;
 }
 
 .login-email-container,
 .login-password-container {
-    margin-bottom: 20px;
+    margin-bottom: 18px;
 }
 
 .login-email-container label,
 .login-password-container label {
     display: block;
+
     margin-bottom: 8px;
+
+    font-size: 1rem;
     font-weight: bold;
+
+    color: #ffffff;
 }
 
 .login-email-container input,
 .login-password-container input {
+    display: block;
+
     width: 100%;
-    padding: 10px;
-    border-radius: 10px;
-    border: 1px solid #4b5f73;
-    background: rgba(255, 255, 255, 0.10);
-    color: #ffffff;
+    height: 42px;
+
     box-sizing: border-box;
+
+    padding: 0 14px;
+
+    border: 1px solid rgba(255, 255, 255, 0.30);
+    border-radius: 10px;
+
+    background: rgba(100, 130, 165, 0.40);
+
+    color: #ffffff;
     font-size: 1rem;
 }
 
 .login-email-container input:focus,
 .login-password-container input:focus {
     outline: none;
-    border-color: #b36b73;
+
+    border-color: rgba(255, 255, 255, 0.80);
 }
 
 .login-button-container {
-    margin-top: 30px;
+    margin-top: 22px;
 }
 
 .login-button-container button {
     width: 100%;
-    padding: 14px;
+    height: 44px;
+
     border: none;
-    border-radius: 12px;
+    border-radius: 11px;
+
     background: linear-gradient(
         90deg,
-        #7b4fa0,
-        #b36b73
+        #7f3fd1,
+        #ef5969
     );
-    color: white;
+
+    color: #ffffff;
+
     font-size: 1rem;
+    font-weight: 600;
+
     cursor: pointer;
-    transition: .30s;
 }
 
 .login-button-container button:hover {
-    background: linear-gradient(
-        90deg,
-        #915bc0,
-        #d1827f
-    );
+    opacity: 0.95;
 }
 
 .login-register-container {
-    text-align: center;
-    margin-top: 25px;
-}
+    margin-top: 20px;
 
-.login-register-container p {
-    margin: 0 0 8px;
+    text-align: center;
 }
 
 .login-register-container a {
     color: #ffffff;
+
     font-weight: 600;
     text-decoration: none;
-    transition: .30s;
 }
 
 .login-register-container a:hover {
-    color: #d6b8ff;
     text-decoration: underline;
 }
 
 .login-info-container {
-    flex: 1;
-    max-width: 500px;
-    margin-top: -35px;
+    width: 500px;
+    max-width: 100%;
+
+    padding-top: 30px;
 }
 
 .login-info-container h2 {
-    margin-top: 0;
-    margin-bottom: 25px;
-    font-size: 2.4rem;
+    margin: 0 0 28px 0;
+
+    font-size: 2.5rem;
+    line-height: 1;
+
+    color: #ffffff;
 }
 
 .login-info-container p {
-    margin-bottom: 20px;
-    font-size: 1.1rem;
+    margin: 0 0 24px 0;
+
+    font-size: 1.05rem;
     line-height: 1.7;
+
+    color: #ffffff;
 }
 
 .login-footer-container {
+    position: absolute;
+
+    left: 50%;
+    bottom: 85px;
+
+    transform: translateX(-50%);
+
     text-align: center;
-    margin-top: 90px;
+
+    z-index: 10;
 }
 
 .login-footer-container a {
-    color: #ffffff;
-    text-decoration: none;
-    transition: .30s;
+    color: #168de2;
+
+    font-size: 1rem;
+    font-weight: 600;
+
+    text-decoration: underline;
+
+    white-space: nowrap;
 }
 
 .login-footer-container a:hover {
-    color: #d6b8ff;
+    color: #55b7ff;
 }
 
 .login-error-container {
-    background: rgba(180, 40, 40, 0.25);
-    border: 1px solid rgba(255, 80, 80, 0.50);
-    border-radius: 10px;
-    padding: 12px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
+    padding: 10px;
+
+    border-radius: 8px;
+
+    background: rgba(170, 30, 30, 0.65);
+
+    color: #ffffff;
 }
 
 .login-user-container {
-    background: rgba(40, 120, 40, 0.20);
-    border: 1px solid rgba(40, 180, 40, 0.40);
-    border-radius: 10px;
-    padding: 12px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
+    padding: 10px;
+
+    border-radius: 8px;
+
+    background: rgba(30, 120, 60, 0.55);
+
+    color: #ffffff;
+}
+
+.login-user-container a {
+    color: #ffffff;
 }
 
 @media (max-width: 900px) {
-        .login-page {
-        overflow: auto;
+
+    .login-page {
+        height: 100vh;
+        min-height: 100vh;
+
+        overflow: hidden;
+
+        background-position: center center;
     }
 
     .login-section {
         width: 100%;
-        padding: 30px 20px;
-        box-sizing: border-box;
+        max-width: 100%;
+
+        padding: 15px 20px;
+    }
+
+    .login-title-container {
+        padding-top: 5px;
+    }
+
+    .login-title-container h1 {
+        font-size: 2.2rem;
+    }
+
+    .login-subtitle-container {
+        margin-top: 5px;
+    }
+
+    .login-subtitle-container p {
+        font-size: 0.9rem;
     }
 
     .login-main-container {
         flex-direction: column;
-        gap: 40px;
-        margin-top: 40px;
+        align-items: center;
+
+        gap: 15px;
+
+        margin-top: 20px;
     }
 
     .login-form-container {
         width: 100%;
-        max-width: 450px;
+        max-width: 400px;
+    }
+
+    .login-form {
+        padding: 22px 25px;
+    }
+
+    .login-form-title-container {
+        margin-bottom: 18px;
+    }
+
+    .login-form-title-container h2 {
+        font-size: 1.7rem;
+    }
+
+    .login-email-container,
+    .login-password-container {
+        margin-bottom: 12px;
+    }
+
+    .login-email-container input,
+    .login-password-container input {
+        height: 38px;
+    }
+
+    .login-button-container {
+        margin-top: 16px;
+    }
+
+    .login-button-container button {
+        height: 40px;
+    }
+
+    .login-register-container {
+        margin-top: 14px;
     }
 
     .login-info-container {
-        max-width: 450px;
-        margin-top: 0;
+        width: 100%;
+        max-width: 400px;
+
+        padding-top: 0;
+
         text-align: center;
     }
 
-    .login-title-container h1 {
-        font-size: 2.6rem;
+    .login-info-container h2 {
+        margin-bottom: 12px;
+
+        font-size: 1.7rem;
     }
 
-    .login-subtitle-container {
-        margin-bottom: 30px;
+    .login-info-container p {
+        margin-bottom: 10px;
+
+        font-size: 0.9rem;
+        line-height: 1.4;
     }
 
     .login-footer-container {
-        margin-top: 35px;
-        margin-bottom: 20px;
+        bottom: 10px;
     }
 
+    .login-footer-container a {
+        font-size: 0.9rem;
+    }
 }

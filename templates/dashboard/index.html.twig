@@ -150,12 +150,12 @@
                 <article class="card evolution">
 
                     <h2>Évolution</h2>
-                    
+
                     <p>
                         Retrouvez vos précédentes saisies dans
                         la rubrique « Historique » du menu.
                     </p>
-                    
+
                 </article>
 
                 <article class="card messages">
@@ -196,36 +196,67 @@
                         Votre aventure Logic Coach commence maintenant.
                     </p>
 
-                    <p>
-                        Pour découvrir votre premier bilan,
-                        renseignez vos indicateurs du jour.
-                    </p>
+                    {% if app.user.theme %}
+
+                        <p>
+                            Votre univers
+                            <strong>{{ app.user.theme.name }}</strong>
+                            est maintenant sélectionné.
+                        </p>
+
+                        <p>
+                            Pour découvrir votre premier bilan,
+                            renseignez vos indicateurs du jour.
+                        </p>
+
+                    {% else %}
+
+                        <p>
+                            Avant de commencer votre première saisie,
+                            choisissez l'univers qui accompagnera
+                            votre expérience Logic Coach.
+                        </p>
+
+                    {% endif %}
 
                     <div class="dashboard-empty-indicators">
 
                         <span>Sommeil</span>
-
                         <span>Énergie</span>
-
                         <span>Stress</span>
-
                         <span>Motivation</span>
-
                         <span>Humeur</span>
 
                     </div>
 
-                    <p>
-                        Logic Coach analysera votre saisie pour vous aider
-                        à mieux suivre votre bien-être au quotidien.
-                    </p>
+                    {% if app.user.theme %}
 
-                    <a
-                        href="{{ path('app_daily_entry_new') }}"
-                        class="dashboard-empty-button"
-                    >
-                        Faire ma première saisie
-                    </a>
+                        <p>
+                            Logic Coach analysera votre saisie pour vous aider
+                            à mieux suivre votre bien-être au quotidien.
+                        </p>
+
+                        <a
+                            href="{{ path('app_daily_entry_new') }}"
+                            class="dashboard-empty-button"
+                        >
+                            Faire ma première saisie
+                        </a>
+
+                    {% else %}
+
+                        <p class="dashboard-theme-message">
+                            Aucun thème n'est encore sélectionné.
+                        </p>
+
+                        <a
+                            href="{{ path('app_theme_index') }}"
+                            class="dashboard-empty-button"
+                        >
+                            Choisir mon thème
+                        </a>
+
+                    {% endif %}
 
                 </div>
 

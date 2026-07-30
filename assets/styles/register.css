@@ -1,14 +1,21 @@
 .register-page {
-    min-height: 100vh;
-    background: linear-gradient(180deg, #071522 0%, #10263d 100%);
+    width: 100%;
+    height: 100vh;
+    background-image: url("/images/backgrounds/register-bg.png?v=2");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     color: #f5f5f5;
+    overflow: hidden;
 }
 
 .register-section {
     width: 1200px;
-    max-width: 95%;
+    max-width: 94%;
+    height: 100vh;
     margin: 0 auto;
-    padding: 15px 0 20px;
+    padding: 8px 0;
+    box-sizing: border-box;
 }
 
 .register-title-container {
@@ -17,18 +24,18 @@
 
 .register-title-container h1 {
     margin: 0;
-    font-size: 3rem;
+    font-size: 2.7rem;
+    line-height: 1;
 }
 
 .register-subtitle-container {
+    margin: 4px 0 12px;
     text-align: center;
-    margin-top: 5px;
-    margin-bottom: 20px;
 }
 
 .register-subtitle-container p {
     margin: 0;
-    font-size: 1rem;
+    font-size: 0.95rem;
 }
 
 .register-main-container {
@@ -36,29 +43,31 @@
     justify-content: center;
     align-items: flex-start;
     gap: 65px;
-    margin-top: 0;
 }
 
 .register-form-container {
     width: 420px;
+    flex-shrink: 0;
 }
 
 .register-form {
-    background: rgba(255,255,255,.06);
-    border: 1px solid rgba(255,255,255,.15);
+    width: 100%;
+    padding: 14px 18px;
+    background: rgba(13, 40, 68, 0.78);
+    border: 1px solid rgba(255, 255, 255, 0.20);
     border-radius: 20px;
-    padding: 18px;
-    backdrop-filter: blur(8px);
+    backdrop-filter: blur(5px);
+    box-sizing: border-box;
 }
 
 .register-form-title-container {
+    margin-bottom: 10px;
     text-align: center;
-    margin-bottom: 16px;
 }
 
 .register-form-title-container h2 {
     margin: 0;
-    font-size: 2rem;
+    font-size: 1.9rem;
 }
 
 .register-firstname-container,
@@ -66,8 +75,9 @@
 .register-pseudo-container,
 .register-email-container,
 .register-password-container,
-.register-confirm-password-container {
-    margin-bottom: 10px;
+.register-confirm-password-container,
+.register-avatar-container {
+    margin-bottom: 6px;
 }
 
 .register-firstname-container label,
@@ -75,10 +85,12 @@
 .register-pseudo-container label,
 .register-email-container label,
 .register-password-container label,
-.register-confirm-password-container label {
+.register-confirm-password-container label,
+.register-avatar-container label {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 3px;
     font-weight: bold;
+    font-size: 0.92rem;
 }
 
 .register-firstname-container input,
@@ -88,14 +100,14 @@
 .register-password-container input,
 .register-confirm-password-container input {
     width: 100%;
-    height: 38px;
+    height: 36px;
     padding: 0 12px;
+    border: 1px solid #58708a;
     border-radius: 10px;
-    border: 1px solid #4b5f73;
-    background: rgba(255,255,255,.10);
+    background: rgba(135, 162, 190, 0.30);
     color: #ffffff;
     box-sizing: border-box;
-    font-size: .95rem;
+    font-size: 0.95rem;
 }
 
 .register-firstname-container input:focus,
@@ -105,150 +117,273 @@
 .register-password-container input:focus,
 .register-confirm-password-container input:focus {
     outline: none;
-    border-color: #b36b73;
+    border-color: #d1827f;
+    background: rgba(135, 162, 190, 0.40);
+}
+
+.register-avatar-container input[type="file"] {
+    width: 100%;
+    height: 42px;
+    padding: 5px;
+    border: 1px solid #58708a;
+    border-radius: 10px;
+    background: rgba(135, 162, 190, 0.30);
+    color: #ffffff;
+    box-sizing: border-box;
+}
+
+.register-avatar-container input[type="file"]::file-selector-button {
+    height: 30px;
+    margin-right: 10px;
+    padding: 0 12px;
+    border: none;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.90);
+    color: #18324d;
+    cursor: pointer;
+}
+
+.register-avatar-container input[type="file"]::file-selector-button:hover {
+    background: #ffffff;
 }
 
 .register-button-container {
-    margin-top: 14px;
+    margin-top: 10px;
 }
 
 .register-button-container button {
     width: 100%;
-    padding: 11px;
+    height: 42px;
     border: none;
     border-radius: 12px;
-    background: linear-gradient(
-        90deg,
-        #7b4fa0,
-        #b36b73
-    );
+    background: linear-gradient(90deg, #8b4db0, #c16c78);
     color: #ffffff;
     font-size: 1rem;
     cursor: pointer;
-    transition: .30s;
+    transition: 0.2s;
 }
 
 .register-button-container button:hover {
-    background: linear-gradient(
-        90deg,
-        #915bc0,
-        #d1827f
-    );
+    filter: brightness(1.12);
 }
 
 .register-login-container {
+    margin-top: 8px;
     text-align: center;
-    margin-top: 14px;
-}
-
-.register-login-container p {
-    margin: 0 0 6px;
 }
 
 .register-login-container a {
     color: #ffffff;
     font-weight: 600;
+    font-size: 0.92rem;
     text-decoration: none;
-    transition: .30s;
 }
 
 .register-login-container a:hover {
-    color: #d6b8ff;
     text-decoration: underline;
 }
 
 .register-info-container {
-    flex: 1;
+    width: 100%;
     max-width: 500px;
-    margin-top: 10px;
+    margin-top: 5px;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.85);
 }
 
 .register-info-container h2 {
-    margin: 0 0 22px;
-    font-size: 2.3rem;
+    margin: 0 0 18px;
+    font-size: 2.2rem;
+    line-height: 1.15;
 }
 
 .register-info-container p {
-    margin-bottom: 18px;
-    font-size: 1.05rem;
-    line-height: 1.6;
+    margin: 0 0 14px;
+    font-size: 1rem;
+    line-height: 1.5;
 }
 
 .register-info-container ul {
-    margin: 20px 0 0;
+    margin: 16px 0 0;
     padding-left: 22px;
 }
 
 .register-info-container li {
-    margin-bottom: 8px;
-    font-size: 1.05rem;
+    margin-bottom: 7px;
+    font-size: 1rem;
 }
 
 .register-footer-container {
+    margin-top: 10px;
     text-align: center;
-    margin-top: 25px;
 }
 
 .register-footer-container a {
     color: #ffffff;
+    font-size: 0.9rem;
     text-decoration: none;
-    transition: .30s;
 }
 
 .register-footer-container a:hover {
-    color: #d6b8ff;
+    text-decoration: underline;
 }
 
 .register-form .invalid-feedback {
     display: block;
-    margin-top: 4px;
-    color: #ff9a9a;
-    font-size: .85rem;
+    margin-top: 3px;
+    color: #ffb1b1;
+    font-size: 0.8rem;
 }
 
 .register-form input.is-invalid {
-    border-color: #d9534f;
+    border-color: #ff7474;
 }
 
 @media (max-width: 900px) {
-
     .register-page {
-        overflow: auto;
+        height: 100vh;
+        background-position: center;
+        overflow: hidden;
     }
 
     .register-section {
         width: 100%;
-        padding: 25px 20px;
-        box-sizing: border-box;
+        max-width: 100%;
+        height: 100vh;
+        padding: 8px 15px;
+    }
+
+    .register-title-container h1 {
+        font-size: 2.2rem;
+    }
+
+    .register-subtitle-container {
+        margin-bottom: 8px;
     }
 
     .register-main-container {
-        flex-direction: column;
-        align-items: center;
-        gap: 35px;
+        gap: 25px;
+    }
+
+    .register-form-container {
+        width: 48%;
+        max-width: 420px;
+    }
+
+    .register-info-container {
+        width: 48%;
+        max-width: 420px;
+    }
+
+    .register-info-container h2 {
+        font-size: 1.8rem;
+    }
+
+    .register-info-container p,
+    .register-info-container li {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .register-section {
+        padding: 6px 10px;
+    }
+
+    .register-title-container h1 {
+        font-size: 1.8rem;
+    }
+
+    .register-subtitle-container p {
+        font-size: 0.8rem;
+    }
+
+    .register-main-container {
+        display: block;
     }
 
     .register-form-container {
         width: 100%;
-        max-width: 450px;
+        max-width: 380px;
+        margin: 0 auto;
+    }
+
+    .register-form {
+        padding: 10px 14px;
+    }
+
+    .register-form-title-container {
+        margin-bottom: 6px;
+    }
+
+    .register-form-title-container h2 {
+        font-size: 1.5rem;
+    }
+
+    .register-firstname-container,
+    .register-lastname-container,
+    .register-pseudo-container,
+    .register-email-container,
+    .register-password-container,
+    .register-confirm-password-container,
+    .register-avatar-container {
+        margin-bottom: 4px;
+    }
+
+    .register-firstname-container label,
+    .register-lastname-container label,
+    .register-pseudo-container label,
+    .register-email-container label,
+    .register-password-container label,
+    .register-confirm-password-container label,
+    .register-avatar-container label {
+        margin-bottom: 2px;
+        font-size: 0.78rem;
+    }
+
+    .register-firstname-container input,
+    .register-lastname-container input,
+    .register-pseudo-container input,
+    .register-email-container input,
+    .register-password-container input,
+    .register-confirm-password-container input {
+        height: 31px;
+    }
+
+    .register-avatar-container input[type="file"] {
+        height: 37px;
+        font-size: 0.75rem;
+    }
+
+    .register-avatar-container input[type="file"]::file-selector-button {
+        height: 27px;
+        padding: 0 8px;
+    }
+
+    .register-button-container {
+        margin-top: 7px;
+    }
+
+    .register-button-container button {
+        height: 37px;
+    }
+
+    .register-login-container {
+        margin-top: 5px;
+    }
+
+    .register-login-container a {
+        font-size: 0.8rem;
     }
 
     .register-info-container {
-        max-width: 450px;
-        margin-top: 0;
-        text-align: center;
-    }
-
-    .register-title-container h1 {
-        font-size: 2.5rem;
-    }
-
-    .register-subtitle-container {
-        margin-bottom: 25px;
+        display: none;
     }
 
     .register-footer-container {
-        margin-top: 30px;
-        margin-bottom: 20px;
+        margin-top: 5px;
+    }
+
+    .register-footer-container a {
+        font-size: 0.8rem;
     }
 }
