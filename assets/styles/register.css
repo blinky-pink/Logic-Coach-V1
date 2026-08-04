@@ -1,3 +1,5 @@
+/* Register */
+
 .register-page {
     width: 100%;
     height: 100vh;
@@ -15,7 +17,6 @@
     height: 100vh;
     margin: 0 auto;
     padding: 8px 0;
-    box-sizing: border-box;
 }
 
 .register-title-container {
@@ -45,6 +46,51 @@
     gap: 65px;
 }
 
+.register-info-container {
+    width: 100%;
+    max-width: 500px;
+    margin-top: 5px;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.85);
+}
+
+.register-info-container h2 {
+    margin: 0 0 18px;
+    font-size: 2.2rem;
+    line-height: 1.15;
+}
+
+.register-info-container p {
+    margin: 0 0 14px;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.register-info-container ul {
+    margin: 16px 0 0;
+    padding-left: 22px;
+}
+
+.register-info-container li {
+    margin-bottom: 7px;
+    font-size: 1rem;
+}
+
+.register-footer-container {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.register-footer-container a {
+    color: #ffffff;
+    font-size: 0.9rem;
+}
+
+.register-footer-container a:hover {
+    text-decoration: underline;
+}
+
+/* Formulaire */
+
 .register-form-container {
     width: 420px;
     flex-shrink: 0;
@@ -57,7 +103,6 @@
     border: 1px solid rgba(255, 255, 255, 0.20);
     border-radius: 20px;
     backdrop-filter: blur(5px);
-    box-sizing: border-box;
 }
 
 .register-form-title-container {
@@ -106,7 +151,6 @@
     border-radius: 10px;
     background: rgba(135, 162, 190, 0.30);
     color: #ffffff;
-    box-sizing: border-box;
     font-size: 0.95rem;
 }
 
@@ -129,7 +173,6 @@
     border-radius: 10px;
     background: rgba(135, 162, 190, 0.30);
     color: #ffffff;
-    box-sizing: border-box;
 }
 
 .register-avatar-container input[type="file"]::file-selector-button {
@@ -154,12 +197,10 @@
 .register-button-container button {
     width: 100%;
     height: 42px;
-    border: none;
     border-radius: 12px;
     background: linear-gradient(90deg, #8b4db0, #c16c78);
     color: #ffffff;
     font-size: 1rem;
-    cursor: pointer;
     transition: 0.2s;
 }
 
@@ -176,54 +217,9 @@
     color: #ffffff;
     font-weight: 600;
     font-size: 0.92rem;
-    text-decoration: none;
 }
 
 .register-login-container a:hover {
-    text-decoration: underline;
-}
-
-.register-info-container {
-    width: 100%;
-    max-width: 500px;
-    margin-top: 5px;
-    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.85);
-}
-
-.register-info-container h2 {
-    margin: 0 0 18px;
-    font-size: 2.2rem;
-    line-height: 1.15;
-}
-
-.register-info-container p {
-    margin: 0 0 14px;
-    font-size: 1rem;
-    line-height: 1.5;
-}
-
-.register-info-container ul {
-    margin: 16px 0 0;
-    padding-left: 22px;
-}
-
-.register-info-container li {
-    margin-bottom: 7px;
-    font-size: 1rem;
-}
-
-.register-footer-container {
-    margin-top: 10px;
-    text-align: center;
-}
-
-.register-footer-container a {
-    color: #ffffff;
-    font-size: 0.9rem;
-    text-decoration: none;
-}
-
-.register-footer-container a:hover {
     text-decoration: underline;
 }
 
@@ -237,6 +233,8 @@
 .register-form input.is-invalid {
     border-color: #ff7474;
 }
+
+/* Responsive */
 
 @media (max-width: 900px) {
     .register-page {

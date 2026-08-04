@@ -60,7 +60,7 @@ final class DashboardControllerTest extends WebTestCase
         );
 
         self::assertStringContainsString(
-            'Faire ma première saisie',
+            'Choisir mon thème',
             $crawler->html()
         );
     }
