@@ -1,3 +1,5 @@
+/* Welcome */
+
 .welcome-page {
     position: relative;
     width: 100%;
@@ -73,31 +75,22 @@
 .welcome-button {
     min-width: 220px;
     padding: 14px 35px;
-    border: none;
     border-radius: 12px;
-    background: linear-gradient(
-        90deg,
-        #7b4fa0,
-        #b36b73
-    );
+    background: linear-gradient(90deg, #7b4fa0, #b36b73);
     color: #ffffff;
     font-size: 1.1rem;
     font-weight: 600;
-    cursor: pointer;
     transition: .30s;
 }
 
 .welcome-button:hover {
-    background: linear-gradient(
-        90deg,
-        #915bc0,
-        #d1827f
-    );
+    background: linear-gradient(90deg, #915bc0, #d1827f);
     transform: translateY(-2px);
 }
 
-@media (max-width: 900px) {
+/* Responsive */
 
+@media (max-width: 900px) {
     .welcome-content h1 {
         font-size: 2.5rem;
     }
