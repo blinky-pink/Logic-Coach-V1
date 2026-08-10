@@ -1,11 +1,19 @@
+/* Home */
+
 .home {
     position: relative;
     width: 100%;
     height: 100vh;
     overflow: hidden;
-    background: url("/images/Landing%20Logic-Coach.png") center center / cover no-repeat;
-    color: #fff;
+    background-image: url("/images/Landing%20Logic-Coach.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #f5f5f5;
+    text-align: center;
 }
+
+/* Hero */
 
 .hero {
     position: relative;
@@ -18,556 +26,229 @@
     inset: 0;
 }
 
+/* Titre */
+
 .title {
     position: absolute;
     top: 3%;
     left: 50%;
     transform: translateX(-50%);
-    margin: 0;
-    width: 100%;
-    text-align: center;
+    width: 700px;
+    z-index: 2;
+}
+
+.hero h1 {
     font-size: 3.5rem;
-    font-weight: 700;
-    color: #fff;
-    text-shadow: 0 3px 15px rgba(0,0,0,.7);
-    z-index: 5;
+    white-space: nowrap;
 }
 
 .subtitle {
     position: absolute;
-    top: 11%;
+    top: 10%;
     left: 50%;
     transform: translateX(-50%);
-    margin: 0;
-    width: 100%;
-    text-align: center;
+    width: 700px;
+    z-index: 2;
     font-size: 1.2rem;
-    color: #fff;
-    text-shadow: 0 2px 10px rgba(0,0,0,.7);
-    z-index: 5;
-}
-
-.introduction {
-    position: absolute;
-    margin: 0;
-    width: 340px;
-    font-size: 1rem;
-    line-height: 1.5;
-    color: #fff;
-    text-shadow: 0 2px 10px rgba(0,0,0,.7);
-    z-index: 5;
 }
 
 .introduction-top {
-    top: 22%;
+    position: absolute;
+    top: 27%;
     left: 50%;
-    width: 650px;
-    text-align: center;
     transform: translateX(-50%);
+    width: 650px;
+    z-index: 2;
+}
+
+.introduction-left,
+.introduction-right {
+    position: absolute;
+    top: 40%;
+    width: 220px;
+    z-index: 2;
 }
 
 .introduction-left {
-    top: 39%;
-    left: 14%;
-    text-align: right;
+    left: 32%;
+    transform: translateX(-50%);
 }
 
 .introduction-right {
-    top: 39%;
-    right: 14%;
-    text-align: left;
+    right: 32%;
+    transform: translateX(50%);
+}
+
+.introduction-top,
+.introduction-left,
+.introduction-right {
+    font-size: 0.9rem;
+}
+
+/* Icônes */
+
+.feature-sleep,
+.feature-energy,
+.feature-stress,
+.feature-motivation,
+.feature-mood {
+    position: absolute;
+    width: 150px;
+    z-index: 3;
+}
+
+.feature-sleep { top: 24%; left: 25%; }
+.feature-energy { top: 24%; right: 25%; }
+.feature-stress { top: 52%; left: 20%; }
+.feature-motivation { top: 52%; right: 20%; }
+
+.feature-mood {
+    bottom: 11%;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .feature {
-    position: absolute;
     width: 150px;
-    text-align: center;
-    z-index: 10;
-    transition: .3s;
 }
 
 .feature img {
     width: 120px;
-    margin: auto;
-    transition: .3s;
-}
-
-.feature:hover img {
-    transform: scale(1.08);
+    margin: 0 auto;
 }
 
 .feature p {
-    margin-top: 12px;
-    font-size: .95rem;
+    margin-top: 8px;
+    font-size: .9rem;
+}
+
+/* Cercle central */
+
+.center-circle {
+    position: absolute;
+    top: 46%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 210px;
+    height: 210px;
+
+    z-index: 3;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: transparent;
+    border: 3px solid rgba(255, 255, 255, 0.75);
+    border-radius: 50%;
+
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35);
+
+    text-decoration: none;
+
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.center-circle span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 140px;
+    height: 140px;
+
+    border-radius: 50%;
+
+    background: linear-gradient(135deg, rgba(168, 140, 170, 0.65), rgba(214, 160, 140, 0.65));
+
+    color: #ffffff;
     font-weight: 600;
-    color: #fff;
+    text-align: center;
+
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
 }
 
-body.theme-1 {
-    --db-bg: linear-gradient(rgba(3, 8, 3, 0.05), rgba(3, 8, 3, 0.05)), url("/images/themes/militaire-dashboard.png");
-    --db-text: #fff6dc;
-    --db-shadow-color: rgba(0, 0, 0, 0.8);
-    --db-sidebar-bg: rgba(3, 15, 5, 0.72);
-    --db-sidebar-border: rgba(151, 165, 88, 0.45);
-    --db-accent: #8f9863;
-    --db-avatar-bg: #68683e;
-    --db-menu-hover-bg: rgba(108, 122, 62, 0.35);
-    --db-empty-top: 470px;
-    --db-empty-left: 30px;
-    --db-empty-width: 730px;
-    --db-empty-height: 220px;
-    --db-empty-padding: 8px 25px;
-    --db-empty-justify: flex-start;
-    --db-empty-h2-mb: 5px;
-    --db-empty-shadow-blur: 6px;
-    --db-empty-indicators-margin: 8px;
-    --db-intro-color: #ffe8a3;
-    --db-indicator-bg: rgba(26, 44, 17, 0.72);
-    --db-indicator-border: rgba(143, 152, 99, 0.9);
-    --db-button-bg: linear-gradient(90deg, #68743c, #a58a47);
-    --db-button-hover-bg: linear-gradient(90deg, #7c8949, #b89a50);
-    --db-button-border: #b59a55;
-    --db-card-bg: rgba(8, 17, 9, 0.88);
-    --db-card-border: rgba(143, 152, 99, 0.55);
-    --db-message-bg: rgba(31, 48, 25, 0.88);
-    --db-advice-bg: rgba(126, 104, 52, 0.16);
-    --db-advice-border: #a58a47;
-}
-
-body.theme-2 {
-    --db-bg: linear-gradient(rgba(8, 12, 5, 0.04), rgba(8, 12, 5, 0.04)), url("/images/themes/zen-dashboard.png");
-    --db-text: #fff4d6;
-    --db-shadow-color: rgba(0, 0, 0, 0.8);
-    --db-sidebar-bg: rgba(17, 24, 12, 0.68);
-    --db-sidebar-border: rgba(181, 157, 82, 0.45);
-    --db-accent: #b89b55;
-    --db-avatar-bg: rgba(105, 89, 45, 0.9);
-    --db-sidebar-shadow: 0 2px 3px #000000, 0 0 5px rgba(0, 0, 0, 0.8);
-    --db-menu-hover-bg: rgba(112, 101, 53, 0.35);
-    --db-empty-top: 530px;
-    --db-empty-left: 30px;
-    --db-empty-width: 730px;
-    --db-empty-height: 200px;
-    --db-empty-padding: 12px 25px;
-    --db-empty-justify: center;
-    --db-empty-h2-mb: 5px;
-    --db-empty-shadow-blur: 6px;
-    --db-empty-indicators-margin: 8px;
-    --db-intro-color: #ffe6a1;
-    --db-indicator-bg: rgba(47, 67, 25, 0.72);
-    --db-indicator-border: rgba(181, 157, 82, 0.9);
-    --db-button-bg: linear-gradient(90deg, #6f7d3e, #b28b42);
-    --db-button-hover-bg: linear-gradient(90deg, #81924a, #c59a4a);
-    --db-button-border: #c1a05b;
-    --db-card-bg: rgba(16, 24, 10, 0.86);
-    --db-card-border: rgba(181, 157, 82, 0.55);
-    --db-message-bg: rgba(39, 57, 25, 0.86);
-    --db-advice-bg: rgba(181, 143, 67, 0.16);
-    --db-advice-border: #b28b42;
-}
-
-body.theme-3 {
-    --db-bg: linear-gradient(rgba(2, 8, 18, 0.03), rgba(2, 8, 18, 0.03)), url("/images/themes/travail-dashboard.png");
-    --db-text: #ffffff;
-    --db-shadow-color: rgba(0, 0, 0, 0.9);
-    --db-sidebar-bg: rgba(3, 13, 27, 0.72);
-    --db-sidebar-border: rgba(45, 156, 255, 0.35);
-    --db-accent: #4aa8ff;
-    --db-avatar-bg: rgba(13, 63, 105, 0.9);
-    --db-sidebar-shadow: 0 2px 3px #000000, 0 0 5px rgba(0, 0, 0, 0.9);
-    --db-menu-hover-bg: rgba(24, 109, 180, 0.30);
-    --db-empty-top: 375px;
-    --db-empty-left: 65px;
-    --db-empty-width: 630px;
-    --db-empty-height: 295px;
-    --db-empty-padding: 28px 30px;
-    --db-empty-justify: center;
-    --db-empty-h2-mb: 10px;
-    --db-empty-shadow-blur: 7px;
-    --db-empty-indicators-margin: 10px;
-    --db-empty-transform: translate(25px, 70px);
-    --db-intro-color: #7ed8ff;
-    --db-indicator-bg: rgba(5, 39, 70, 0.78);
-    --db-indicator-border: rgba(64, 181, 255, 0.85);
-    --db-button-bg: linear-gradient(90deg, #126aa3, #8d4ab8);
-    --db-button-hover-bg: linear-gradient(90deg, #1682c7, #a65bcf);
-    --db-button-border: #55c8ff;
-    --db-card-bg: rgba(4, 18, 35, 0.88);
-    --db-card-border: rgba(64, 181, 255, 0.5);
-    --db-message-bg: rgba(5, 42, 72, 0.88);
-    --db-advice-bg: rgba(75, 39, 105, 0.30);
-    --db-advice-border: #9d55c7;
+.center-circle:hover {
+    transform: translate(-50%, -50%) translateY(-3px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
 }
 
 /* Responsive */
 
-@media (max-width: 1100px) and (min-width: 769px) {
-    body.theme-1 .sidebar,
-    body.theme-2 .sidebar,
-    body.theme-3 .sidebar {
-        width: 230px;
+@media (max-width: 900px) {
+    .title,
+    .subtitle,
+    .introduction-top {
+        width: 90%;
     }
 
-    body.theme-1 .dashboard-content,
-    body.theme-2 .dashboard-content,
-    body.theme-3 .dashboard-content {
-        padding: 30px;
+    .hero h1 {
+        font-size: 2.4rem;
+        white-space: normal;
     }
 
-    body.theme-1 .dashboard-empty-content,
-    body.theme-2 .dashboard-empty-content,
-    body.theme-3 .dashboard-empty-content {
-        left: 20px;
-        width: calc(100% - 40px);
-        max-width: 730px;
-    }
-}
-
-@media (max-width: 768px) {
-    html,
-    body {
-        width: 100%;
-        min-width: 0;
-        overflow-x: hidden;
+    .introduction-left,
+    .introduction-right {
+        width: 180px;
+        font-size: .85rem;
     }
 
-    body.theme-1 .dashboard,
-    body.theme-2 .dashboard,
-    body.theme-3 .dashboard {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        min-height: 100vh;
-        overflow: visible;
-        background: var(--db-bg);
-        background-size: cover;
-        background-position: center top;
-        background-repeat: no-repeat;
-        background-attachment: scroll;
+    .feature-sleep,
+    .feature-energy,
+    .feature-stress,
+    .feature-motivation,
+    .feature-mood {
+        width: 100px;
     }
 
-    body.theme-1 .sidebar,
-    body.theme-2 .sidebar,
-    body.theme-3 .sidebar {
-        width: 100%;
-        min-height: auto;
-        padding: 10px 12px;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        gap: 10px;
-        background: var(--db-sidebar-bg);
-        border-right: none;
-        border-bottom: 1px solid var(--db-sidebar-border);
+    .feature img {
+        width: 70px;
     }
 
-    body.theme-1 .user-card,
-    body.theme-2 .user-card,
-    body.theme-3 .user-card {
-        flex: 0 0 auto;
-        margin: 0;
-        display: grid;
-        grid-template-columns: 48px auto;
-        grid-template-rows: auto auto auto;
-        column-gap: 8px;
-        text-align: left;
+    .feature p {
+        font-size: .8rem;
     }
 
-    body.theme-1 .user-avatar,
-    body.theme-1 .user-avatar-default,
-    body.theme-2 .user-avatar,
-    body.theme-2 .user-avatar-default,
-    body.theme-3 .user-avatar,
-    body.theme-3 .user-avatar-default {
-        grid-column: 1;
-        grid-row: 1 / 4;
-        width: 44px;
-        height: 44px;
-        min-width: 44px;
-        margin: 0;
-        border-width: 2px;
-        font-size: 1.25rem;
+    .center-circle {
+        width: 150px;
+        height: 150px;
     }
 
-    body.theme-1 .user-card h2,
-    body.theme-2 .user-card h2,
-    body.theme-3 .user-card h2 {
-        grid-column: 2;
-        margin: 0;
-        font-size: 0.95rem;
-        line-height: 1;
-    }
-
-    body.theme-1 .user-card p,
-    body.theme-2 .user-card p,
-    body.theme-3 .user-card p {
-        grid-column: 2;
-        margin: 1px 0;
-        font-size: 0.68rem;
-        line-height: 1.05;
-    }
-
-    body.theme-1 .sidebar-menu,
-    body.theme-2 .sidebar-menu,
-    body.theme-3 .sidebar-menu {
-        flex: 1;
-    }
-
-    body.theme-1 .sidebar-menu ul,
-    body.theme-2 .sidebar-menu ul,
-    body.theme-3 .sidebar-menu ul {
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 4px;
-    }
-
-    body.theme-1 .sidebar-menu li,
-    body.theme-2 .sidebar-menu li,
-    body.theme-3 .sidebar-menu li {
-        margin: 0;
-    }
-
-    body.theme-1 .sidebar-menu a,
-    body.theme-2 .sidebar-menu a,
-    body.theme-3 .sidebar-menu a {
-        padding: 6px 7px;
-        background: var(--db-menu-hover-bg);
-        border: 1px solid var(--db-sidebar-border);
-        border-radius: 6px;
-        font-size: 0.67rem;
-        line-height: 1;
-        white-space: nowrap;
-    }
-
-    body.theme-1 .dashboard-content,
-    body.theme-2 .dashboard-content,
-    body.theme-3 .dashboard-content {
-        position: relative;
-        width: 100%;
-        min-height: calc(100vh - 70px);
-        padding: 12px;
-    }
-
-    body.theme-1 .dashboard-header,
-    body.theme-2 .dashboard-header,
-    body.theme-3 .dashboard-header {
-        width: 100%;
-        text-align: center;
-    }
-
-    body.theme-1 .dashboard-header h1,
-    body.theme-2 .dashboard-header h1,
-    body.theme-3 .dashboard-header h1 {
-        margin: 0;
-        font-size: 1.55rem;
-    }
-
-    body.theme-1 .dashboard-empty,
-    body.theme-2 .dashboard-empty,
-    body.theme-3 .dashboard-empty {
-        position: relative;
-        inset: auto;
-        width: 100%;
-        min-height: calc(100vh - 130px);
-        display: flex;
-        justify-content: center;
-        align-items: flex-end;
-        padding: 0 0 20px;
-    }
-
-    body.theme-1 .dashboard-empty-content,
-    body.theme-2 .dashboard-empty-content,
-    body.theme-3 .dashboard-empty-content {
-        position: relative;
-        top: auto;
-        left: auto;
-        width: min(680px, 94%);
-        height: auto;
-        max-width: 680px;
-        margin: 0 auto;
-        padding: 14px 16px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        background: var(--db-card-bg);
-        border: 1px solid var(--db-card-border);
-        border-radius: 14px;
-        box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4);
-        overflow: visible;
-        transform: none;
-    }
-
-    body.theme-1 .dashboard-empty-content h2,
-    body.theme-2 .dashboard-empty-content h2,
-    body.theme-3 .dashboard-empty-content h2 {
-        margin: 0 0 5px;
-        font-size: 1.45rem;
-    }
-
-    body.theme-1 .dashboard-empty-intro,
-    body.theme-2 .dashboard-empty-intro,
-    body.theme-3 .dashboard-empty-intro {
-        margin: 3px 0 !important;
-        font-size: 0.9rem !important;
-        line-height: 1.2 !important;
-    }
-
-    body.theme-1 .dashboard-empty-content p,
-    body.theme-2 .dashboard-empty-content p,
-    body.theme-3 .dashboard-empty-content p {
-        margin: 3px 0;
-        font-size: 0.82rem;
-        line-height: 1.25;
-    }
-
-    body.theme-1 .dashboard-empty-indicators,
-    body.theme-2 .dashboard-empty-indicators,
-    body.theme-3 .dashboard-empty-indicators {
-        flex-wrap: wrap;
-        gap: 5px;
-        margin: 7px 0;
-    }
-
-    body.theme-1 .dashboard-empty-indicators span,
-    body.theme-2 .dashboard-empty-indicators span,
-    body.theme-3 .dashboard-empty-indicators span {
-        padding: 5px 9px;
-        font-size: 0.76rem;
-    }
-
-    body.theme-1 .dashboard-theme-message,
-    body.theme-2 .dashboard-theme-message,
-    body.theme-3 .dashboard-theme-message {
-        margin: 3px 0 !important;
-        font-size: 0.8rem !important;
-        line-height: 1.2 !important;
-    }
-
-    body.theme-1 .dashboard-empty-button,
-    body.theme-2 .dashboard-empty-button,
-    body.theme-3 .dashboard-empty-button {
-        margin-top: 7px;
-        padding: 8px 18px;
-        font-size: 0.82rem;
-    }
-
-    .dashboard-grid {
-        grid-template-columns: 1fr;
+    .center-circle span {
+        width: 105px;
+        height: 105px;
+        font-size: 0.85rem;
     }
 }
 
 @media (max-width: 600px) {
-    body.theme-1 .sidebar,
-    body.theme-2 .sidebar,
-    body.theme-3 .sidebar {
-        flex-direction: column;
-        justify-content: center;
-        gap: 7px;
+    .subtitle {
+        font-size: 1rem;
     }
 
-    body.theme-1 .user-card,
-    body.theme-2 .user-card,
-    body.theme-3 .user-card {
-        grid-template-columns: 42px auto;
+    .introduction-top,
+    .introduction-left,
+    .introduction-right {
+        font-size: .8rem;
     }
 
-    body.theme-1 .user-avatar,
-    body.theme-1 .user-avatar-default,
-    body.theme-2 .user-avatar,
-    body.theme-2 .user-avatar-default,
-    body.theme-3 .user-avatar,
-    body.theme-3 .user-avatar-default {
-        width: 40px;
-        height: 40px;
-        min-width: 40px;
-        font-size: 1.1rem;
+    .introduction-left {
+        left: 22%;
     }
 
-    body.theme-1 .sidebar-menu,
-    body.theme-2 .sidebar-menu,
-    body.theme-3 .sidebar-menu {
-        width: 100%;
+    .introduction-right {
+        right: 22%;
     }
 
-    body.theme-1 .sidebar-menu ul,
-    body.theme-2 .sidebar-menu ul,
-    body.theme-3 .sidebar-menu ul {
-        justify-content: center;
+    .center-circle {
+        width: 120px;
+        height: 120px;
     }
 
-    body.theme-1 .dashboard-content,
-    body.theme-2 .dashboard-content,
-    body.theme-3 .dashboard-content {
-        padding: 10px;
-    }
-
-    body.theme-1 .dashboard-header h1,
-    body.theme-2 .dashboard-header h1,
-    body.theme-3 .dashboard-header h1 {
-        font-size: 1.35rem;
-    }
-
-    body.theme-1 .dashboard-empty-content,
-    body.theme-2 .dashboard-empty-content,
-    body.theme-3 .dashboard-empty-content {
-        width: 96%;
-        padding: 12px 10px;
-    }
-}
-
-@media (max-width: 480px) {
-    body.theme-1 .sidebar-menu a,
-    body.theme-2 .sidebar-menu a,
-    body.theme-3 .sidebar-menu a {
-        padding: 5px 6px;
-        font-size: 0.64rem;
-    }
-
-    body.theme-1 .dashboard-header h1,
-    body.theme-2 .dashboard-header h1,
-    body.theme-3 .dashboard-header h1 {
-        font-size: 1.25rem;
-    }
-
-    body.theme-1 .dashboard-empty-content h2,
-    body.theme-2 .dashboard-empty-content h2,
-    body.theme-3 .dashboard-empty-content h2 {
-        font-size: 1.25rem;
-    }
-
-    body.theme-1 .dashboard-empty-intro,
-    body.theme-2 .dashboard-empty-intro,
-    body.theme-3 .dashboard-empty-intro {
-        font-size: 0.82rem !important;
-    }
-
-    body.theme-1 .dashboard-empty-content p,
-    body.theme-2 .dashboard-empty-content p,
-    body.theme-3 .dashboard-empty-content p {
-        font-size: 0.76rem;
-    }
-
-    body.theme-1 .dashboard-empty-indicators span,
-    body.theme-2 .dashboard-empty-indicators span,
-    body.theme-3 .dashboard-empty-indicators span {
-        padding: 4px 7px;
-        font-size: 0.7rem;
-    }
-
-    body.theme-1 .dashboard-theme-message,
-    body.theme-2 .dashboard-theme-message,
-    body.theme-3 .dashboard-theme-message {
-        font-size: 0.75rem !important;
-    }
-
-    body.theme-1 .dashboard-empty-button,
-    body.theme-2 .dashboard-empty-button,
-    body.theme-3 .dashboard-empty-button {
-        padding: 8px 14px;
-        font-size: 0.78rem;
+    .center-circle span {
+        width: 85px;
+        height: 85px;
+        font-size: 0.75rem;
     }
 }

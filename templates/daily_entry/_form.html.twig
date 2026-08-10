@@ -8,13 +8,22 @@
 
         {{ form_label(form.sleepHours, 'Sommeil (heures)') }}
 
-        {{ form_widget(form.sleepHours, {
-            'attr': {
-                'min': 0,
-                'max': 24,
-                'step': 0.5
-            }
-        }) }}
+        <div class="daily-entry-slider-row">
+
+            {{ form_widget(form.sleepHours, {
+                'type': 'range',
+                'attr': {
+                    'min': 0,
+                    'max': 24,
+                    'step': 0.5,
+                    'class': 'daily-entry-slider',
+                    'data-max': 24
+                }
+            }) }}
+
+            <output class="daily-entry-slider-value" for="daily_entry_sleepHours">0</output>
+
+        </div>
 
         {{ form_errors(form.sleepHours) }}
 
@@ -24,12 +33,21 @@
 
         {{ form_label(form.energy, 'Énergie (0 à 10)') }}
 
-        {{ form_widget(form.energy, {
-            'attr': {
-                'min': 0,
-                'max': 10
-            }
-        }) }}
+        <div class="daily-entry-slider-row">
+
+            {{ form_widget(form.energy, {
+                'type': 'range',
+                'attr': {
+                    'min': 0,
+                    'max': 10,
+                    'class': 'daily-entry-slider',
+                    'data-max': 10
+                }
+            }) }}
+
+            <output class="daily-entry-slider-value" for="daily_entry_energy">0</output>
+
+        </div>
 
         {{ form_errors(form.energy) }}
 
@@ -39,12 +57,21 @@
 
         {{ form_label(form.stress, 'Stress (0 à 10)') }}
 
-        {{ form_widget(form.stress, {
-            'attr': {
-                'min': 0,
-                'max': 10
-            }
-        }) }}
+        <div class="daily-entry-slider-row">
+
+            {{ form_widget(form.stress, {
+                'type': 'range',
+                'attr': {
+                    'min': 0,
+                    'max': 10,
+                    'class': 'daily-entry-slider daily-entry-slider-negative',
+                    'data-max': 10
+                }
+            }) }}
+
+            <output class="daily-entry-slider-value" for="daily_entry_stress">0</output>
+
+        </div>
 
         {{ form_errors(form.stress) }}
 
@@ -54,12 +81,21 @@
 
         {{ form_label(form.motivation, 'Motivation (0 à 10)') }}
 
-        {{ form_widget(form.motivation, {
-            'attr': {
-                'min': 0,
-                'max': 10
-            }
-        }) }}
+        <div class="daily-entry-slider-row">
+
+            {{ form_widget(form.motivation, {
+                'type': 'range',
+                'attr': {
+                    'min': 0,
+                    'max': 10,
+                    'class': 'daily-entry-slider',
+                    'data-max': 10
+                }
+            }) }}
+
+            <output class="daily-entry-slider-value" for="daily_entry_motivation">0</output>
+
+        </div>
 
         {{ form_errors(form.motivation) }}
 
@@ -69,12 +105,21 @@
 
         {{ form_label(form.mood, 'Humeur (0 à 10)') }}
 
-        {{ form_widget(form.mood, {
-            'attr': {
-                'min': 0,
-                'max': 10
-            }
-        }) }}
+        <div class="daily-entry-slider-row">
+
+            {{ form_widget(form.mood, {
+                'type': 'range',
+                'attr': {
+                    'min': 0,
+                    'max': 10,
+                    'class': 'daily-entry-slider',
+                    'data-max': 10
+                }
+            }) }}
+
+            <output class="daily-entry-slider-value" for="daily_entry_mood">0</output>
+
+        </div>
 
         {{ form_errors(form.mood) }}
 
@@ -88,3 +133,26 @@
     </button>
 
 {{ form_end(form) }}
+
+<script>
+    (function () {
+        var sliders = document.querySelectorAll('.daily-entry-slider');
+
+        sliders.forEach(function (slider) {
+            var max = parseFloat(slider.dataset.max);
+            var output = document.querySelector('.daily-entry-slider-value[for="' + slider.id + '"]');
+
+            function update() {
+                var value = parseFloat(slider.value);
+                var percent = (value / max) * 100;
+                slider.style.setProperty('--daily-entry-fill', percent + '%');
+                if (output) {
+                    output.textContent = slider.step === '0.5' ? value.toFixed(1) : value;
+                }
+            }
+
+            slider.addEventListener('input', update);
+            update();
+        });
+    })();
+</script>

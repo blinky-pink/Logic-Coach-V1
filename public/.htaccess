@@ -1,0 +1,68 @@
+# Use the front controller as index file. It serves as a fallback solution when
+# every other rewrite/redirect fails (e.g. in an aliased environment without
+# mod_rewrite configured) and also handles static files.
+DirectoryIndex index.php
+
+# By default, Symfony web-links assumes it is located at the web root.
+# If you install it in a subdirectory, you need to adjust this
+# 'RewriteBase' value.
+# RewriteBase /path/to/app
+
+<IfModule mod_negotiation.c>
+    Options -MultiViews
+</IfModule>
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    RewriteCond %{ENV:REDIRECT_STATUS} ^$
+    RewriteRule .* - [E=BASE:%{ENV:BASE}]
+
+    # Determine the RewriteBase automatically and set it as environment variable.
+    # If you are using Apache aliases to do mass virtual hosting or installed the
+    # project in a subdirectory, the base path will be prepended to allow proper
+    # resolution of the index.php file and to redirect to the correct URI. It will
+    # work in environments without path prefix as well, providing a safe, one-size
+    # fits all solution. But as you do not need it in this case, you can comment
+    # the following 2 lines to eliminate the overhead of the RewriteCond and
+    # RewriteRule.
+    RewriteCond %{REQUEST_URI}::$0 ^(/.+)/(.*)::\2$
+    RewriteRule .* - [E=BASE:%1]
+
+    # Sets the HTTP_AUTHORIZATION header removed by Apache
+    RewriteCond %{HTTP:Authorization} .
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+    # Redirect to URI without front controller to prevent duplicate content
+    # (with and without `/index.php`). Only do this redirect on the initial
+    # rewrite by Apache and not on subsequent cycles. Otherwise we would get an
+    # endless redirect loop (request -> rewrite to front controller ->
+    # redirect -> request -> ...).
+    # So in case you get a "too many redirects" error or you always get redirected
+    # to the start page because your Apache does not expose the REDIRECT_STATUS
+    # environment variable, you have 2 options:
+    # 1. Configure your web server to expose the REDIRECT_STATUS environment
+    #    variable, or
+    # 2. Comment the following 2 lines to disable the redirect.
+    RewriteCond %{ENV:REDIRECT_STATUS} ^$
+    RewriteCond %{REQUEST_URI}::$0 ^(/.+)/(.*)::\2$
+    RewriteCond %{ENV:BASE}%2 ^(.*)/(app\.php(?:/(.*)|)|)$
+    RewriteRule ^(.*)$ %{ENV:BASE}%3 [R=301,L]
+
+    # If the requested filename exists, simply serve it.
+    # We only want to let Apache serve files and not directories.
+    RewriteCond %{REQUEST_FILENAME} -f
+    RewriteRule .? - [L]
+
+    # Rewrite all other queries to the front controller.
+    RewriteRule .? %{ENV:BASE}index.php [L]
+</IfModule>
+
+<IfModule !mod_rewrite.c>
+    <IfModule mod_alias.c>
+        # When mod_rewrite is not available, we instead redirect to
+        # the front controller and prepend the path info to the query string.
+        RedirectMatch 302 ^/$ /index.php/
+        # RedirectMatch 302 ^/(?!index\.php) /index.php/$1
+    </IfModule>
+</IfModule>

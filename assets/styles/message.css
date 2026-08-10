@@ -1,0 +1,297 @@
+/* Message */
+
+.message-page {
+    min-height: 100vh;
+    background-color: #0b1220;
+    color: #ffffff;
+    padding: 40px 20px;
+}
+
+.message-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.message-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.message-header h1 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+/* Boutons */
+
+.message-new-button,
+.message-back-button,
+.message-edit-button,
+.message-submit-button,
+.message-delete-button {
+    display: inline-block;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.message-new-button,
+.message-submit-button {
+    background: linear-gradient(90deg, #7b4fa0, #b36b73);
+    color: #ffffff;
+    border: none;
+}
+
+.message-new-button:hover,
+.message-submit-button:hover {
+    background: linear-gradient(90deg, #915bc0, #d1827f);
+    transform: translateY(-2px);
+}
+
+.message-back-button,
+.message-edit-button {
+    background: rgba(10, 16, 12, 0.78);
+    color: #ffffff;
+    border: 1px solid rgba(154, 137, 75, 0.75);
+}
+
+.message-back-button:hover,
+.message-edit-button:hover {
+    background: rgba(93, 91, 47, 0.90);
+}
+
+.message-delete-button {
+    background: rgba(120, 30, 30, 0.75);
+    color: #ffffff;
+    border: 1px solid rgba(200, 90, 90, 0.75);
+}
+
+.message-delete-button:hover {
+    background: rgba(160, 40, 40, 0.90);
+}
+
+/* Tableau */
+
+.message-table-wrapper {
+    overflow-x: auto;
+    background: rgba(10, 16, 12, 0.82);
+    border: 1px solid rgba(154, 137, 75, 0.75);
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.45);
+}
+
+.message-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.message-table th,
+.message-table td {
+    padding: 14px;
+    text-align: left;
+    border-bottom: 1px solid rgba(154, 137, 75, 0.40);
+}
+
+.message-table th {
+    background: rgba(8, 15, 10, 0.90);
+}
+
+.message-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.message-read-link {
+    color: #d9c07a;
+    font-weight: 600;
+}
+
+.message-read-link:hover {
+    text-decoration: underline;
+}
+
+.message-empty-cell {
+    text-align: center;
+    color: #b8b8b8;
+    padding: 30px 14px;
+}
+
+/* Détail d'un message */
+
+.message-detail {
+    margin-bottom: 25px;
+}
+
+.message-detail .message-table th {
+    width: 160px;
+    color: #d9c07a;
+}
+
+/* Formulaire */
+
+.message-form {
+    max-width: 560px;
+    background: rgba(10, 16, 12, 0.78);
+    border: 1px solid rgba(154, 137, 75, 0.75);
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.45);
+}
+
+.message-field {
+    margin-bottom: 20px;
+}
+
+.message-field label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.message-field select,
+.message-field textarea,
+.message-field input {
+    width: 100%;
+    padding: 10px;
+    background: rgba(8, 15, 10, 0.85);
+    color: #ffffff;
+    border: 1px solid rgba(154, 137, 75, 0.75);
+    border-radius: 6px;
+    outline: none;
+}
+
+.message-field select:focus,
+.message-field textarea:focus,
+.message-field input:focus {
+    border-color: #b8a35a;
+    box-shadow: 0 0 0 2px rgba(184, 163, 90, 0.20);
+}
+
+.message-field textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.message-actions,
+.message-footer-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.message-delete-form {
+    margin: 0;
+}
+
+/* Thème Travail */
+
+body.theme-3 .message-page {
+    background-color: #04101c;
+}
+
+body.theme-3 .message-new-button,
+body.theme-3 .message-submit-button {
+    background: linear-gradient(90deg, #126aa3, #8d4ab8);
+}
+
+body.theme-3 .message-new-button:hover,
+body.theme-3 .message-submit-button:hover {
+    background: linear-gradient(90deg, #1682c7, #a65bcf);
+}
+
+body.theme-3 .message-back-button,
+body.theme-3 .message-edit-button {
+    background: rgba(8, 14, 20, 0.90);
+    border-color: rgba(205, 145, 65, 0.80);
+}
+
+body.theme-3 .message-back-button:hover,
+body.theme-3 .message-edit-button:hover {
+    background: rgba(130, 85, 35, 0.55);
+}
+
+body.theme-3 .message-table-wrapper,
+body.theme-3 .message-form {
+    background: rgba(12, 18, 24, 0.82);
+    border-color: rgba(205, 145, 65, 0.80);
+}
+
+body.theme-3 .message-table th {
+    background: rgba(8, 14, 20, 0.90);
+}
+
+body.theme-3 .message-table th,
+body.theme-3 .message-table td {
+    border-bottom-color: rgba(205, 145, 65, 0.40);
+}
+
+body.theme-3 .message-read-link,
+body.theme-3 .message-detail .message-table th {
+    color: #e1a95a;
+}
+
+body.theme-3 .message-field select,
+body.theme-3 .message-field textarea,
+body.theme-3 .message-field input {
+    background: rgba(8, 14, 20, 0.90);
+    border-color: rgba(205, 145, 65, 0.80);
+}
+
+body.theme-3 .message-field select:focus,
+body.theme-3 .message-field textarea:focus,
+body.theme-3 .message-field input:focus {
+    border-color: #e1a95a;
+    box-shadow: 0 0 0 2px rgba(225, 169, 90, 0.20);
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+    .message-page {
+        padding: 25px 15px;
+    }
+
+    .message-header {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+    }
+
+    .message-header h1 {
+        font-size: 1.6rem;
+    }
+
+    .message-form {
+        padding: 20px;
+    }
+
+    .message-table th,
+    .message-table td {
+        padding: 10px;
+    }
+
+    .message-actions,
+    .message-footer-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .message-new-button,
+    .message-back-button,
+    .message-edit-button,
+    .message-submit-button,
+    .message-delete-button {
+        text-align: center;
+    }
+}
