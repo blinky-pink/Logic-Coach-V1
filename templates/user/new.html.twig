@@ -1,11 +1,27 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New User{% endblock %}
+{% block title %}Nouvel utilisateur - Logic Coach{% endblock %}
 
 {% block body %}
-    <h1>Create new User</h1>
 
-    {{ include('user/_form.html.twig') }}
+<div class="admin-page">
 
-    <a href="{{ path('app_user_index') }}">back to list</a>
+    <div class="admin-container">
+
+        <div class="admin-header">
+            <h1>Créer un utilisateur</h1>
+        </div>
+
+        {{ include('user/_form.html.twig') }}
+
+        <div class="admin-actions">
+            <a class="admin-back-button" href="{{ path('app_user_index') }}">
+                Retour à la liste
+            </a>
+        </div>
+
+    </div>
+
+</div>
+
 {% endblock %}

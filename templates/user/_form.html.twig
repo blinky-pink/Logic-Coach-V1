@@ -1,9 +1,35 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">
-    {{ 
-        button_label|default('Save') 
-        }}
-        </button>
-        
+{{ form_start(form, {'attr': {'class': 'admin-form'}}) }}
+
+    <div class="admin-field">
+        {{ form_label(form.firstname) }}
+        {{ form_widget(form.firstname) }}
+    </div>
+
+    <div class="admin-field">
+        {{ form_label(form.lastname) }}
+        {{ form_widget(form.lastname) }}
+    </div>
+
+    <div class="admin-field">
+        {{ form_label(form.pseudo) }}
+        {{ form_widget(form.pseudo) }}
+    </div>
+
+    <div class="admin-field">
+        {{ form_label(form.email) }}
+        {{ form_widget(form.email) }}
+    </div>
+
+    <div class="admin-field admin-field-checkboxes">
+        {{ form_label(form.roles) }}
+        {{ form_widget(form.roles) }}
+    </div>
+
+    <div class="admin-field">
+        {{ form_label(form.password) }}
+        {{ form_widget(form.password) }}
+    </div>
+
+    <button class="admin-submit-button">{{ button_label|default('Enregistrer') }}</button>
+
 {{ form_end(form) }}

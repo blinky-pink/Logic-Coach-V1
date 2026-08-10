@@ -1,46 +1,74 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Theme{% endblock %}
+{% block title %}Thème - Logic Coach{% endblock %}
 
 {% block body %}
-    <h1>Theme</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ theme.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ theme.name }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ theme.description }}</td>
-            </tr>
-            <tr>
-                <th>Illustration</th>
-                <td>{{ theme.illustration }}</td>
-            </tr>
-            <tr>
-                <th>PrimaryColor</th>
-                <td>{{ theme.primaryColor }}</td>
-            </tr>
-            <tr>
-                <th>CreatedAt</th>
-                <td>{{ theme.createdAt ? theme.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>UpdatedAt</th>
-                <td>{{ theme.updatedAt ? theme.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
+<div class="admin-page">
 
-    <a href="{{ path('app_theme_index') }}">back to list</a>
+    <div class="admin-container">
 
-    <a href="{{ path('app_theme_edit', {'id': theme.id}) }}">edit</a>
+        <div class="admin-header">
+            <h1>Thème</h1>
+        </div>
 
-    {{ include('theme/_delete_form.html.twig') }}
+        <div class="admin-detail">
+
+            <div class="admin-table-wrapper">
+
+                <table class="admin-table">
+                    <tbody>
+                        <tr>
+                            <th>Id</th>
+                            <td>{{ theme.id }}</td>
+                        </tr>
+                        <tr>
+                            <th>Nom</th>
+                            <td>{{ theme.name }}</td>
+                        </tr>
+                        <tr>
+                            <th>Description</th>
+                            <td>{{ theme.description }}</td>
+                        </tr>
+                        <tr>
+                            <th>Illustration</th>
+                            <td>{{ theme.illustration }}</td>
+                        </tr>
+                        <tr>
+                            <th>Couleur principale</th>
+                            <td>{{ theme.primaryColor }}</td>
+                        </tr>
+                        <tr>
+                            <th>Créé le</th>
+                            <td>{{ theme.createdAt ? theme.createdAt|date('d/m/Y H:i') : '' }}</td>
+                        </tr>
+                        <tr>
+                            <th>Modifié le</th>
+                            <td>{{ theme.updatedAt ? theme.updatedAt|date('d/m/Y H:i') : '' }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+
+        <div class="admin-footer-actions">
+
+            <a class="admin-back-button" href="{{ path('app_theme_index') }}">
+                Retour à la liste
+            </a>
+
+            <a class="admin-edit-button" href="{{ path('app_theme_edit', {'id': theme.id}) }}">
+                Modifier
+            </a>
+
+            {{ include('theme/_delete_form.html.twig') }}
+
+        </div>
+
+    </div>
+
+</div>
+
 {% endblock %}

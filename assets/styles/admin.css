@@ -1,0 +1,242 @@
+/* Pages admin (ROLE_ADMIN) : gestion des utilisateurs et des thèmes */
+
+.admin-page {
+    min-height: 100vh;
+    background-color: #0b1220;
+    color: #ffffff;
+    padding: 40px 20px;
+}
+
+.admin-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.admin-header h1 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+/* Boutons */
+
+.admin-new-button,
+.admin-back-button,
+.admin-edit-button,
+.admin-submit-button,
+.admin-delete-button,
+.admin-show-link {
+    display: inline-block;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.admin-new-button,
+.admin-submit-button {
+    background: linear-gradient(90deg, #7b4fa0, #b36b73);
+    color: #ffffff;
+    border: none;
+}
+
+.admin-new-button:hover,
+.admin-submit-button:hover {
+    background: linear-gradient(90deg, #915bc0, #d1827f);
+    transform: translateY(-2px);
+}
+
+.admin-back-button,
+.admin-edit-button,
+.admin-show-link {
+    background: rgba(10, 16, 12, 0.78);
+    color: #ffffff;
+    border: 1px solid rgba(154, 137, 75, 0.75);
+}
+
+.admin-back-button:hover,
+.admin-edit-button:hover,
+.admin-show-link:hover {
+    background: rgba(93, 91, 47, 0.90);
+}
+
+.admin-delete-button {
+    background: rgba(120, 30, 30, 0.75);
+    color: #ffffff;
+    border: 1px solid rgba(200, 90, 90, 0.75);
+}
+
+.admin-delete-button:hover {
+    background: rgba(160, 40, 40, 0.90);
+}
+
+/* Tableau (liste et fiche détail) */
+
+.admin-table-wrapper {
+    overflow-x: auto;
+    background: rgba(10, 16, 12, 0.82);
+    border: 1px solid rgba(154, 137, 75, 0.75);
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.45);
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.admin-table th,
+.admin-table td {
+    padding: 14px;
+    text-align: left;
+    border-bottom: 1px solid rgba(154, 137, 75, 0.40);
+}
+
+.admin-table th {
+    background: rgba(8, 15, 10, 0.90);
+}
+
+.admin-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.admin-table-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.admin-empty-cell {
+    text-align: center;
+    color: #b8b8b8;
+    padding: 30px 14px;
+}
+
+.admin-detail .admin-table th {
+    width: 180px;
+    color: #d9c07a;
+}
+
+/* Formulaire */
+
+.admin-form {
+    max-width: 560px;
+    background: rgba(10, 16, 12, 0.78);
+    border: 1px solid rgba(154, 137, 75, 0.75);
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.45);
+}
+
+.admin-field {
+    margin-bottom: 20px;
+}
+
+.admin-field label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.admin-field select,
+.admin-field textarea,
+.admin-field input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    background: rgba(8, 15, 10, 0.85);
+    color: #ffffff;
+    border: 1px solid rgba(154, 137, 75, 0.75);
+    border-radius: 6px;
+    outline: none;
+}
+
+.admin-field select:focus,
+.admin-field textarea:focus,
+.admin-field input:focus {
+    border-color: #b8a35a;
+    box-shadow: 0 0 0 2px rgba(184, 163, 90, 0.20);
+}
+
+.admin-field textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.admin-field-checkboxes label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: normal;
+    margin-right: 20px;
+}
+
+.admin-field-checkboxes input {
+    width: auto;
+}
+
+.admin-actions,
+.admin-footer-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.admin-delete-form {
+    margin: 0;
+    display: inline-block;
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+    .admin-page {
+        padding: 25px 15px;
+    }
+
+    .admin-header {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+    }
+
+    .admin-header h1 {
+        font-size: 1.6rem;
+    }
+
+    .admin-form {
+        padding: 20px;
+    }
+
+    .admin-table th,
+    .admin-table td {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+
+    .admin-actions,
+    .admin-footer-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .admin-table-actions {
+        flex-direction: column;
+    }
+}
+

@@ -1,4 +1,35 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_start(form, {'attr': {'class': 'admin-form'}}) }}
+
+    <div class="admin-field">
+        {{ form_label(form.name) }}
+        {{ form_widget(form.name) }}
+    </div>
+
+    <div class="admin-field">
+        {{ form_label(form.description) }}
+        {{ form_widget(form.description) }}
+    </div>
+
+    <div class="admin-field">
+        {{ form_label(form.illustration) }}
+        {{ form_widget(form.illustration) }}
+    </div>
+
+    <div class="admin-field">
+        {{ form_label(form.primaryColor) }}
+        {{ form_widget(form.primaryColor) }}
+    </div>
+
+    <div class="admin-field">
+        {{ form_label(form.createdAt) }}
+        {{ form_widget(form.createdAt) }}
+    </div>
+
+    <div class="admin-field">
+        {{ form_label(form.updatedAt) }}
+        {{ form_widget(form.updatedAt) }}
+    </div>
+
+    <button class="admin-submit-button">{{ button_label|default('Enregistrer') }}</button>
+
 {{ form_end(form) }}

@@ -1,11 +1,27 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Theme{% endblock %}
+{% block title %}Nouveau thème - Logic Coach{% endblock %}
 
 {% block body %}
-    <h1>Create new Theme</h1>
 
-    {{ include('theme/_form.html.twig') }}
+<div class="admin-page">
 
-    <a href="{{ path('app_theme_index') }}">back to list</a>
+    <div class="admin-container">
+
+        <div class="admin-header">
+            <h1>Créer un thème</h1>
+        </div>
+
+        {{ include('theme/_form.html.twig') }}
+
+        <div class="admin-actions">
+            <a class="admin-back-button" href="{{ path('app_theme_index') }}">
+                Retour à la liste
+            </a>
+        </div>
+
+    </div>
+
+</div>
+
 {% endblock %}
