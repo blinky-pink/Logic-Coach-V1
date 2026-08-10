@@ -4,47 +4,69 @@
 
 {% block body %}
 
-<h1>Lecture du message</h1>
+<div class="message-page">
 
-<table class="table">
+    <div class="message-container">
 
-    <tbody>
+        <div class="message-header">
+            <h1>Lecture du message</h1>
+        </div>
 
-        <tr>
-            <th>Expéditeur</th>
-            <td>{{ message.sender.email }}</td>
-        </tr>
+        <div class="message-detail">
 
-        <tr>
-            <th>Destinataire</th>
-            <td>{{ message.receiver.email }}</td>
-        </tr>
+            <div class="message-table-wrapper">
 
-        <tr>
-            <th>Date</th>
-            <td>{{ message.createdAt|date('d/m/Y H:i') }}</td>
-        </tr>
+                <table class="message-table">
 
-        <tr>
-            <th>Message</th>
-            <td>{{ message.message|nl2br }}</td>
-        </tr>
+                    <tbody>
 
-    </tbody>
+                        <tr>
+                            <th>Expéditeur</th>
+                            <td>{{ message.sender.email }}</td>
+                        </tr>
 
-</table>
+                        <tr>
+                            <th>Destinataire</th>
+                            <td>{{ message.receiver.email }}</td>
+                        </tr>
 
-<a class="btn btn-secondary" href="{{ path('app_message_index') }}">
-    Retour
-</a>
+                        <tr>
+                            <th>Date</th>
+                            <td>{{ message.createdAt|date('d/m/Y H:i') }}</td>
+                        </tr>
 
-{% if app.user == message.sender %}
-    <a class="btn btn-warning"
-       href="{{ path('app_message_edit', {'id': message.id}) }}">
-        Modifier
-    </a>
+                        <tr>
+                            <th>Message</th>
+                            <td>{{ message.message|nl2br }}</td>
+                        </tr>
 
-    {{ include('message/_delete_form.html.twig') }}
-{% endif %}
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+        <div class="message-footer-actions">
+
+            <a class="message-back-button" href="{{ path('app_message_index') }}">
+                Retour
+            </a>
+
+            {% if app.user == message.sender %}
+                <a class="message-edit-button"
+                   href="{{ path('app_message_edit', {'id': message.id}) }}">
+                    Modifier
+                </a>
+
+                {{ include('message/_delete_form.html.twig') }}
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</div>
 
 {% endblock %}

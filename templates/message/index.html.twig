@@ -4,59 +4,71 @@
 
 {% block body %}
 
-<h1>Boîte de réception</h1>
+<div class="message-page">
 
-<p>
-    <a href="{{ path('app_message_new') }}" class="btn btn-primary">
-        Nouveau message
-    </a>
-</p>
+    <div class="message-container">
 
-<table class="table">
+        <div class="message-header">
+            <h1>Boîte de réception</h1>
 
-    <thead>
-        <tr>
-            <th>Expéditeur</th>
-            <th>Message</th>
-            <th>Date</th>
-            <th>Action</th>
-        </tr>
-    </thead>
+            <a href="{{ path('app_message_new') }}" class="message-new-button">
+                Nouveau message
+            </a>
+        </div>
 
-    <tbody>
+        <div class="message-table-wrapper">
 
-    {% for message in messages %}
+            <table class="message-table">
 
-        <tr>
+                <thead>
+                    <tr>
+                        <th>Expéditeur</th>
+                        <th>Message</th>
+                        <th>Date</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
 
-            <td>{{ message.sender.email }}</td>
+                <tbody>
 
-            <td>{{ message.message }}</td>
+                {% for message in messages %}
 
-            <td>
-                {{ message.createdAt ? message.createdAt|date('d/m/Y H:i') : '' }}
-            </td>
+                    <tr>
 
-            <td>
-                <a href="{{ path('app_message_show', {'id': message.id}) }}">
-                    Lire
-                </a>
-            </td>
+                        <td>{{ message.sender.email }}</td>
 
-        </tr>
+                        <td>{{ message.message }}</td>
 
-    {% else %}
+                        <td>
+                            {{ message.createdAt ? message.createdAt|date('d/m/Y H:i') : '' }}
+                        </td>
 
-        <tr>
-            <td colspan="4">
-                Aucun message.
-            </td>
-        </tr>
+                        <td>
+                            <a class="message-read-link" href="{{ path('app_message_show', {'id': message.id}) }}">
+                                Lire
+                            </a>
+                        </td>
 
-    {% endfor %}
+                    </tr>
 
-    </tbody>
+                {% else %}
 
-</table>
+                    <tr>
+                        <td class="message-empty-cell" colspan="4">
+                            Aucun message.
+                        </td>
+                    </tr>
+
+                {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
 
 {% endblock %}

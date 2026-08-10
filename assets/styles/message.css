@@ -194,6 +194,67 @@
     margin: 0;
 }
 
+/* Thème Zen */
+
+body.theme-2 .message-page {
+    background-color: #150c1c;
+}
+
+body.theme-2 .message-new-button,
+body.theme-2 .message-submit-button {
+    background: linear-gradient(90deg, #73417d, #d1827f);
+}
+
+body.theme-2 .message-new-button:hover,
+body.theme-2 .message-submit-button:hover {
+    background: linear-gradient(90deg, #915bc0, #e7a7df);
+}
+
+body.theme-2 .message-back-button,
+body.theme-2 .message-edit-button {
+    background: rgba(20, 12, 30, 0.90);
+    border-color: rgba(215, 145, 210, 0.75);
+}
+
+body.theme-2 .message-back-button:hover,
+body.theme-2 .message-edit-button:hover {
+    background: rgba(115, 65, 125, 0.55);
+}
+
+body.theme-2 .message-table-wrapper,
+body.theme-2 .message-form {
+    background: rgba(35, 18, 45, 0.72);
+    border-color: rgba(215, 145, 210, 0.75);
+}
+
+body.theme-2 .message-table th {
+    background: rgba(20, 12, 30, 0.90);
+}
+
+body.theme-2 .message-table th,
+body.theme-2 .message-table td {
+    border-bottom-color: rgba(215, 145, 210, 0.40);
+}
+
+body.theme-2 .message-read-link,
+body.theme-2 .message-detail .message-table th {
+    color: #e7a7df;
+}
+
+body.theme-2 .message-field select,
+body.theme-2 .message-field textarea,
+body.theme-2 .message-field input {
+    background: rgba(20, 12, 30, 0.82);
+    border-color: rgba(215, 145, 210, 0.75);
+}
+
+body.theme-2 .message-field select:focus,
+body.theme-2 .message-field textarea:focus,
+body.theme-2 .message-field input:focus {
+    border-color: #e7a7df;
+    box-shadow: 0 0 0 2px rgba(231, 167, 223, 0.20);
+}
+
 /* Thème Travail */
 
 body.theme-3 .message-page {

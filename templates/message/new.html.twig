@@ -1,11 +1,27 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Message{% endblock %}
+{% block title %}Nouveau message - Logic Coach{% endblock %}
 
 {% block body %}
-    <h1>Create new Message</h1>
 
-    {{ include('message/_form.html.twig') }}
+<div class="message-page">
 
-    <a href="{{ path('app_message_index') }}">back to list</a>
+    <div class="message-container">
+
+        <div class="message-header">
+            <h1>Nouveau message</h1>
+        </div>
+
+        {{ include('message/_form.html.twig') }}
+
+        <div class="message-actions">
+            <a class="message-back-button" href="{{ path('app_message_index') }}">
+                Retour à la boîte de réception
+            </a>
+        </div>
+
+    </div>
+
+</div>
+
 {% endblock %}
