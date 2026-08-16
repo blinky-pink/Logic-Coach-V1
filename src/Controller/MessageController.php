@@ -46,6 +46,8 @@ final class MessageController extends AbstractController
             $entityManager->persist($message);
             $entityManager->flush();
 
+            $this->addFlash('success', 'Votre message a été envoyé.');
+
             return $this->redirectToRoute(
                 'app_message_index',
                 [],
@@ -96,6 +98,8 @@ final class MessageController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
+            $this->addFlash('success', 'Le message a été modifié.');
+
             return $this->redirectToRoute(
                 'app_message_index',
                 [],
@@ -130,6 +134,8 @@ final class MessageController extends AbstractController
         ) {
             $entityManager->remove($message);
             $entityManager->flush();
+
+            $this->addFlash('success', 'Le message a été supprimé.');
         }
 
         return $this->redirectToRoute(

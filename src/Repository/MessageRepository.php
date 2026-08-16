@@ -23,6 +23,9 @@ class MessageRepository extends ServiceEntityRepository
     public function findHistoryForUser(User $user): array
     {
         return $this->createQueryBuilder('message')
+            ->leftJoin('message.sender', 'sender')
+            ->leftJoin('message.receiver', 'receiver')
+            ->addSelect('sender', 'receiver')
             ->where('message.sender = :user')
             ->orWhere('message.receiver = :user')
             ->setParameter('user', $user)

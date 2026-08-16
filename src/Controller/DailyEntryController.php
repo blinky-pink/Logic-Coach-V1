@@ -56,6 +56,8 @@ final class DailyEntryController extends AbstractController
             $entityManager->persist($dailyEntry);
             $entityManager->flush();
 
+            $this->addFlash('success', 'Votre saisie quotidienne a été enregistrée.');
+
             return $this->redirectToRoute(
                 'app_daily_entry_index',
                 [],
@@ -93,6 +95,8 @@ final class DailyEntryController extends AbstractController
         )) {
             $entityManager->remove($dailyEntry);
             $entityManager->flush();
+
+            $this->addFlash('success', 'La saisie a été supprimée.');
         }
 
         return $this->redirectToRoute(

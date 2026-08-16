@@ -7,8 +7,9 @@
     overflow: hidden;
     background-image: url("/images/backgrounds/login-bg.png");
     background-size: cover;
-    background-position: center center;
+    background-position: center bottom;
     background-repeat: no-repeat;
+    background-attachment: fixed;
     color: #ffffff;
 }
 
@@ -208,6 +209,10 @@
 /* Responsive */
 
 @media (max-width: 900px) {
+    .login-page {
+        background-attachment: scroll;
+    }
+
     .login-section {
         width: 100%;
         max-width: 100%;

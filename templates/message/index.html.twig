@@ -9,6 +9,10 @@
     <div class="message-container">
 
         <div class="message-header">
+            <a class="message-back-button" href="{{ path('app_dashboard') }}">
+                ← Retour au tableau de bord
+            </a>
+
             <h1>Boîte de réception</h1>
 
             <a href="{{ path('app_message_new') }}" class="message-new-button">
@@ -35,7 +39,7 @@
 
                     <tr>
 
-                        <td>{{ message.sender.email }}</td>
+                        <td>{{ message.sender.pseudo }}</td>
 
                         <td>{{ message.message }}</td>
 

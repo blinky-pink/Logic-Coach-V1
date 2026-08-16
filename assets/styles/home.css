@@ -1,5 +1,10 @@
 /* Home */
-
+ 
+body:has(.home) {
+    height: 100vh;
+    overflow: hidden;
+}
+ 
 .home {
     position: relative;
     width: 100%;
@@ -12,81 +17,82 @@
     color: #f5f5f5;
     text-align: center;
 }
-
+ 
 /* Hero */
-
+ 
 .hero {
     position: relative;
     width: 100%;
     height: 100%;
 }
-
+ 
 .hero-content {
     position: absolute;
     inset: 0;
 }
-
+ 
 /* Titre */
-
+ 
 .title {
     position: absolute;
-    top: 3%;
+    top: 0%;
     left: 50%;
     transform: translateX(-50%);
     width: 700px;
     z-index: 2;
 }
-
+ 
 .hero h1 {
     font-size: 3.5rem;
     white-space: nowrap;
 }
-
+ 
 .subtitle {
     position: absolute;
-    top: 10%;
+    top: 19%;
     left: 50%;
     transform: translateX(-50%);
     width: 700px;
     z-index: 2;
     font-size: 1.2rem;
 }
-
+ 
 .introduction-top {
     position: absolute;
-    top: 27%;
+    top: 25%;
     left: 50%;
     transform: translateX(-50%);
     width: 650px;
     z-index: 2;
 }
-
+ 
 .introduction-left,
 .introduction-right {
     position: absolute;
-    top: 40%;
-    width: 220px;
+    top: 42%;
+    width: 160px;
     z-index: 2;
+    line-height: 1.4;
 }
-
+ 
 .introduction-left {
-    left: 32%;
+    left: 37%;
     transform: translateX(-50%);
 }
-
+ 
 .introduction-right {
-    right: 32%;
+    right: 37%;
     transform: translateX(50%);
 }
-
+ 
 .introduction-top,
 .introduction-left,
 .introduction-right {
     font-size: 0.9rem;
 }
-
+ 
 /* Icônes */
-
+ 
 .feature-sleep,
 .feature-energy,
 .feature-stress,
@@ -96,104 +102,104 @@
     width: 150px;
     z-index: 3;
 }
-
+ 
 .feature-sleep { top: 24%; left: 25%; }
 .feature-energy { top: 24%; right: 25%; }
 .feature-stress { top: 52%; left: 20%; }
 .feature-motivation { top: 52%; right: 20%; }
-
+ 
 .feature-mood {
     bottom: 11%;
     left: 50%;
     transform: translateX(-50%);
 }
-
+ 
 .feature {
     width: 150px;
 }
-
+ 
 .feature img {
     width: 120px;
     margin: 0 auto;
 }
-
+ 
 .feature p {
     margin-top: 8px;
     font-size: .9rem;
 }
-
+ 
 /* Cercle central */
-
+ 
 .center-circle {
     position: absolute;
     top: 46%;
     left: 50%;
     transform: translate(-50%, -50%);
-
+ 
     width: 210px;
     height: 210px;
-
+ 
     z-index: 3;
-
+ 
     display: flex;
     justify-content: center;
     align-items: center;
-
+ 
     background: transparent;
     border: 3px solid rgba(255, 255, 255, 0.75);
     border-radius: 50%;
-
+ 
     box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35);
-
+ 
     text-decoration: none;
-
+ 
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-
+ 
 .center-circle span {
     display: flex;
     justify-content: center;
     align-items: center;
-
+ 
     width: 140px;
     height: 140px;
-
+ 
     border-radius: 50%;
-
+ 
     background: linear-gradient(135deg, rgba(168, 140, 170, 0.65), rgba(214, 160, 140, 0.65));
-
+ 
     color: #ffffff;
     font-weight: 600;
     text-align: center;
-
+ 
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
 }
-
+ 
 .center-circle:hover {
     transform: translate(-50%, -50%) translateY(-3px);
     box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
 }
-
+ 
 /* Responsive */
-
+ 
 @media (max-width: 900px) {
     .title,
     .subtitle,
     .introduction-top {
         width: 90%;
     }
-
+ 
     .hero h1 {
         font-size: 2.4rem;
         white-space: normal;
     }
-
+ 
     .introduction-left,
     .introduction-right {
         width: 180px;
         font-size: .85rem;
     }
-
+ 
     .feature-sleep,
     .feature-energy,
     .feature-stress,
@@ -201,54 +207,135 @@
     .feature-mood {
         width: 100px;
     }
-
+ 
     .feature img {
         width: 70px;
     }
-
+ 
     .feature p {
         font-size: .8rem;
     }
-
+ 
     .center-circle {
         width: 150px;
         height: 150px;
     }
-
+ 
     .center-circle span {
         width: 105px;
         height: 105px;
         font-size: 0.85rem;
     }
 }
-
+ 
 @media (max-width: 600px) {
     .subtitle {
         font-size: 1rem;
     }
-
+ 
     .introduction-top,
     .introduction-left,
     .introduction-right {
         font-size: .8rem;
     }
-
+ 
     .introduction-left {
         left: 22%;
     }
-
+ 
     .introduction-right {
         right: 22%;
     }
-
+ 
     .center-circle {
         width: 120px;
         height: 120px;
     }
-
+ 
     .center-circle span {
         width: 85px;
         height: 85px;
         font-size: 0.75rem;
+    }
+}
+ 
+/* Mise en page empilée pour tablette/mobile : le calage absolu sur le
+   soleil ne fonctionne plus quand le format devient étroit et haut,
+   donc on repasse en flux normal centré au lieu d'essayer de coller
+   aux coordonnées du soleil. */
+@media (max-width: 768px) {
+    body:has(.home) {
+        height: auto;
+        overflow: auto;
+    }
+
+    .home {
+        height: auto;
+        min-height: 100vh;
+        overflow: visible;
+        padding: 40px 0;
+    }
+
+    .hero {
+        position: relative;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 14px;
+        padding: 0 20px;
+    }
+
+    .title,
+    .subtitle,
+    .introduction-top,
+    .introduction-left,
+    .introduction-right {
+        position: static;
+        width: 100%;
+        max-width: 340px;
+        transform: none;
+        text-align: center;
+    }
+
+    .hero-content {
+        position: static;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        justify-items: center;
+        align-items: center;
+        gap: 20px;
+        margin-top: 10px;
+    }
+
+    .center-circle {
+        position: static;
+        transform: none;
+        grid-column: 1 / -1;
+        justify-self: center;
+        order: -1;
+        margin: 0 auto 10px;
+    }
+
+    .center-circle:hover {
+        transform: translateY(-3px);
+    }
+
+    .feature-sleep,
+    .feature-energy,
+    .feature-stress,
+    .feature-motivation,
+    .feature-mood {
+        position: static;
+        width: auto;
+        transform: none;
+    }
+
+    .feature {
+        width: 90px;
+    }
+
+    .feature img {
+        width: 60px;
     }
 }

@@ -61,6 +61,12 @@
                 </li>
 
                 <li>
+                    <a href="{{ path('app_message_index') }}">
+                        Messages
+                    </a>
+                </li>
+
+                <li>
                     <a href="{{ path('app_theme_index') }}">
                         Choix du thème
                     </a>
@@ -102,12 +108,16 @@
                     <p class="score-state">
                         État :
 
-                        {% if latest_daily_entry.state == 'good' %}
-                            <strong>Bon</strong>
-                        {% elseif latest_daily_entry.state == 'medium' %}
+                        {% if latest_daily_entry.state == 'excellent' %}
+                            <strong>Excellent</strong>
+                        {% elseif latest_daily_entry.state == 'good' %}
+                            <strong>Bien</strong>
+                        {% elseif latest_daily_entry.state == 'average' %}
                             <strong>Moyen</strong>
-                        {% elseif latest_daily_entry.state == 'weak' %}
-                            <strong>Faible</strong>
+                        {% elseif latest_daily_entry.state == 'difficult' %}
+                            <strong>Difficulté</strong>
+                        {% elseif latest_daily_entry.state == 'critical' %}
+                            <strong>Critique</strong>
                         {% else %}
                             <strong>{{ latest_daily_entry.state }}</strong>
                         {% endif %}
@@ -236,7 +246,7 @@
                             à mieux suivre votre bien-être au quotidien.
                         </p>
 
-                        <a
+                        
                             href="{{ path('app_daily_entry_new') }}"
                             class="dashboard-empty-button"
                         >
@@ -249,7 +259,7 @@
                             Aucun thème n'est encore sélectionné.
                         </p>
 
-                        <a
+                        
                             href="{{ path('app_theme_index') }}"
                             class="dashboard-empty-button"
                         >

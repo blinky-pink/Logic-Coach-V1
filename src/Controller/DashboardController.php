@@ -6,6 +6,7 @@ use App\Entity\User;
 use App\Repository\DailyEntryRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
@@ -32,8 +33,12 @@ final class DashboardController extends AbstractController
 
     #[Route('/dashboard/welcome/complete', name: 'app_dashboard_welcome_complete', methods: ['POST'])]
     public function completeWelcome(
+        Request $request,
         EntityManagerInterface $entityManager
     ): Response {
+        $this->isCsrfTokenValid('welcome_complete', (string) $request->request->get('_token'))
+            ?: throw $this->createAccessDeniedException('Token CSRF invalide.');
+
         /** @var User $user */
         $user = $this->getUser();
 

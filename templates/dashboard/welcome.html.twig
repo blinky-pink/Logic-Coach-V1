@@ -47,6 +47,7 @@
                 method="post"
                 action="{{ path('app_dashboard_welcome_complete') }}"
             >
+                <input type="hidden" name="_token" value="{{ csrf_token('welcome_complete') }}">
                 <button
                     type="submit"
                     class="welcome-button"

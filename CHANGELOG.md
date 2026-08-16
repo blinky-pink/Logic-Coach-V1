@@ -1,6 +1,6 @@
 # CHANGELOG
 
-Toutes les evolutions importantes du projet Logic Coach V1 sont documentees dans ce fichier.
+Toutes les évolutions importantes du projet Logic Coach V1 sont documentées dans ce fichier.
 
 ---
 
@@ -9,19 +9,19 @@ Toutes les evolutions importantes du projet Logic Coach V1 sont documentees dans
 ### Ajout
 
 - Initialisation du projet Symfony 7.4 LTS.
-- Creation de l'entite User.
-- Creation de l'entite Theme.
-- Creation de l'entite DailyEntry.
-- Creation de l'entite Message.
-- Generation des CRUD Symfony.
+- Création de l'entité User.
+- Création de l'entité Theme.
+- Création de l'entité DailyEntry.
+- Création de l'entité Message.
+- Génération des CRUD Symfony.
 - Mise en place de l'authentification.
 - Hachage des mots de passe.
-- Configuration de la securite Symfony.
+- Configuration de la sécurité Symfony.
 - Protection des routes.
-- Validation du schema Doctrine.
+- Validation du schéma Doctrine.
 - Premiers tests fonctionnels.
 
-### Corrige
+### Corrigé
 
 - Correction des relations entre User et Message.
 - Correction du formulaire User.
@@ -34,14 +34,14 @@ Toutes les evolutions importantes du projet Logic Coach V1 sont documentees dans
 
 ### Landing Page
 
-- Creation de la page d'accueil.
-- Ajout du bouton d'acces.
-- Mise en place du theme sombre.
+- Création de la page d'accueil.
+- Ajout du bouton d'accès.
+- Mise en place du thème sombre.
 
 ### Documentation
 
-- Creation du README.
-- Creation de la roadmap.
+- Création du README.
+- Création de la roadmap.
 
 ---
 
@@ -49,23 +49,23 @@ Toutes les evolutions importantes du projet Logic Coach V1 sont documentees dans
 
 ### DailyEntry
 
-- Association automatique d'une saisie quotidienne a l'utilisateur connecte.
+- Association automatique d'une saisie quotidienne à l'utilisateur connecté.
 - Calcul automatique de la note de sommeil.
 - Calcul automatique du score quotidien sur 50.
 - Prise en compte du stress avec la formule `10 - stress`.
-- Determination automatique de l'etat du jour.
-- Generation automatique d'un message.
-- Generation automatique d'un conseil personnalise.
-- Affichage de l'etat dans les pages de liste et de detail.
+- Détermination automatique de l'état du jour.
+- Génération automatique d'un message.
+- Génération automatique d'un conseil personnalisé.
+- Affichage de l'état dans les pages de liste et de détail.
 
 ### Theme
 
-- Ajout du choix du theme pour l'utilisateur connecte.
-- Affichage du theme actuel dans la liste des themes.
-- Ajout d'un acces au choix du theme depuis le tableau de bord.
+- Ajout du choix du thème pour l'utilisateur connecté.
+- Affichage du thème actuel dans la liste des thèmes.
+- Ajout d'un accès au choix du thème depuis le tableau de bord.
 
 ### Documentation
 
-- Mise a jour du README.
-- Mise a jour du CHANGELOG.
-- Mise a jour de la ROADMAP.
+- Mise à jour du README.
+- Mise à jour du CHANGELOG.
+- Mise à jour de la ROADMAP.
