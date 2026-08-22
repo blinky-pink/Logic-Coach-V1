@@ -1,4 +1,4 @@
-.dashboard {
+    .dashboard {
     display: flex;
     width: 100%;
     min-height: 100vh;
@@ -100,6 +100,102 @@
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 20px;
+}
+
+body.theme-1 .dashboard-grid {
+    position: fixed;
+    left: 50%;
+    top: 490px;
+    width: 700px;
+    gap: 6px;
+    transform: translateX(-50%);
+}
+
+body.theme-1 .card {
+    min-height: auto;
+    padding: 8px 12px;
+    line-height: 1.15;
+}
+
+body.theme-1 .card h2 {
+    font-size: 0.9rem;
+    margin-bottom: 3px;
+    line-height: 1.15;
+    white-space: nowrap;
+}
+
+body.theme-1 .card.score {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+body.theme-1 .score-left {
+    flex: 0 0 140px;
+}
+
+body.theme-1 .score-left h2 {
+    margin-bottom: 2px;
+}
+
+body.theme-1 .score-value {
+    margin: 0;
+    font-size: 1.4rem;
+    white-space: nowrap;
+}
+
+body.theme-1 .score-value span {
+    font-size: 0.8rem;
+}
+
+body.theme-1 .score-state {
+    font-size: 0.8rem;
+    margin: 0;
+    white-space: nowrap;
+}
+
+body.theme-1 .card.indicators {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 10px;
+}
+
+body.theme-1 .card.indicators h2 {
+    grid-column: 1 / -1;
+    white-space: normal;
+}
+
+body.theme-1 .indicators p {
+    margin: 2px 0;
+    font-size: 0.8rem;
+    line-height: 1.15;
+    white-space: nowrap;
+}
+
+body.theme-1 .card.evolution p {
+    font-size: 0.8rem;
+    line-height: 1.2;
+    margin: 0;
+}
+
+body.theme-1 .dashboard-message {
+    margin-bottom: 4px;
+    padding: 4px 10px;
+}
+
+body.theme-1 .dashboard-advice {
+    padding: 4px 10px;
+}
+
+body.theme-1 .dashboard-message p,
+body.theme-1 .dashboard-advice p {
+    font-size: 0.8rem;
+}
+
+body.theme-1 .card.evolution,
+body.theme-1 .card.messages {
+    grid-column: 1 / -1;
 }
 
 .card {
@@ -251,7 +347,7 @@
 
 body.theme-1 .dashboard {
     position: relative;
-    min-height: 100vh;
+    height: 100vh;
     background:
         linear-gradient(
             rgba(3, 8, 3, 0.05),
@@ -1296,3 +1392,4 @@ body.theme-3 .dashboard-advice {
 body.theme-3 .dashboard-empty-content {
     transform: translate(25px, 70px);
 }
+    

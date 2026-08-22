@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+﻿{% extends 'base.html.twig' %}
 
 {% block title %}Tableau de bord - Logic Coach{% endblock %}
 
@@ -98,30 +98,34 @@
 
                 <article class="card score">
 
-                    <h2>Score global</h2>
+                    <div class="score-left">
+
+                        <h2>Score global</h2>
+
+                        <p class="score-state">
+                            État :
+
+                            {% if latest_daily_entry.state == 'excellent' %}
+                                <strong>Excellent</strong>
+                            {% elseif latest_daily_entry.state == 'good' %}
+                                <strong>Bien</strong>
+                            {% elseif latest_daily_entry.state == 'average' %}
+                                <strong>Moyen</strong>
+                            {% elseif latest_daily_entry.state == 'difficult' %}
+                                <strong>Difficulté</strong>
+                            {% elseif latest_daily_entry.state == 'critical' %}
+                                <strong>Critique</strong>
+                            {% else %}
+                                <strong>{{ latest_daily_entry.state }}</strong>
+                            {% endif %}
+
+                        </p>
+
+                    </div>
 
                     <p class="score-value">
                         {{ latest_daily_entry.score }}
                         <span>/ 50</span>
-                    </p>
-
-                    <p class="score-state">
-                        État :
-
-                        {% if latest_daily_entry.state == 'excellent' %}
-                            <strong>Excellent</strong>
-                        {% elseif latest_daily_entry.state == 'good' %}
-                            <strong>Bien</strong>
-                        {% elseif latest_daily_entry.state == 'average' %}
-                            <strong>Moyen</strong>
-                        {% elseif latest_daily_entry.state == 'difficult' %}
-                            <strong>Difficulté</strong>
-                        {% elseif latest_daily_entry.state == 'critical' %}
-                            <strong>Critique</strong>
-                        {% else %}
-                            <strong>{{ latest_daily_entry.state }}</strong>
-                        {% endif %}
-
                     </p>
 
                 </article>
