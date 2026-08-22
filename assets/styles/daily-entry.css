@@ -1,4 +1,4 @@
-/* Daily entry */
+    /* Daily entry */
 
 .daily-entry-page {
     min-height: 100vh;
@@ -334,9 +334,9 @@ body.theme-3 .daily-entry-slider:not(.daily-entry-slider-negative)::-moz-range-t
     background: rgba(93, 91, 47, 0.90);
 }
 
-/* Thèmes graphiques */
+/* Thèmes graphiques : page quotidien (formulaire de saisie) */
 
-body.theme-1 .daily-entry-page {
+body.theme-1 .daily-entry-page--quotidien {
     background-image: url('/images/themes/militaire-quotidienne.png');
     background-size: cover;
     background-position: center center;
@@ -344,7 +344,7 @@ body.theme-1 .daily-entry-page {
     background-attachment: fixed;
 }
 
-body.theme-2 .daily-entry-page {
+body.theme-2 .daily-entry-page--quotidien {
     background-image: url('/images/themes/zen-quotidienne.png');
     background-size: cover;
     background-position: center center;
@@ -352,7 +352,61 @@ body.theme-2 .daily-entry-page {
     background-attachment: fixed;
 }
 
-body.theme-3 .daily-entry-page {
+body.theme-3 .daily-entry-page--quotidien {
+    background-image: url('/images/themes/travail-quotidienne.png');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+/* Thèmes graphiques : page résultat (score / état après validation) */
+/* Zen et Travail réutilisent encore l'image quotidienne en attendant leurs images dédiées "resultat" */
+
+body.theme-1 .daily-entry-page--resultat {
+    background-image: url('/images/themes/militaire-resultat.png');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+body.theme-2 .daily-entry-page--resultat {
+    background-image: url('/images/themes/zen-quotidienne.png');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+body.theme-3 .daily-entry-page--resultat {
+    background-image: url('/images/themes/travail-quotidienne.png');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+/* Thèmes graphiques : page historique (tableau des entrées) */
+/* Provisoire : réutilise l'image quotidienne en attendant les images dédiées "historique" */
+
+body.theme-1 .daily-entry-page--historique {
+    background-image: url('/images/themes/militaire-historique.png');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+body.theme-2 .daily-entry-page--historique {
+    background-image: url('/images/themes/zen-quotidienne.png');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+body.theme-3 .daily-entry-page--historique {
     background-image: url('/images/themes/travail-quotidienne.png');
     background-size: cover;
     background-position: center center;
@@ -477,3 +531,4 @@ body.theme-3 .daily-entry-advice {
         padding: 10px;
     }
 }
+    

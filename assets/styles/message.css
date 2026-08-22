@@ -1,4 +1,4 @@
-/* Message */
+    /* Message */
 
 .message-page {
     min-height: 100vh;
@@ -194,10 +194,25 @@
     margin: 0;
 }
 
+/* Thème Militaire */
+
+body.theme-1 .message-page {
+    background-image: url('/images/themes/militaire-message.png');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
 /* Thème Zen */
 
 body.theme-2 .message-page {
     background-color: #150c1c;
+    background-image: url('/images/themes/zen-message.png');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 body.theme-2 .message-new-button,
@@ -256,9 +271,15 @@ body.theme-2 .message-field input:focus {
 }
 
 /* Thème Travail */
+/* Provisoire : réutilise l'image quotidienne en attendant une image dédiée "message" pour ce thème */
 
 body.theme-3 .message-page {
     background-color: #04101c;
+    background-image: url('/images/themes/travail-quotidienne.png');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 body.theme-3 .message-new-button,
@@ -321,6 +342,7 @@ body.theme-3 .message-field input:focus {
 @media (max-width: 768px) {
     .message-page {
         padding: 25px 15px;
+        background-attachment: scroll;
     }
 
     .message-header {
@@ -356,3 +378,4 @@ body.theme-3 .message-field input:focus {
         text-align: center;
     }
 }
+    
