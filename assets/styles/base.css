@@ -17,7 +17,11 @@ body {
 }
 
 html:has(body.theme-1 .dashboard),
-body.theme-1:has(.dashboard) {
+html:has(body.theme-2 .dashboard),
+html:has(body.theme-3 .dashboard),
+body.theme-1:has(.dashboard),
+body.theme-2:has(.dashboard),
+body.theme-3:has(.dashboard) {
     height: 100vh;
     overflow: hidden;
 }

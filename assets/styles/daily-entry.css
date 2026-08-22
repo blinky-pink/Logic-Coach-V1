@@ -1,4 +1,4 @@
-    /* Daily entry */
+        /* Daily entry */
 
 .daily-entry-page {
     min-height: 100vh;
@@ -372,7 +372,7 @@ body.theme-1 .daily-entry-page--resultat {
 }
 
 body.theme-2 .daily-entry-page--resultat {
-    background-image: url('/images/themes/zen-quotidienne.png');
+    background-image: url('/images/themes/zen-resultat.png');
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
@@ -380,7 +380,7 @@ body.theme-2 .daily-entry-page--resultat {
 }
 
 body.theme-3 .daily-entry-page--resultat {
-    background-image: url('/images/themes/travail-quotidienne.png');
+    background-image: url('/images/themes/travail-resultat.png');
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
@@ -399,7 +399,7 @@ body.theme-1 .daily-entry-page--historique {
 }
 
 body.theme-2 .daily-entry-page--historique {
-    background-image: url('/images/themes/zen-quotidienne.png');
+    background-image: url('/images/themes/zen-historique.png');
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
@@ -407,7 +407,7 @@ body.theme-2 .daily-entry-page--historique {
 }
 
 body.theme-3 .daily-entry-page--historique {
-    background-image: url('/images/themes/travail-quotidienne.png');
+    background-image: url('/images/themes/travail-historique.png');
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
@@ -531,4 +531,6 @@ body.theme-3 .daily-entry-advice {
         padding: 10px;
     }
 }
+    
+
     

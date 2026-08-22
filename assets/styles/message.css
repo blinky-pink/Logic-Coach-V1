@@ -1,4 +1,4 @@
-    /* Message */
+        /* Message */
 
 .message-page {
     min-height: 100vh;
@@ -271,11 +271,11 @@ body.theme-2 .message-field input:focus {
 }
 
 /* Thème Travail */
-/* Provisoire : réutilise l'image quotidienne en attendant une image dédiée "message" pour ce thème */
+/* Thème Travail */
 
 body.theme-3 .message-page {
     background-color: #04101c;
-    background-image: url('/images/themes/travail-quotidienne.png');
+    background-image: url('/images/themes/travail-message.png');
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
@@ -378,4 +378,6 @@ body.theme-3 .message-field input:focus {
         text-align: center;
     }
 }
+    
+
     
