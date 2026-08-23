@@ -185,15 +185,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function __serialize(): array
     {
         $data = (array) $this;
-        $data["\0".self::class."\0password"] = hash('crc32c', $this->password);
+        $data["\0" . self::class . "\0password"] = hash('crc32c', $this->password);
 
         return $data;
     }
 
     #[\Deprecated]
-    public function eraseCredentials(): void
-    {
-    }
+    public function eraseCredentials(): void {}
 
     /**
      * @return Collection<int, Message>

@@ -165,13 +165,13 @@ Sommeil
 
 Le score détermine cinq états :
 
-| Score | État | Signification |
-|---:|---|---|
-| 40 - 50 | excellent | Excellent |
-| 30 - 39 | good | Bien |
-| 20 - 29 | average | Moyen |
-| 10 - 19 | difficult | Difficulté |
-| 0 - 9 | critical | Critique |
+| Score   |    État   | Signification |
+
+| 40 - 50 | excellent |  Excellent    |
+| 30 - 39 |   good    |    Bien       |
+| 20 - 29 | average   |   Moyen       |
+| 10 - 19 | difficult |  Difficulté   |
+|  0 -  9 | critical  |   Critique    |
 
 Chaque état génère automatiquement :
 

@@ -101,7 +101,6 @@ final class ThemeController extends AbstractController
                 $user->setTheme($theme);
                 $entityManager->flush();
 
-                $this->addFlash('success', 'Le thème « '.$theme->getName().' » a été sélectionné.');
             }
         }
 

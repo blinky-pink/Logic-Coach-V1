@@ -128,7 +128,7 @@ final class MessageController extends AbstractController
 
         if (
             $this->isCsrfTokenValid(
-                'delete'.$message->getId(),
+                'delete' . $message->getId(),
                 $request->getPayload()->getString('_token')
             )
         ) {

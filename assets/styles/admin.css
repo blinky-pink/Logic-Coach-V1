@@ -1,10 +1,26 @@
-/* Pages admin (ROLE_ADMIN) : gestion des utilisateurs et des thèmes */
+    /* Pages admin (ROLE_ADMIN) : gestion des utilisateurs et des thèmes */
 
 .admin-page {
     min-height: 100vh;
     background-color: #0b1220;
     color: #ffffff;
     padding: 40px 20px;
+}
+
+.admin-page--users {
+    background-image: url("/images/admin/admin-users-bg.png");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.admin-page--themes {
+    background-image: url("/images/admin/admin-themes-bg.png");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 .admin-container {
@@ -240,3 +256,5 @@
     }
 }
 
+
+    

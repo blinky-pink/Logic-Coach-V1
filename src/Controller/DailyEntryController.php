@@ -18,8 +18,7 @@ final class DailyEntryController extends AbstractController
 {
     public function __construct(
         private readonly BusinessRulesService $businessRulesService
-    ) {
-    }
+    ) {}
 
     #[Route(name: 'app_daily_entry_index', methods: ['GET'])]
     public function index(DailyEntryRepository $dailyEntryRepository): Response
@@ -90,7 +89,7 @@ final class DailyEntryController extends AbstractController
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
         if ($this->isCsrfTokenValid(
-            'delete'.$dailyEntry->getId(),
+            'delete' . $dailyEntry->getId(),
             $request->getPayload()->getString('_token')
         )) {
             $entityManager->remove($dailyEntry);

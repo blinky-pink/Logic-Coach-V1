@@ -1,4 +1,4 @@
-﻿{% extends 'base.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block title %}Tableau de bord - Logic Coach{% endblock %}
 
@@ -71,6 +71,16 @@
                         Choix du thème
                     </a>
                 </li>
+
+                {% if is_granted('ROLE_ADMIN') %}
+
+                    <li>
+                        <a href="{{ path('app_user_index') }}">
+                            Gestion des utilisateurs
+                        </a>
+                    </li>
+
+                {% endif %}
 
                 <li>
                     <a href="{{ path('app_logout') }}">
@@ -250,7 +260,7 @@
                             à mieux suivre votre bien-être au quotidien.
                         </p>
 
-                        
+                        <a
                             href="{{ path('app_daily_entry_new') }}"
                             class="dashboard-empty-button"
                         >
@@ -263,7 +273,7 @@
                             Aucun thème n'est encore sélectionné.
                         </p>
 
-                        
+                        <a
                             href="{{ path('app_theme_index') }}"
                             class="dashboard-empty-button"
                         >
