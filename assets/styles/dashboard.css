@@ -1,8 +1,18 @@
-    .dashboard {
+        .dashboard {
     display: flex;
     width: 100%;
     min-height: 100vh;
     background-color: #0b1220;
+    background-image:
+        linear-gradient(
+            rgba(5, 8, 15, 0.55),
+            rgba(5, 8, 15, 0.55)
+        ),
+        url("/images/dashboard/landing-dashboard.png");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     color: #ffffff;
 }
 
@@ -270,8 +280,9 @@ body.theme-1 .card.messages {
 .dashboard-empty {
     min-height: 500px;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
+    padding-left: 5%;
 }
 
 .dashboard-empty-content {
@@ -1584,4 +1595,6 @@ body.theme-3 .dashboard-advice {
 body.theme-3 .dashboard-empty-content {
     transform: translate(25px, 70px);
 }
+    
+
     
