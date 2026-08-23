@@ -86,7 +86,7 @@ final class ThemeControllerTest extends WebTestCase
 
         self::assertResponseIsSuccessful();
 
-        $this->client->submitForm('Save', [
+        $this->client->submitForm('Enregistrer', [
             'theme[name]' => 'Theme Test',
             'theme[description]' => 'Description du theme',
             'theme[illustration]' => 'theme-test.png',
@@ -127,7 +127,7 @@ final class ThemeControllerTest extends WebTestCase
 
         $this->client->request(
             'GET',
-            '/theme/'.$theme->getId()
+            '/theme/' . $theme->getId()
         );
 
         self::assertResponseIsSuccessful();
@@ -142,12 +142,12 @@ final class ThemeControllerTest extends WebTestCase
 
         $this->client->request(
             'GET',
-            '/theme/'.$themeId.'/edit'
+            '/theme/' . $themeId . '/edit'
         );
 
         self::assertResponseIsSuccessful();
 
-        $this->client->submitForm('Update', [
+        $this->client->submitForm('Mettre à jour', [
             'theme[name]' => 'Theme Modifie',
             'theme[description]' => 'Nouvelle description',
             'theme[illustration]' => 'theme-modifie.png',
@@ -182,12 +182,12 @@ final class ThemeControllerTest extends WebTestCase
 
         $crawler = $this->client->request(
             'GET',
-            '/theme/'.$theme->getId()
+            '/theme/' . $theme->getId()
         );
 
         self::assertResponseIsSuccessful();
 
-        $form = $crawler->selectButton('Delete')->form();
+        $form = $crawler->selectButton('Supprimer')->form();
 
         $this->client->submit($form);
 
@@ -212,7 +212,7 @@ final class ThemeControllerTest extends WebTestCase
 
         $this->client->request(
             'GET',
-            '/theme/'.$theme->getId().'/edit'
+            '/theme/' . $theme->getId() . '/edit'
         );
 
         self::assertResponseStatusCodeSame(403);
@@ -224,7 +224,7 @@ final class ThemeControllerTest extends WebTestCase
 
         $this->client->request(
             'POST',
-            '/theme/'.$theme->getId(),
+            '/theme/' . $theme->getId(),
             [
                 '_token' => 'invalid-token',
             ]
@@ -243,14 +243,14 @@ final class ThemeControllerTest extends WebTestCase
     private function createUser(string $email, array $roles): User
     {
         $user = new User();
-    
+
         $user->setEmail($email);
         $user->setPassword('test-password');
         $user->setRoles($roles);
-    
+
         $user->setFirstname('Test');
         $user->setLastname('User');
-    
+
         // Génère un pseudo unique à partir de l'adresse e-mail
         $user->setPseudo(
             str_replace(
@@ -259,10 +259,10 @@ final class ThemeControllerTest extends WebTestCase
                 $email
             )
         );
-    
+
         $this->entityManager->persist($user);
         $this->entityManager->flush();
-    
+
         return $user;
     }
 

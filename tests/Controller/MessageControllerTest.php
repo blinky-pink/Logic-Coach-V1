@@ -121,7 +121,7 @@ final class MessageControllerTest extends WebTestCase
 
         self::assertResponseIsSuccessful();
 
-        $this->client->submitForm('Save', [
+        $this->client->submitForm('Envoyer', [
             'message[receiver]' => (string) $receiver->getId(),
             'message[message]' => 'Message fonctionnel de test',
         ]);
@@ -166,7 +166,7 @@ final class MessageControllerTest extends WebTestCase
 
         $this->client->request(
             'GET',
-            '/message/'.$message->getId()
+            '/message/' . $message->getId()
         );
 
         self::assertResponseIsSuccessful();
@@ -181,7 +181,7 @@ final class MessageControllerTest extends WebTestCase
 
         $this->client->request(
             'GET',
-            '/message/'.$message->getId()
+            '/message/' . $message->getId()
         );
 
         self::assertResponseStatusCodeSame(403);
@@ -196,7 +196,7 @@ final class MessageControllerTest extends WebTestCase
 
         $this->client->request(
             'GET',
-            '/message/'.$message->getId().'/edit'
+            '/message/' . $message->getId() . '/edit'
         );
 
         self::assertResponseStatusCodeSame(403);
@@ -211,7 +211,7 @@ final class MessageControllerTest extends WebTestCase
 
         $this->client->request(
             'POST',
-            '/message/'.$message->getId(),
+            '/message/' . $message->getId(),
             [
                 '_token' => 'invalid-token',
             ]
@@ -235,11 +235,11 @@ final class MessageControllerTest extends WebTestCase
         $user->setRoles(['ROLE_USER']);
         $user->setFirstname('Test');
         $user->setLastname('Utilisateur');
-        $user->setPseudo('message-'.uniqid());
-    
+        $user->setPseudo('message-' . uniqid());
+
         $this->entityManager->persist($user);
         $this->entityManager->flush();
-    
+
         return $user;
     }
 

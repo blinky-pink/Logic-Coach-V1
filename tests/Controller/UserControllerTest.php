@@ -99,7 +99,7 @@ final class UserControllerTest extends WebTestCase
 
         self::assertResponseIsSuccessful();
 
-        $this->client->submitForm('Save', [
+        $this->client->submitForm('Enregistrer', [
             'user[email]' => 'new-user@example.com',
             'user[firstname]' => 'Nouveau',
             'user[lastname]' => 'Utilisateur',
@@ -160,7 +160,7 @@ final class UserControllerTest extends WebTestCase
 
         $this->client->request(
             'GET',
-            '/user/'.$user->getId()
+            '/user/' . $user->getId()
         );
 
         self::assertResponseIsSuccessful();
@@ -176,12 +176,12 @@ final class UserControllerTest extends WebTestCase
 
         $this->client->request(
             'GET',
-            '/user/'.$userId.'/edit'
+            '/user/' . $userId . '/edit'
         );
 
         self::assertResponseIsSuccessful();
 
-        $this->client->submitForm('Update', [
+        $this->client->submitForm('Mettre à jour', [
             'user[email]' => 'edited-user@example.com',
             'user[firstname]' => 'Utilisateur',
             'user[lastname]' => 'Modifie',
@@ -251,13 +251,13 @@ final class UserControllerTest extends WebTestCase
 
         $crawler = $this->client->request(
             'GET',
-            '/user/'.$userId
+            '/user/' . $userId
         );
 
         self::assertResponseIsSuccessful();
 
         $form = $crawler
-            ->selectButton('Delete')
+            ->selectButton('Supprimer')
             ->form();
 
         $this->client->submit($form);

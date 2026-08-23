@@ -1,4 +1,4 @@
-        /* Daily entry */
+            /* Daily entry */
 
 .daily-entry-page {
     min-height: 100vh;
@@ -274,52 +274,62 @@ body.theme-3 .daily-entry-slider:not(.daily-entry-slider-negative)::-moz-range-t
 
 .daily-entry-result {
     max-width: 750px;
-    background: rgba(10, 16, 12, 0.82);
+    margin-top: 30px;
+    background: rgba(10, 16, 12, 0.6);
     border: 1px solid rgba(154, 137, 75, 0.75);
     border-radius: 12px;
-    padding: 25px;
+    padding: 12px 20px;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.45);
 }
 
 .daily-entry-score,
 .daily-entry-state {
-    margin-bottom: 20px;
+    margin-bottom: 5px;
 }
 
 .daily-entry-score span,
 .daily-entry-state span {
     display: block;
     color: #d8d8d8;
-    margin-bottom: 5px;
+    margin-bottom: 1px;
 }
 
 .daily-entry-score strong {
-    font-size: 2rem;
+    font-size: 1.3rem;
 }
 
 .daily-entry-state strong {
-    font-size: 1.2rem;
+    font-size: 1rem;
 }
 
 .daily-entry-indicators {
-    padding: 20px 0;
+    padding: 5px 0;
     border-top: 1px solid rgba(154, 137, 75, 0.50);
     border-bottom: 1px solid rgba(154, 137, 75, 0.50);
 }
 
+.daily-entry-indicators p {
+    margin: 2px 0;
+}
+
 .daily-entry-message,
 .daily-entry-advice {
-    margin-top: 25px;
+    margin-top: 6px;
 }
 
 .daily-entry-message h2,
 .daily-entry-advice h2 {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
+    font-size: 1rem;
+    margin-bottom: 2px;
+}
+
+.daily-entry-message p,
+.daily-entry-advice p {
+    margin: 0;
 }
 
 .daily-entry-delete-form {
-    margin-top: 20px;
+    margin-top: 6px;
 }
 
 .daily-entry-delete {
@@ -531,6 +541,3 @@ body.theme-3 .daily-entry-advice {
         padding: 10px;
     }
 }
-    
-
-    
