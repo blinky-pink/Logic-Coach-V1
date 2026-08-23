@@ -132,6 +132,16 @@
 
                             <a
                                 href="{{ path(
+                                    'app_theme_show',
+                                    {'id': theme.id}
+                                ) }}"
+                                class="theme-admin-button"
+                            >
+                                Voir
+                            </a>
+
+                            <a
+                                href="{{ path(
                                     'app_theme_edit',
                                     {'id': theme.id}
                                 ) }}"
