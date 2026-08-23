@@ -39,7 +39,7 @@ final class DailyEntryController extends AbstractController
         Request $request,
         EntityManagerInterface $entityManager
     ): Response {
-        $dailyEntry = new DailyEntry();
+     $dailyEntry = new DailyEntry();
 
         $form = $this->createForm(DailyEntryType::class, $dailyEntry);
         $form->handleRequest($request);
